@@ -1,0 +1,71 @@
+/* Add here all your CSS customizations */
+
+a {
+  color: #FFF;
+}
+
+a:hover {
+  color: #0099e6;
+}
+
+a:focus {
+  color: #0099e6;
+}
+
+a:active {
+  color: #0077b3;
+}
+
+.landing-top {
+  margin: 0 auto;
+  background: #84C5E6;
+}
+
+.screenshot-main > img {
+  margin-top: 60px;
+  width: 70%;
+}
+
+.landing-top h1 {
+  font-size: 4vw;
+  line-height: 6vw;
+  color: #FFF;
+  font-weight: 600;
+  margin-top: 0;
+  padding-top: 10vw;
+  padding-bottom: 10px;
+}
+
+.landing-top h2 {
+  color: #FFF;
+  font-size: 2vw;
+  margin: 0 0 20px 0;
+}
+
+.landing-top h2 em {
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.6em;
+  color: #3A83A9;
+}
+
+.feature-section {
+  margin: 30px auto;
+  padding: 50px;
+  background: #BED8DC;
+}
+
+.hire-section {
+  padding: 50px;
+}
+
+.customers-section {
+  padding-top: 50px;
+}
+
+.home-intro {
+  background: #20485C;
+}
+
+.section.section.section-footer {
+  margin-bottom: 30px;
+}
