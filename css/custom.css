@@ -69,3 +69,8 @@ a:active {
 .section.section.section-footer {
   margin-bottom: 30px;
 }
+
+.screenshot-hire > img{
+  margin-top: 0;
+  width: 70%;
+}
