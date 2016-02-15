@@ -74,3 +74,59 @@ a:active {
   margin-top: 0;
   width: 70%;
 }
+
+.store-button {
+  width: 150px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.numberCircle {
+  border-radius: 50%;
+
+  width: 30px;
+  height: 30px;
+  padding: 8px 12px;
+
+  background: #0088cc;
+  /*border: 2px solid #FFF;*/
+  color: #FFF;
+  text-align: center;
+  margin-right: 5px;
+
+  font: 20px Arial, sans-serif;
+}
+
+.instructions-bullets {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.instructions-text {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+  .landing-top h1 {
+    font-size: 8vw;
+    line-height: 10vw;
+    color: #FFF;
+    font-weight: 600;
+    margin-top: 0;
+    padding-top: 10vw;
+    padding-bottom: 10px;
+  }
+
+  .landing-top h2 {
+    color: #FFF;
+    font-size: 4vw;
+    margin: 0 0 20px 0;
+  }
+
+  .landing-top h2 em {
+    font-family: "Shadows Into Light", cursive;
+    font-size: 1.6em;
+    color: #3A83A9;
+  }
+}
