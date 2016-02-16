@@ -130,3 +130,27 @@ a:active {
     color: #3A83A9;
   }
 }
+
+section.tnc{
+  color: $dark-gray;
+  margin: 0 auto;
+  width: 80%;
+  padding: 60px 0;
+}
+section.tnc  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    padding-bottom: 30px;
+  }
+section.tnc  h2 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+section.tnc  li {
+    font-size: 24px;
+  }
+
+section.tnc  ul > li,
+ section.tnc p {
+    font-size: 16px;
+  }
