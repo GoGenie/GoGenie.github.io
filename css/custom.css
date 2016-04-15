@@ -107,6 +107,11 @@ a:active {
   margin-bottom: 20px;
 }
 
+.award {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 767px) {
   .landing-top h1 {
     font-size: 8vw;
