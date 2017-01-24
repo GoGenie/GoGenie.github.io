@@ -12,7 +12,7 @@ function eventHandlers () {
   $('label').eq(1).off().on('click', selectPermHandler);
   $('label').eq(2).off().on('click', displayAddressInput);
   $('label').eq(3).off().on('click', displayDistricts);
-  $('.post-job-btn').eq(0).on('click', handleSubmit);
+  $('.post-job-btn').eq(0).on('click', handlePostSubmit);
 }
 
 function selectJobCategoryHandler (e) {
@@ -97,8 +97,15 @@ function toggleCheckbox (el) {
   districts[el.value] = !districts[el.value];
 }
 
-function handleSubmit (e) {
-  gatherData()
+var formData;
+
+function handlePostSubmit (e) {
+  formData = gatherData();
+
+  if (formData) {
+    promptSignIn();
+  }
+  // postData
 }
 
 function gatherData() {
@@ -123,6 +130,7 @@ function gatherData() {
     formData.location = $('.address-input').eq(0).val();
   }
 
+  // CHECK IF FORM HAS ERRORS
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
@@ -130,11 +138,14 @@ function gatherData() {
       return alertError(key, 'unfilled');
     }
   }
-
-  console.log(formData);
+  return formData
 }
 
 function alertError (field, reason) {
-
   console.log(reason+':', field);
+  return false;
+}
+
+function promptSignIn () {
+  $('.form-card-2').eq(0).css('display', 'block');
 }

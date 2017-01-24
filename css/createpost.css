@@ -7,6 +7,7 @@ body {
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
   padding: 30px;
+  margin-bottom: 20px;
 }
 
 ul.dropdown-menu {
@@ -40,6 +41,14 @@ ul.dropdown-menu {
   width: 47%;
 }
 
+.form-card-2 {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 30px;
+  margin-bottom: 20px;
+  /*display: none;*/
+}
+
 .time-select {
   width: 47%;
 }
@@ -60,4 +69,16 @@ ul.dropdown-menu {
 .districts {
   display: none;
   margin-bottom: 15px;
+}
+
+.form-inline {
+  margin-bottom: 25px;
+}
+
+.form-inline > .form-group {
+  max-width: 35%;
+}
+
+.form-inline > .form-group > input {
+  max-width: 95%;
 }
