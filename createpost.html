@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="css/vendor/owl.carousel/assets/owl.theme.default.min.css">
   <link rel="stylesheet" href="css/vendor/magnific-popup/magnific-popup.css"> -->
   <link rel="stylesheet" href="css/datepicker.min.css">
+  <link rel="stylesheet" href="css/timepicker.css">
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="css/theme.css">
@@ -117,26 +118,139 @@
         </div>
 
         <div class="form-group date-and-times">
-          <input type="text"
-            class="datepicker-here"
-            placeholder="Start Date" />
-
-
+          <div class="form-group">
+            <input
+              type="text"
+              class="datepicker-here form-control"
+              placeholder="Start Date" />
+            <span class="to">
+              -
+            </span>
+            <input
+              type="text"
+              class="datepicker-here form-control"
+              disabled
+              placeholder="End Date" />
+          </div>
+          <div>
+            <input
+              type="text"
+              autocomplete="off"
+              placeholder="Start Time"
+              class="form-control time-select" />
+            <span class="to">
+              -
+            </span>
+            <input
+              type="text"
+              placeholder="End Time"
+              disabled
+              class="form-control time-select" />
+          </div>
         </div>
 
         <div class="form-group">
           <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="8"></textarea>
-
         </div>
 
         <div class="form-group radio-buttons">
-          <label class="radio-inline"><input type="radio" name="jobType">Single Location</label>
-          <label class="radio-inline"><input type="radio" name="jobType">Multiple Locations</label>
+          <label class="radio-inline"><input type="radio" name="locationType">Single Location</label>
+          <label class="radio-inline"><input type="radio" name="locationType">Multiple Locations</label>
         </div>
 
-        <div class="form-group location-selection">
+        <div class="location-selection">
+          <input type="text" class="form-control address-input" placeholder="Enter Location">
 
-          <!-- Insert location selection into this DOM depending on selection -->
+          <div class="districts">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
+              District 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
+              District 2
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
+              District 3
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 4"
+              onchange="toggleCheckbox(this)">
+              District 4
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 5"
+              onchange="toggleCheckbox(this)">
+              District 5
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 6"
+              onchange="toggleCheckbox(this)">
+              District 6
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 7"
+              onchange="toggleCheckbox(this)">
+              District 7
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 8"
+              onchange="toggleCheckbox(this)">
+              District 8
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 9"
+              onchange="toggleCheckbox(this)">
+              District 9
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 10"
+              onchange="toggleCheckbox(this)">
+              District 10
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 11"
+              onchange="toggleCheckbox(this)">
+              District 11
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 12"
+              onchange="toggleCheckbox(this)">
+              District 12
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 13"
+              onchange="toggleCheckbox(this)">
+              District 13
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 14"
+              onchange="toggleCheckbox(this)">
+              District 14
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 15"
+              onchange="toggleCheckbox(this)">
+              District 15
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 16"
+              onchange="toggleCheckbox(this)">
+              District 16
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 17"
+              onchange="toggleCheckbox(this)">
+              District 17
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 18"
+              onchange="toggleCheckbox(this)">
+              District 18
+            </label>
+          </div>
+
         </div>
 
         <button type="button" class="post-job-btn btn btn-primary">
@@ -163,6 +277,7 @@
 
   <script src="js/datepicker/datepicker.min.js"></script>
   <!-- English Language -->
+  <script src="js/datepicker/timepicker.min.js"></script>
   <script src="js/datepicker/en.js"></script>
 
   <script src="js/createpost.js"></script>

@@ -6,7 +6,7 @@ body {
 .form-card {
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
-  padding: 16px;
+  padding: 30px;
 }
 
 ul.dropdown-menu {
@@ -28,12 +28,36 @@ ul.dropdown-menu {
 }
 
 .date-and-times {
-  visibility: hidden;
-  max-height: 0px;
-  margin-bottom: 0px;
+  display: none;
+  margin-bottom: 15px;
 }
 
+.form-group.date-and-times > div > .form-control {
+  display: inline-block;
+}
+
+.datepicker-here {
+  width: 47%;
+}
+
+.time-select {
+  width: 47%;
+}
+
+.to {
+  width: 5%;
+}
 
 .post-job-btn {
   width: 100%;
+}
+
+.address-input {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.districts {
+  display: none;
+  margin-bottom: 15px;
 }
