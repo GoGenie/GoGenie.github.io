@@ -14,11 +14,26 @@ ul.dropdown-menu {
   text-align: left;
 }
 
-.btn .caret {
-  margin-left: 30px;
-}
-
 .dropdown-toggle {
   width: 100%;
   text-align: left;
+}
+
+.radio-buttons {
+  text-align: center;
+}
+
+.radio-inline {
+  margin: 0 40px;
+}
+
+.date-and-times {
+  visibility: hidden;
+  max-height: 0px;
+  margin-bottom: 0px;
+}
+
+
+.post-job-btn {
+  width: 100%;
 }
