@@ -1,0 +1,24 @@
+body {
+  background: lightblue;
+  padding-top: 20px;
+}
+
+.form-card {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 16px;
+}
+
+ul.dropdown-menu {
+  width: 100%;
+  text-align: left;
+}
+
+.btn .caret {
+  margin-left: 30px;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  text-align: left;
+}
