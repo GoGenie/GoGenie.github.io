@@ -76,8 +76,8 @@
 
 		<!-- Create Post CSS -->
 		<link rel="stylesheet" href="css/createpost.css">
-		<link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal.css">
-		<link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal-bs3patch.css">
+		<!-- <link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal-bs3patch.css">
+		<link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal.css"> -->
 		<link rel="stylesheet" href="css/datepicker.min.css">
 	  <link rel="stylesheet" href="css/timepicker.css">
 
@@ -825,86 +825,6 @@
 			</footer>
 		</div>
 
-		<!-- Vendor -->
-		<!--[if lt IE 9]>
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<![endif]-->
-		<!--[if gte IE 9]><!-->
-		<script src="css/vendor/jquery/jquery.js"></script>
-		<!--<![endif]-->
-
-
-		<script src="css/vendor/jquery.appear/jquery.appear.js"></script>
-		<script src="css/vendor/jquery.easing/jquery.easing.js"></script>
-		<script src="css/vendor/jquery-cookie/jquery-cookie.js"></script>
-		<script src="css/vendor/bootstrap/js/bootstrap.js"></script>
-		<script src="css/vendor/common/common.js"></script>
-		<script src="css/vendor/jquery.validation/jquery.validation.js"></script>
-		<script src="css/vendor/jquery.stellar/jquery.stellar.js"></script>
-		<script src="css/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
-		<script src="css/vendor/jquery.gmap/jquery.gmap.js"></script>
-		<script src="css/vendor/jquery.lazyload/jquery.lazyload.js"></script>
-		<script src="css/vendor/isotope/jquery.isotope.js"></script>
-		<script src="css/vendor/owl.carousel/owl.carousel.js"></script>
-		<script src="css/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-		<script src="css/vendor/vide/vide.js"></script>
-
-		<!-- Bootstrap Modal Manager -->
-		<script src="js/bootstrap-modal/bootstrap-modal.js"></script>
-		<script src="js/bootstrap-modal/bootstrap-modalmanager.js"></script>
-
-		<!-- Theme Base, Components and Settings -->
-		<script src="js/theme.js"></script>
-
-		<!-- Specific Page Vendor and Views -->
-		<script src="css/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.carousel.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
-
-		<script src="css/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-		<script src="js/views/view.home.js"></script>
-
-		<!-- Theme Custom -->
-		<script src="js/custom.js"></script>
-
-		<!-- Create Post Related Scripts -->
-		<script src="js/datepicker/datepicker.min.js"></script>
-	  <!-- English Language -->
-	  <script src="js/datepicker/timepicker.min.js"></script>
-	  <script src="js/datepicker/en.js"></script>
-	  <script src="js/createpost.js"></script>
-
-
-
-
-
-		<!-- Theme Initialization Files -->
-		<script src="js/theme.init.js"></script>
-
-		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
-		<script type="text/javascript">
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-64263788-1']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-
-		</script>
-
-
 		<div id="createJobModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -933,7 +853,7 @@
 		          </div>
 		        </div>
 		        <div class="form-group radio-buttons">
-		          <label class="radio-inline"><input type="radio" name="jobType">Temporary</label>
+		          <label class="radio-inline"><input type="radio" id="jobType" name="jobType">Temporary</label>
 		          <label class="radio-inline"><input type="radio" name="jobType">Permanent</label>
 		        </div>
 
@@ -1078,5 +998,77 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Vendor -->
+		<!--[if lt IE 9]>
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+		<script src="css/vendor/jquery/jquery.js"></script>
+		<!--<![endif]-->
+
+
+		<script src="css/vendor/jquery.appear/jquery.appear.js"></script>
+		<script src="css/vendor/jquery.easing/jquery.easing.js"></script>
+		<script src="css/vendor/jquery-cookie/jquery-cookie.js"></script>
+		<script src="css/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="css/vendor/common/common.js"></script>
+		<script src="css/vendor/jquery.validation/jquery.validation.js"></script>
+		<script src="css/vendor/jquery.stellar/jquery.stellar.js"></script>
+		<script src="css/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+		<script src="css/vendor/jquery.gmap/jquery.gmap.js"></script>
+		<script src="css/vendor/jquery.lazyload/jquery.lazyload.js"></script>
+		<script src="css/vendor/isotope/jquery.isotope.js"></script>
+		<script src="css/vendor/owl.carousel/owl.carousel.js"></script>
+		<script src="css/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+		<script src="css/vendor/vide/vide.js"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="js/theme.js"></script>
+
+		<!-- Specific Page Vendor and Views -->
+		<script src="css/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.carousel.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+		<script src="css/vendor/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+
+		<script src="css/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+		<script src="js/views/view.home.js"></script>
+
+		<!-- Theme Custom -->
+		<script src="js/custom.js"></script>
+
+		<!-- Create Post Related Scripts -->
+		<script src="js/datepicker/datepicker.min.js"></script>
+	  <script src="js/datepicker/timepicker.min.js"></script>
+	  <script src="js/datepicker/en.js"></script>
+		<!-- <script src="js/bootstrap-modal/bootstrap-modal.js">
+		<script src="js/bootstrap-modal/bootstrap-modalmanager.js" /> -->
+	  <script src="js/createpost.js"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="js/theme.init.js"></script>
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-64263788-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
 	</body>
 </html>

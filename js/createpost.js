@@ -1,17 +1,17 @@
+
 $(document).ready(function() { init() });
 
 function init () {
   eventHandlers();
-  initStartDatePicker();
   initStartTimePicker();
 }
 
 function eventHandlers () {
   $('.dropdown li a').off().on('click', selectJobCategoryHandler);
-  $('label').eq(0).off().on('click', selectTempHandler);
-  $('label').eq(1).off().on('click', selectPermHandler);
-  $('label').eq(2).off().on('click', displayAddressInput);
-  $('label').eq(3).off().on('click', displayDistricts);
+  $('label.radio-inline').eq(0).off().on('click', selectTempHandler);
+  $('label.radio-inline').eq(1).off().on('click', selectPermHandler);
+  $('label.radio-inline').eq(2).off().on('click', displayAddressInput);
+  $('label.radio-inline').eq(3).off().on('click', displayDistricts);
   $('.post-job-btn').eq(0).on('click', handlePostSubmit);
 }
 
@@ -26,6 +26,7 @@ function selectTempHandler (e) {
   $('.date-and-times')
     .css('display', 'block');
 
+  initStartDatePicker();
   jobType = 'temporary';
 }
 
@@ -37,6 +38,7 @@ function selectPermHandler (e) {
 }
 
 function initStartDatePicker () {
+  console.log('initialize date picker')
   $('.datepicker-here').eq(0).datepicker({
     minDate: new Date(),
     language: 'en',
@@ -57,7 +59,6 @@ function initEndDatePicker (startDate) {
 
 function initStartTimePicker () {
   var $startTimeSelector = $('.time-select').eq(0);
-  console.log('meow');
 
   $startTimeSelector.timepicker();
   $startTimeSelector.on('changeTime', function() {
