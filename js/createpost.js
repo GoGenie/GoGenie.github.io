@@ -138,6 +138,9 @@ function gatherData() {
       return alertError(key, 'unfilled');
     }
   }
+
+  console.log(formData);
+
   return formData
 }
 

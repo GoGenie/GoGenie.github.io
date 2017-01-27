@@ -73,6 +73,14 @@
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="css/custom.css">
 
+
+		<!-- Create Post CSS -->
+		<link rel="stylesheet" href="css/createpost.css">
+		<link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal.css">
+		<link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal-bs3patch.css">
+		<link rel="stylesheet" href="css/datepicker.min.css">
+	  <link rel="stylesheet" href="css/timepicker.css">
+
 		<!-- Head Libs -->
 		<script src="css/vendor/modernizr/modernizr.js"></script>
 
@@ -169,6 +177,14 @@
 			      <div class="text-center headline" data-appear-animation="bounceIn" data-appear-animation-delay="200">
 			        <h1>Hire Temporary<br> Staff Now</h1>
 			        <h2>The fastest way to hire is <em>Here</em></h2>
+							<div class="create-post-row">
+								<button
+									class="btn btn-lg btn-default" data-toggle="modal"
+									data-target="#createJobModal">
+									Create Job Post Now!
+								</button>
+							</div>
+
 			        <a href="https://itunes.apple.com/hk/app/genie-zhi-shen-zhao-pin-gu/id1013716062?mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
       				<a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employer" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
 							<br>
@@ -816,6 +832,8 @@
 		<!--[if gte IE 9]><!-->
 		<script src="css/vendor/jquery/jquery.js"></script>
 		<!--<![endif]-->
+
+
 		<script src="css/vendor/jquery.appear/jquery.appear.js"></script>
 		<script src="css/vendor/jquery.easing/jquery.easing.js"></script>
 		<script src="css/vendor/jquery-cookie/jquery-cookie.js"></script>
@@ -830,6 +848,10 @@
 		<script src="css/vendor/owl.carousel/owl.carousel.js"></script>
 		<script src="css/vendor/magnific-popup/jquery.magnific-popup.js"></script>
 		<script src="css/vendor/vide/vide.js"></script>
+
+		<!-- Bootstrap Modal Manager -->
+		<script src="js/bootstrap-modal/bootstrap-modal.js"></script>
+		<script src="js/bootstrap-modal/bootstrap-modalmanager.js"></script>
 
 		<!-- Theme Base, Components and Settings -->
 		<script src="js/theme.js"></script>
@@ -853,6 +875,17 @@
 		<!-- Theme Custom -->
 		<script src="js/custom.js"></script>
 
+		<!-- Create Post Related Scripts -->
+		<script src="js/datepicker/datepicker.min.js"></script>
+	  <!-- English Language -->
+	  <script src="js/datepicker/timepicker.min.js"></script>
+	  <script src="js/datepicker/en.js"></script>
+	  <script src="js/createpost.js"></script>
+
+
+
+
+
 		<!-- Theme Initialization Files -->
 		<script src="js/theme.init.js"></script>
 
@@ -872,5 +905,178 @@
 		</script>
 
 
+		<div id="createJobModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+						<h4 class="modal-title">Create Job Post</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" class="form-control" id="jobPosition" placeholder="Job Position">
+						</div>
+						<div class="form-group">
+		          <div class="dropdown">
+		            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
+		              Select Job Category
+		              <!-- <span class="caret"></span> -->
+		            </button>
+		            <ul class="dropdown-menu" aria-labelledby="jobCategory">
+		              <li><a href="#">Category A</a></li>
+		              <li><a href="#">Category B</a></li>
+		              <li><a href="#">Category C</a></li>
+		              <li><a href="#">Category D</a></li>
+		              <li><a href="#">Category E</a></li>
+		              <li><a href="#">Category F</a></li>
+		            </ul>
+		          </div>
+		        </div>
+		        <div class="form-group radio-buttons">
+		          <label class="radio-inline"><input type="radio" name="jobType">Temporary</label>
+		          <label class="radio-inline"><input type="radio" name="jobType">Permanent</label>
+		        </div>
+
+		        <div class="form-group date-and-times">
+		          <div class="form-group">
+		            <input
+		              type="text"
+		              class="datepicker-here form-control"
+		              placeholder="Start Date" />
+		            <span class="to">
+		              -
+		            </span>
+		            <input
+		              type="text"
+		              class="datepicker-here form-control"
+		              disabled
+		              placeholder="End Date" />
+		          </div>
+		          <div>
+		            <input
+		              type="text"
+		              autocomplete="off"
+		              placeholder="Start Time"
+		              class="form-control time-select" />
+		            <span class="to">
+		              -
+		            </span>
+		            <input
+		              type="text"
+		              placeholder="End Time"
+		              disabled
+		              class="form-control time-select" />
+		          </div>
+		        </div>
+
+		        <div class="form-group">
+		          <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="8"></textarea>
+		        </div>
+
+		        <div class="form-group radio-buttons">
+		          <label class="radio-inline"><input type="radio" name="locationType">Single Location</label>
+		          <label class="radio-inline"><input type="radio" name="locationType">Multiple Locations</label>
+		        </div>
+
+		        <div class="location-selection">
+		          <input type="text" class="form-control address-input" placeholder="Enter Location">
+
+		          <div class="districts">
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
+		              District 1
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
+		              District 2
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
+		              District 3
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 4"
+		              onchange="toggleCheckbox(this)">
+		              District 4
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 5"
+		              onchange="toggleCheckbox(this)">
+		              District 5
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 6"
+		              onchange="toggleCheckbox(this)">
+		              District 6
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 7"
+		              onchange="toggleCheckbox(this)">
+		              District 7
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 8"
+		              onchange="toggleCheckbox(this)">
+		              District 8
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 9"
+		              onchange="toggleCheckbox(this)">
+		              District 9
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 10"
+		              onchange="toggleCheckbox(this)">
+		              District 10
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 11"
+		              onchange="toggleCheckbox(this)">
+		              District 11
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 12"
+		              onchange="toggleCheckbox(this)">
+		              District 12
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 13"
+		              onchange="toggleCheckbox(this)">
+		              District 13
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 14"
+		              onchange="toggleCheckbox(this)">
+		              District 14
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 15"
+		              onchange="toggleCheckbox(this)">
+		              District 15
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 16"
+		              onchange="toggleCheckbox(this)">
+		              District 16
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 17"
+		              onchange="toggleCheckbox(this)">
+		              District 17
+		            </label>
+		            <label class="checkbox-inline">
+		              <input type="checkbox" value="District 18"
+		              onchange="toggleCheckbox(this)">
+		              District 18
+		            </label>
+		          </div>
+		        </div>
+		        <button type="button" class="post-job-btn btn btn-primary">
+		          Post Job
+		        </button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
