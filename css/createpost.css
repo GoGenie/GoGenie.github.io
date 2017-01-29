@@ -15,10 +15,15 @@ ul.dropdown-menu {
   text-align: left;
 }
 
+ul.dropdown-menu > li > a {
+  cursor: pointer;
+}
+
 .dropdown-toggle {
   width: 100%;
   text-align: left;
 }
+
 
 .radio-buttons {
   text-align: center;
@@ -59,6 +64,7 @@ ul.dropdown-menu {
 
 .post-job-btn {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .address-input {
@@ -72,13 +78,74 @@ ul.dropdown-menu {
 }
 
 .form-inline {
-  margin-bottom: 25px;
+  text-align: left;
+  margin: 12px auto;
 }
 
 .form-inline > .form-group {
-  max-width: 35%;
+  /*text-align: left;*/
+  text-align: center;
+  /*margin-right: 25px;*/
+  width: 230px;
 }
 
 .form-inline > .form-group > input {
-  max-width: 95%;
+  max-width: 90%;
+}
+
+.modal-body {
+  padding-bottom: 0px;
+}
+
+.preview-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 18px;
+  margin: 15px 60px 40px 60px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.postInfo {
+  margin: 0px;
+}
+
+.tempPostInfo {
+  display: none;
+}
+
+.postInfoLabel {
+  padding-right: 10px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.postInfoData {
+  padding-left: 10px;
+  text-align: left;
+};
+
+.modal-footer {
+  text-align: left;
+}
+
+.modal-footer > a {
+  color: blue;
+}
+
+.modal-footer > a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#authAndPostButton {
+  float: right;
+}
+
+#registrationForm {
+  text-align: left;
+  border-radius: 1px solid #e5e5e5;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 4px;
 }

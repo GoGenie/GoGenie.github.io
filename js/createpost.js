@@ -13,11 +13,13 @@ function eventHandlers () {
   $('label.radio-inline').eq(2).off().on('click', displayAddressInput);
   $('label.radio-inline').eq(3).off().on('click', displayDistricts);
   $('.post-job-btn').eq(0).on('click', handlePostSubmit);
+  $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
+  $('#authAndPostButton').off().on('click', authAndPostHandler)
 }
 
 function selectJobCategoryHandler (e) {
-  $('.btn:first-child').text($(this).text());
-  $('.btn:first-child').val($(this).text());
+  $('#jobCategory').text($(this).text());
+  $('#jobCategory').val($(this).text());
 }
 
 var jobType;
@@ -101,7 +103,8 @@ function toggleCheckbox (el) {
 var formData;
 
 function handlePostSubmit (e) {
-  formData = gatherData();
+  populatePreviewCard();
+  formData = gatherPostingInfo();
 
   if (formData) {
     promptSignIn();
@@ -109,10 +112,35 @@ function handlePostSubmit (e) {
   // postData
 }
 
-function gatherData() {
-  var formData = {
+function populatePreviewCard () {
+  $('.postInfoData > .postInfo').eq(0).text($('#jobPosition').val());
+  $('.postInfoData > .postInfo').eq(1).text($('#jobCategory').val());
+  $('.postInfoData > .postInfo').eq(2).text(jobType.toUpperCase());
+  $('.postInfoData > .postInfo').eq(5).text($('#jobDescription').val());
+
+  if (jobType === 'temporary') {
+    $('.tempPostInfo').css('display', 'block');
+    var dates = $('.datepicker-here').eq(0).val() + ' to ' + $('.datepicker-here').eq(1).val();
+    var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
+
+    $('.postInfoData > .postInfo').eq(3).text(dates);
+    $('.postInfoData > .postInfo').eq(4).text(times);
+  }
+
+  if (locationType === 'multiple') {
+    var textVal = ''
+    for (var key in districts) textVal += key+' ';
+    $('.postInfoData > .postInfo').eq(6).text(textVal);
+  } else {
+    $('.postInfoData > .postInfo').eq(6).text($('.address-input').eq(0).val());
+  }
+
+}
+
+function gatherPostingInfo() {
+  formData = {
     jobPosition: $('#jobPosition').val(),
-    jobCategory: $('.btn:first-child').val(),
+    jobCategory: $('#jobCategory').val(),
     jobType: jobType,
     jobDescription: $('#jobDescription').val(),
     locationType: locationType
@@ -151,5 +179,67 @@ function alertError (field, reason) {
 }
 
 function promptSignIn () {
-  $('.form-card-2').eq(0).css('display', 'block');
+  // $('.form-card-2').eq(0).css('display', 'block');
+
+  // close current modal and open new Sign In Modal without losing formData.
+
+
+  // transition the modal to the left while the new sign in modal can transition in from the right
+}
+
+var signIn = true;
+
+function toggleAuthView (e) {
+
+  var $modalTitle = $('h4.modal-title').eq(1),
+      $toggleMessage = $('.modal-footer > a').eq(0),
+      $postButton = $('#authAndPostButton');
+
+  if (signIn) {
+    $modalTitle.text('Register and Post Job')
+    $toggleMessage.text('Or sign in to post job!');
+    $postButton.text('Register and post job')
+    signIn = false;
+  } else {
+    $modalTitle.text('Sign in to post')
+    $toggleMessage.text('Or register to post job')
+    $postButton.text('Sign in and post job')
+    signIn = true;
+  }
+}
+
+function authAndPostHandler (e) {
+  var authInfo = gatherAuthInfo();
+
+  if (authInfo) {
+    authAndPost(authInfo);
+  }
+}
+
+function gatherAuthInfo () {
+  var authInfo = {
+    email: $('#inputEmail').val(),
+    password: $('#inputPassword').val()
+  }
+
+  if (!signIn) {
+    authInfo.phone = $('#inputPhone').val();
+    authInfo.company = $('#inputCompanyName').val();
+  }
+
+  for (var key in authInfo) {
+    var unfilled = !authInfo[key];
+
+    if (unfilled) {
+      return alertError(key, 'unfilled');
+    }
+  }
+}
+
+function authAndPost () {
+  if (signIn) {
+
+  } else {
+
+  }
 }
