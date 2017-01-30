@@ -77,6 +77,12 @@ function enableEndTimePicker (minTime) {
   $endTimeSelector.prop('disabled', false);
 }
 
+function locationAutocomplete () {
+  var input = document.getElementById('addressInput')
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  google.maps.event.addDomListener(window, 'load', autocomplete);
+}
+
 var locationType;
 function displayAddressInput () {
   locationType = 'single';
@@ -87,6 +93,7 @@ function displayAddressInput () {
     .attr('data-validate', 'true')
     .prop('required', true);
   $('#jobPostForm').validator('update');
+  locationAutocomplete();
 }
 
 function displayDistricts () {

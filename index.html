@@ -905,9 +905,9 @@
 			        </div>
 
 			        <div class="location-selection">
-			          <input type="text" class="form-control address-input" placeholder="Enter Location">
+			          <input type="text" class="form-control address-input" id="addressInput" placeholder="Enter Location">
 
-			          <div class="districts">
+			          <div class="districts" style="display: none; margin-bottom: 15px;">
 			            <label class="checkbox-inline">
 			              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
 			              District 1
@@ -1132,12 +1132,11 @@
 		<script src="js/custom.js"></script>
 
 		<!-- Create Post Related Scripts -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwgejdknqxK_7RDtdus9aVE2lzKrUeW5M&libraries=places"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<script src="js/datepicker/datepicker.min.js"></script>
 	  <script src="js/datepicker/timepicker.min.js"></script>
 	  <script src="js/datepicker/en.js"></script>
-		<!-- <script src="js/bootstrap-modal/bootstrap-modal.js">
-		<script src="js/bootstrap-modal/bootstrap-modalmanager.js" /> -->
 	  <script src="js/createpost.js"></script>
 
 		<!-- Theme Initialization Files -->

@@ -40,7 +40,7 @@ li {
 /* Header */
 #header {
 	position: relative;
-	z-index: 100;
+	z-index: 5;
 }
 
 #header .header-body {
@@ -52,7 +52,7 @@ li {
 	-moz-transition: min-height 0.3s ease;
 	transition: min-height 0.3s ease;
 	width: 100%;
-	z-index: 1001;
+	z-index: 6;
 	min-height: 125px;
 }
 
