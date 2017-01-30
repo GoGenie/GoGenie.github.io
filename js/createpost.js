@@ -80,42 +80,54 @@ function enableEndTimePicker (minTime) {
 var locationType;
 function displayAddressInput () {
   locationType = 'single';
-  $('.districts').eq(0)
-    .css('display', 'none');
+  $('.districts').eq(0).css('display', 'none');
   $('.address-input').eq(0)
-    .css('display', 'block');
+    .val('')
+    .css('display', 'block')
+    .attr('data-validate', 'true')
+    .prop('required', true);
+  $('#jobPostForm').validator('update');
 }
 
 function displayDistricts () {
   locationType = 'multiple';
   $('.address-input').eq(0)
-    .css('display', 'none');
+    .css('display', 'none')
+    .prop('required', false)
+    .attr('data-validate', 'false');
   $('.districts').eq(0)
     .css('display', 'block');
+  $('#jobPostForm').validator('update');
 }
 
 var districts = {};
 
 function toggleCheckbox (el) {
   districts[el.value] = !districts[el.value];
+  $('.address-input').eq(0).val('hi');
 }
 
 var formData;
 
 function handlePostSubmit (e) {
+  e.preventDefault();
   populatePreviewCard();
   formData = gatherPostingInfo();
 
   if (formData) {
-    promptSignIn();
+    console.log('there is form data.');
+    return promptSignIn();
   }
+  console.log('unfilled form data.');
   // postData
 }
 
 function populatePreviewCard () {
   $('.postInfoData > .postInfo').eq(0).text($('#jobPosition').val());
   $('.postInfoData > .postInfo').eq(1).text($('#jobCategory').val());
-  $('.postInfoData > .postInfo').eq(2).text(jobType.toUpperCase());
+  if (jobType) {
+    $('.postInfoData > .postInfo').eq(2).text(jobType.toUpperCase());
+  }
   $('.postInfoData > .postInfo').eq(5).text($('#jobDescription').val());
 
   if (jobType === 'temporary') {
@@ -164,7 +176,8 @@ function gatherPostingInfo() {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
     if (unfilled) {
-      return alertError(key, 'unfilled');
+      console.log('there is an unfilled ', key)
+      return false;
     }
   }
 
@@ -173,18 +186,10 @@ function gatherPostingInfo() {
   return formData
 }
 
-function alertError (field, reason) {
-  console.log(reason+':', field);
-  return false;
-}
-
 function promptSignIn () {
-  // $('.form-card-2').eq(0).css('display', 'block');
-
-  // close current modal and open new Sign In Modal without losing formData.
-
-
-  // transition the modal to the left while the new sign in modal can transition in from the right
+  $('.post-job-btn').eq(0).attr('data-dismiss', 'modal');
+  $('.post-job-btn').eq(0).attr('data-toggle', 'modal');
+  $('.post-job-btn').eq(0).attr('data-target', '#signInModal');
 }
 
 var signIn = true;
@@ -193,27 +198,45 @@ function toggleAuthView (e) {
 
   var $modalTitle = $('h4.modal-title').eq(1),
       $toggleMessage = $('.modal-footer > a').eq(0),
-      $postButton = $('#authAndPostButton');
+      $postButton = $('#authAndPostButton'),
+      $emailInput = $('#inputEmail'),
+      $passwordInput = $('#inputPassword'),
+      $companyInput = $('#inputCompanyName'),
+      $phoneInput = $('#inputPhone');
+
+  $emailInput.val('');
+  $passwordInput.val('');
+  $phoneInput.val('');
+  $companyInput.val('');
+  $postButton.addClass('disabled');
 
   if (signIn) {
     $modalTitle.text('Register and Post Job')
     $toggleMessage.text('Or sign in to post job!');
-    $postButton.text('Register and post job')
+    $postButton.text('Register and post job');
+    $companyInput.prop('required', true);
+    $phoneInput.prop('required', true);
     signIn = false;
   } else {
-    $modalTitle.text('Sign in to post')
-    $toggleMessage.text('Or register to post job')
-    $postButton.text('Sign in and post job')
+    $modalTitle.text('Sign in to post');
+    $toggleMessage.text('Or register to post job');
+    $postButton.text('Sign in and post job');
+    $companyInput.removeProp('required');
+    $phoneInput.removeProp('required');
     signIn = true;
   }
 }
 
 function authAndPostHandler (e) {
+  e.preventDefault();
+
   var authInfo = gatherAuthInfo();
 
   if (authInfo) {
-    authAndPost(authInfo);
+    console.log('there is auth info')
+    return authAndPost(authInfo);
   }
+  console.log('no auth info.')
 }
 
 function gatherAuthInfo () {
@@ -231,12 +254,14 @@ function gatherAuthInfo () {
     var unfilled = !authInfo[key];
 
     if (unfilled) {
-      return alertError(key, 'unfilled');
+      return;
     }
   }
+  return authInfo;
 }
 
 function authAndPost () {
+  console.log('posted!');
   if (signIn) {
 
   } else {

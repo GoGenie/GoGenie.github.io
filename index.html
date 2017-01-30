@@ -839,167 +839,168 @@
 						<h4 class="modal-title">Create Job Post</h4>
 					</div>
 					<div class="modal-body">
-						<div class="form-group">
-							<input type="text" class="form-control" id="jobPosition" placeholder="Job Position">
-						</div>
-						<div class="form-group">
-		          <div class="dropdown">
-		            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
-		              Select Job Category
-		              <!-- <span class="caret"></span> -->
-		            </button>
-		            <ul class="dropdown-menu" aria-labelledby="jobCategory">
-		              <li><a>Category A</a></li>
-		              <li><a>Category B</a></li>
-		              <li><a>Category C</a></li>
-		              <li><a>Category D</a></li>
-		              <li><a>Category E</a></li>
-		              <li><a>Category F</a></li>
-		            </ul>
-		          </div>
-		        </div>
-		        <div class="form-group radio-buttons">
-		          <label class="radio-inline"><input type="radio" id="jobType" name="jobType">Temporary</label>
-		          <label class="radio-inline"><input type="radio" name="jobType">Permanent</label>
-		        </div>
+						<form data-toggle="validator" role="form" id="jobPostForm">
+							<div class="form-group">
+								<input type="text" class="form-control" id="jobPosition" placeholder="Job Position" required>
+							</div>
+							<div class="form-group">
+			          <div class="dropdown">
+			            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
+			              Select Job Category
+			            </button>
+			            <ul class="dropdown-menu" aria-labelledby="jobCategory">
+			              <li><a>Category A</a></li>
+			              <li><a>Category B</a></li>
+			              <li><a>Category C</a></li>
+			              <li><a>Category D</a></li>
+			              <li><a>Category E</a></li>
+			              <li><a>Category F</a></li>
+			            </ul>
+			          </div>
+			        </div>
+			        <div class="form-group radio-buttons">
+			          <label class="radio-inline"><input type="radio" id="jobType" name="jobType" required>Temporary</label>
+			          <label class="radio-inline"><input type="radio" name="jobType" required>Permanent</label>
+			        </div>
 
-		        <div class="form-group date-and-times">
-		          <div class="form-group">
-		            <input
-		              type="text"
-		              class="datepicker-here form-control"
-		              placeholder="Start Date" />
-		            <span class="to">
-		              -
-		            </span>
-		            <input
-		              type="text"
-		              class="datepicker-here form-control"
-		              disabled
-		              placeholder="End Date" />
-		          </div>
-		          <div>
-		            <input
-		              type="text"
-		              autocomplete="off"
-		              placeholder="Start Time"
-		              class="form-control time-select" />
-		            <span class="to">
-		              -
-		            </span>
-		            <input
-		              type="text"
-		              placeholder="End Time"
-		              disabled
-		              class="form-control time-select" />
-		          </div>
-		        </div>
+			        <div class="form-group date-and-times">
+			          <div class="form-group">
+			            <input
+			              type="text"
+			              class="datepicker-here form-control"
+			              placeholder="Start Date" />
+			            <span class="to">
+			              -
+			            </span>
+			            <input
+			              type="text"
+			              class="datepicker-here form-control"
+			              disabled
+			              placeholder="End Date" />
+			          </div>
+			          <div>
+			            <input
+			              type="text"
+			              autocomplete="off"
+			              placeholder="Start Time"
+			              class="form-control time-select" />
+			            <span class="to">
+			              -
+			            </span>
+			            <input
+			              type="text"
+			              placeholder="End Time"
+			              disabled
+			              class="form-control time-select" />
+			          </div>
+			        </div>
 
-		        <div class="form-group">
-		          <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="8"></textarea>
-		        </div>
+			        <div class="form-group">
+			          <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="8" required></textarea>
+			        </div>
 
-		        <div class="form-group radio-buttons">
-		          <label class="radio-inline"><input type="radio" name="locationType">Single Location</label>
-		          <label class="radio-inline"><input type="radio" name="locationType">Multiple Locations</label>
-		        </div>
+			        <div class="form-group radio-buttons">
+			          <label class="radio-inline"><input type="radio" name="locationType" required>Single Location</label>
+			          <label class="radio-inline"><input type="radio" name="locationType" required>Multiple Locations</label>
+			        </div>
 
-		        <div class="location-selection">
-		          <input type="text" class="form-control address-input" placeholder="Enter Location">
+			        <div class="location-selection">
+			          <input type="text" class="form-control address-input" placeholder="Enter Location">
 
-		          <div class="districts">
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
-		              District 1
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
-		              District 2
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
-		              District 3
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 4"
-		              onchange="toggleCheckbox(this)">
-		              District 4
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 5"
-		              onchange="toggleCheckbox(this)">
-		              District 5
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 6"
-		              onchange="toggleCheckbox(this)">
-		              District 6
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 7"
-		              onchange="toggleCheckbox(this)">
-		              District 7
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 8"
-		              onchange="toggleCheckbox(this)">
-		              District 8
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 9"
-		              onchange="toggleCheckbox(this)">
-		              District 9
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 10"
-		              onchange="toggleCheckbox(this)">
-		              District 10
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 11"
-		              onchange="toggleCheckbox(this)">
-		              District 11
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 12"
-		              onchange="toggleCheckbox(this)">
-		              District 12
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 13"
-		              onchange="toggleCheckbox(this)">
-		              District 13
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 14"
-		              onchange="toggleCheckbox(this)">
-		              District 14
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 15"
-		              onchange="toggleCheckbox(this)">
-		              District 15
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 16"
-		              onchange="toggleCheckbox(this)">
-		              District 16
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 17"
-		              onchange="toggleCheckbox(this)">
-		              District 17
-		            </label>
-		            <label class="checkbox-inline">
-		              <input type="checkbox" value="District 18"
-		              onchange="toggleCheckbox(this)">
-		              District 18
-		            </label>
-		          </div>
-		        </div>
-		        <button type="button" class="post-job-btn btn btn-primary" data-dismiss="modal" aria-hidden="true"  data-toggle="modal" data-target="#signInModal">
-		          Post Job
-		        </button>
+			          <div class="districts">
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
+			              District 1
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
+			              District 2
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
+			              District 3
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 4"
+			              onchange="toggleCheckbox(this)">
+			              District 4
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 5"
+			              onchange="toggleCheckbox(this)">
+			              District 5
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 6"
+			              onchange="toggleCheckbox(this)">
+			              District 6
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 7"
+			              onchange="toggleCheckbox(this)">
+			              District 7
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 8"
+			              onchange="toggleCheckbox(this)">
+			              District 8
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 9"
+			              onchange="toggleCheckbox(this)">
+			              District 9
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 10"
+			              onchange="toggleCheckbox(this)">
+			              District 10
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 11"
+			              onchange="toggleCheckbox(this)">
+			              District 11
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 12"
+			              onchange="toggleCheckbox(this)">
+			              District 12
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 13"
+			              onchange="toggleCheckbox(this)">
+			              District 13
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 14"
+			              onchange="toggleCheckbox(this)">
+			              District 14
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 15"
+			              onchange="toggleCheckbox(this)">
+			              District 15
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 16"
+			              onchange="toggleCheckbox(this)">
+			              District 16
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 17"
+			              onchange="toggleCheckbox(this)">
+			              District 17
+			            </label>
+			            <label class="checkbox-inline">
+			              <input type="checkbox" value="District 18"
+			              onchange="toggleCheckbox(this)">
+			              District 18
+			            </label>
+			          </div>
+			        </div>
+			        <button type="submit" class="post-job-btn btn btn-primary" aria-hidden="true">
+			          Preview Job Post
+			        </button>
+		        </form>
 					</div>
 				</div>
 			</div>
@@ -1012,69 +1013,74 @@
 						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
 						<h4 class="modal-title">Sign in to post</h4>
 					</div>
-					<div class="modal-body">
-						<div class="preview-card">
-							<h5 class="preview-header">
-								Your Post Info
-							</h5>
-							<div class="row">
-								<div class="col-xs-6 postInfoLabel">
-									<p class="postInfo">Job Position:</p>
-									<p class="postInfo">Job Category:</p>
-									<p class="postInfo">Job Type:</p>
-									<p class="postInfo tempPostInfo">Job Dates:</p>
-									<p class="postInfo tempPostInfo">Job Times:</p>
-									<p class="postInfo">Job Description:</p>
-									<p class="postInfo">Location(s):</p>
-								</div>
-								<div class="col-xs-6 postInfoData">
-									<p class="postInfo">placeholder</p>
-									<p class="postInfo">placeholder</p>
-									<p class="postInfo">placeholder</p>
-									<p class="postInfo tempPostInfo">placeholder</p>
-									<p class="postInfo tempPostInfo">placeholder</p>
-									<p class="postInfo">placeholder</p>
-									<p class="postInfo">placeholder</p>
+					<form data-toggle="validator" role="form">
+						<div class="modal-body">
+							<div class="preview-card">
+								<h5 class="preview-header">
+									Your Post Info
+									<span class="glyphicon glyphicon-pencil" data-dismiss="modal" data-target="#createJobModal" data-toggle="modal"></span>
+								</h5>
+								<div class="row">
+									<div class="col-xs-6 postInfoLabel">
+										<p class="postInfo">Job Position:</p>
+										<p class="postInfo">Job Category:</p>
+										<p class="postInfo">Job Type:</p>
+										<p class="postInfo tempPostInfo">Job Dates:</p>
+										<p class="postInfo tempPostInfo">Job Times:</p>
+										<p class="postInfo">Job Description:</p>
+										<p class="postInfo">Location(s):</p>
+									</div>
+									<div class="col-xs-6 postInfoData">
+										<p class="postInfo">placeholder</p>
+										<p class="postInfo">placeholder</p>
+										<p class="postInfo">placeholder</p>
+										<p class="postInfo tempPostInfo">placeholder</p>
+										<p class="postInfo tempPostInfo">placeholder</p>
+										<p class="postInfo">placeholder</p>
+										<p class="postInfo">placeholder</p>
+									</div>
 								</div>
 							</div>
+							<div class="row">
+			          <div class="form-group col-xs-6">
+			            <label for="inputEmail" class="sr-only">
+			              Email
+			            </label>
+			            <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="That email address is invalid" required>
+			            <div class="help-block with-errors"></div>
+			          </div>
+			          <div class="form-group col-xs-6">
+			            <label for="inputPassword" class="sr-only">
+			              Password
+			            </label>
+			            <input type="password" data-minlength="8" class="form-control" id="inputPassword" data-error="Minimum of 8 characters" placeholder="Password" required>
+									<div class="help-block with-errors"></div>
+			          </div>
+							</div>
+			        <div class="row collapse" id="registrationDetails">
+		            <div class="form-group col-xs-6">
+			            <label for="inputCompanyName" class="sr-only">
+			              Company Name
+			            </label>
+			            <input type="text" class="form-control" id="inputCompanyName" placeholder="Company Name">
+		            </div>
+			          <div class="form-group col-xs-6">
+			          	<label for="inputPhone" class="sr-only">
+			              Phone Number
+			            </label>
+			            <input type="phone" class="form-control" id="inputPhone" placeholder="Phone Number">
+		            </div>
+			        </div>
 						</div>
-						<div class="row">
-		          <div class="form-group col-xs-6">
-		            <label for="inputEmail" class="sr-only">
-		              Email
-		            </label>
-		            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-		          </div>
-		          <div class="form-group col-xs-6">
-		            <label for="inputPassword" class="sr-only">
-		              Password
-		            </label>
-		            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-		          </div>
-						</div>
-		        <div class="row collapse" id="registrationDetails">
-	            <div class="form-group col-xs-6">
-		            <label for="inputCompanyName" class="sr-only">
-		              Company Name
-		            </label>
-		            <input type="text" class="form-control" id="inputCompanyName" placeholder="Company Name">
-	            </div>
-		          <div class="form-group col-xs-6">
-		          	<label for="inputPhone" class="sr-only">
-		              Phone Number
-		            </label>
-		            <input type="phone" class="form-control" id="inputPhone" placeholder="Phone Number">
-	            </div>
+		        <div class="modal-footer" style="text-align: left;">
+							<a href="#" data-toggle="collapse" data-target="#registrationDetails" style="color: #0088cc;">
+								Or sign up to post job
+							</a>
+		          <button type="submit" class="btn btn-default" id="authAndPostButton">
+		            Sign in to post job
+		          </button>
 		        </div>
-					</div>
-	        <div class="modal-footer">
-						<a data-toggle="collapse" data-target="#registrationDetails">
-							Or sign up to post job
-						</a>
-	          <button type="submit" class="btn btn-default" id="authAndPostButton">
-	            Sign in to post job
-	          </button>
-	        </div>
+	        </form>
 				</div>
 			</div>
 		</div>
@@ -1126,6 +1132,7 @@
 		<script src="js/custom.js"></script>
 
 		<!-- Create Post Related Scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 		<script src="js/datepicker/datepicker.min.js"></script>
 	  <script src="js/datepicker/timepicker.min.js"></script>
 	  <script src="js/datepicker/en.js"></script>

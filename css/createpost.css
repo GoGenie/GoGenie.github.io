@@ -100,10 +100,14 @@ ul.dropdown-menu > li > a {
 .preview-card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
   padding: 18px;
-  margin: 15px 60px 40px 60px;
+  margin: 15px 0px 30px;
   border-radius: 4px;
   background-color: #f1f1f1;
   text-align: center;
+}
+
+.glyphicon.glyphicon-pencil:hover {
+  cursor: pointer;
 }
 
 .postInfo {
@@ -124,14 +128,6 @@ ul.dropdown-menu > li > a {
   padding-left: 10px;
   text-align: left;
 };
-
-.modal-footer {
-  text-align: left;
-}
-
-.modal-footer > a {
-  color: blue;
-}
 
 .modal-footer > a:hover {
   text-decoration: none;
