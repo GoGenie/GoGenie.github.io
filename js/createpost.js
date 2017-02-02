@@ -130,28 +130,28 @@ function handlePostSubmit (e) {
 }
 
 function populatePreviewCard () {
-  $('.postInfoData > .postInfo').eq(0).text($('#jobPosition').val());
-  $('.postInfoData > .postInfo').eq(1).text($('#jobCategory').val());
+  $('.postInfo').eq(0).text($('#jobPosition').val());
+  $('.postInfo').eq(1).text($('#jobCategory').val());
   if (jobType) {
-    $('.postInfoData > .postInfo').eq(2).text(jobType.toUpperCase());
+    $('.postInfo').eq(2).text(jobType.toUpperCase());
   }
-  $('.postInfoData > .postInfo').eq(5).text($('#jobDescription').val());
+  $('.postInfo').eq(5).text($('#jobDescription').val());
 
   if (jobType === 'temporary') {
     $('.tempPostInfo').css('display', 'block');
     var dates = $('.datepicker-here').eq(0).val() + ' to ' + $('.datepicker-here').eq(1).val();
     var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
 
-    $('.postInfoData > .postInfo').eq(3).text(dates);
-    $('.postInfoData > .postInfo').eq(4).text(times);
+    $('.postInfo').eq(3).text(dates);
+    $('.postInfo').eq(4).text(times);
   }
 
   if (locationType === 'multiple') {
     var textVal = ''
     for (var key in districts) textVal += key+' ';
-    $('.postInfoData > .postInfo').eq(6).text(textVal);
+    $('.postInfo').eq(6).text(textVal);
   } else {
-    $('.postInfoData > .postInfo').eq(6).text($('.address-input').eq(0).val());
+    $('.postInfo').eq(6).text($('.address-input').eq(0).val());
   }
 
 }
@@ -267,11 +267,40 @@ function gatherAuthInfo () {
   return authInfo;
 }
 
-function authAndPost () {
-  console.log('posted!');
+var url = 'http://localhost:3000'
+
+function authAndPost (authInfo) {
+
   if (signIn) {
-
+    axios.post(url+'/master_auth/sign_in', authInfo)
+    .then(function(response) {
+      postJob(response.headers)
+      console.log('response', response);
+    })
+    .catch(function(error) {
+      console.log('error signing in', error);
+    })
   } else {
-
+    // if sign up.
+    axios.post(url+'/master_auth', authInfo)
+    .then(function(response) {
+      if (jobType === 'permanent') {
+        postJob(response.headers, true)
+      } else if (jobType === 'temporary') {
+        postJob(response.headers, false)
+      } else {
+        console.log('jobType is not permanent nor temporary: ', jobType);
+      }
+      postJob(response.headers)
+    })
+    .catch(function(error) {
+      console.log('error signing up', error);
+    })
   }
+}
+
+function postJob (responseHeaders, isPermJob) {
+  url += isPermJob ? '/master/v5/jobs' : '/master/v5/parttime_jobs';
+
+  axios.post(url, formData)
 }

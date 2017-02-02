@@ -99,8 +99,13 @@ ul.dropdown-menu > li > a {
   max-width: 90%;
 }
 
+.modal-dialog {
+  overflow-y: initial !important;
+}
+
 .modal-body {
   padding-bottom: 0px;
+  overflow-y: auto;
 }
 
 .preview-card {
@@ -110,6 +115,8 @@ ul.dropdown-menu > li > a {
   border-radius: 4px;
   background-color: #f1f1f1;
   text-align: center;
+  overflow: scroll;
+  max-height: 270px;
 }
 
 .glyphicon.glyphicon-pencil:hover {
@@ -117,7 +124,9 @@ ul.dropdown-menu > li > a {
 }
 
 .postInfo {
-  margin: 0px;
+  padding-left: 10px;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .tempPostInfo {
@@ -129,11 +138,6 @@ ul.dropdown-menu > li > a {
   text-align: right;
   font-weight: bold;
 }
-
-.postInfoData {
-  padding-left: 10px;
-  text-align: left;
-};
 
 .modal-footer > a:hover {
   text-decoration: none;
