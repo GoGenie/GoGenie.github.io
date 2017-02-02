@@ -185,6 +185,11 @@
 								</button>
 								<button
 									class="btn btn-lg btn-default" data-toggle="modal"
+									data-target="#temporaryJobModal">
+									Temporary Job Post Modal Button
+								</button>
+								<button
+									class="btn btn-lg btn-default" data-toggle="modal"
 									data-target="#signInModal">
 									Temporary sign in modal button
 								</button>
@@ -836,169 +841,68 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
-						<h4 class="modal-title">Create Job Post</h4>
+						<h4 class="modal-title">Create Job Post (1/2)</h4>
 					</div>
 					<div class="modal-body">
-						<form data-toggle="validator" role="form" id="jobPostForm">
+						<form data-toggle="validator" role="form" id="firstSecForm">
 							<div class="form-group">
-								<input type="text" class="form-control" id="jobPosition" placeholder="Job Position" required>
-							</div>
-							<div class="form-group">
-			          <div class="dropdown">
-			            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
-			              Select Job Category
-			            </button>
-			            <ul class="dropdown-menu" aria-labelledby="jobCategory">
-			              <li><a>Category A</a></li>
-			              <li><a>Category B</a></li>
-			              <li><a>Category C</a></li>
-			              <li><a>Category D</a></li>
-			              <li><a>Category E</a></li>
-			              <li><a>Category F</a></li>
-			            </ul>
-			          </div>
+								<div class="row">
+									<div class="col-xs-6">
+										<input type="text" class="form-control" id="jobPosition" placeholder="Enter Job Position" required>
+									</div>
+									<div class="col-xs-6">
+					          <div class="dropdown jobCategoryDropdown">
+					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory" data-category="true">
+					              Select Job Category
+					            </button>
+					            <ul class="dropdown-menu" aria-labelledby="jobCategory">
+					              <li><a>Category A</a></li>
+					              <li><a>Category B</a></li>
+					              <li><a>Category C</a></li>
+					              <li><a>Category D</a></li>
+					              <li><a>Category E</a></li>
+					              <li><a>Category F</a></li>
+					            </ul>
+					          </div>
+									</div>
+								</div>
+							<!-- </div>
+							<div class="form-group"> -->
 			        </div>
+			        <div class="form-group">
+			        	<div class="row">
+			        		<div class="col-xs-6">
+						        <input type="text" class="form-control address-input" id="addressInput" placeholder="Enter Location" required>
+			        		</div>
+			        		<div class="col-xs-6">
+										<div class="dropdown districtsDropdown">
+					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="district">
+					              Select District
+					            </button>
+					            <ul class="dropdown-menu" aria-labelledby="districts">
+					              <li><a>District A</a></li>
+					              <li><a>District B</a></li>
+					              <li><a>District C</a></li>
+					              <li><a>District D</a></li>
+					              <li><a>District E</a></li>
+					              <li><a>District F</a></li>
+					            </ul>
+					          </div>
+			        		</div>
+			        	</div>
+							</div>
+
 			        <div class="form-group radio-buttons">
 			          <label class="radio-inline"><input type="radio" id="jobType" name="jobType" required>Temporary</label>
 			          <label class="radio-inline"><input type="radio" name="jobType" required>Permanent</label>
-			        </div>
-
-			        <div class="form-group date-and-times">
-			          <div class="form-group">
-			            <input
-			              type="text"
-			              class="datepicker-here form-control"
-			              placeholder="Start Date" />
-			            <span class="to">
-			              -
-			            </span>
-			            <input
-			              type="text"
-			              class="datepicker-here form-control"
-			              disabled
-			              placeholder="End Date" />
-			          </div>
-			          <div>
-			            <input
-			              type="text"
-			              autocomplete="off"
-			              placeholder="Start Time"
-			              class="form-control time-select" />
-			            <span class="to">
-			              -
-			            </span>
-			            <input
-			              type="text"
-			              placeholder="End Time"
-			              disabled
-			              class="form-control time-select" />
-			          </div>
 			        </div>
 
 			        <div class="form-group">
 			          <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="4" required></textarea>
 			        </div>
 
-			        <div class="form-group radio-buttons">
-			          <label class="radio-inline"><input type="radio" name="locationType" required>Single Location</label>
-			          <label class="radio-inline"><input type="radio" name="locationType" required>Multiple Locations</label>
-			        </div>
-
-			        <div class="location-selection">
-			          <input type="text" class="form-control address-input" id="addressInput" placeholder="Enter Location">
-
-			          <div class="districts" style="display: none; margin-bottom: 15px;">
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
-			              District 1
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
-			              District 2
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
-			              District 3
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 4"
-			              onchange="toggleCheckbox(this)">
-			              District 4
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 5"
-			              onchange="toggleCheckbox(this)">
-			              District 5
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 6"
-			              onchange="toggleCheckbox(this)">
-			              District 6
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 7"
-			              onchange="toggleCheckbox(this)">
-			              District 7
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 8"
-			              onchange="toggleCheckbox(this)">
-			              District 8
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 9"
-			              onchange="toggleCheckbox(this)">
-			              District 9
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 10"
-			              onchange="toggleCheckbox(this)">
-			              District 10
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 11"
-			              onchange="toggleCheckbox(this)">
-			              District 11
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 12"
-			              onchange="toggleCheckbox(this)">
-			              District 12
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 13"
-			              onchange="toggleCheckbox(this)">
-			              District 13
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 14"
-			              onchange="toggleCheckbox(this)">
-			              District 14
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 15"
-			              onchange="toggleCheckbox(this)">
-			              District 15
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 16"
-			              onchange="toggleCheckbox(this)">
-			              District 16
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 17"
-			              onchange="toggleCheckbox(this)">
-			              District 17
-			            </label>
-			            <label class="checkbox-inline">
-			              <input type="checkbox" value="District 18"
-			              onchange="toggleCheckbox(this)">
-			              District 18
-			            </label>
-			          </div>
-			        </div>
-			        <button type="submit" class="post-job-btn btn btn-primary" aria-hidden="true">
-			          Preview Job Post
+			        <button type="submit" id="continueButton" class="btn btn-primary btn-wide" aria-hidden="true">
+			          Continue
 			        </button>
 		        </form>
 					</div>
@@ -1006,6 +910,131 @@
 			</div>
 		</div>
 	<!-- // CREATE JOB MODAL -->
+
+	<!-- TEMP JOB MODAL -->
+		<div id="temporaryJobModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+						<h4 class="modal-title">Create Job Post (2/2)</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="tempSecForm">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-4">
+										<input type="number" class="form-control" id="positionsAvailable" placeholder="Positions Available" required>
+									</div>
+									<div class="col-xs-4">
+										<input type="number" class="form-control" id="hourlyRateInput" placeholder="Hourly Rate (HKD)" required>
+									</div>
+									<div class="col-xs-4">
+										<div class="dropdown paymentMethodDropdown">
+					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="paymentMethod">
+					              Payment Method
+					            </button>
+					            <ul class="dropdown-menu" aria-labelledby="paymentMethod">
+					              <li><a>Cash</a></li>
+					              <li><a>Cheque</a></li>
+					              <li><a>Transfer</a></li>
+					            </ul>
+					          </div>
+									</div>
+								</div>
+			        </div>
+							<div class="form-group date-and-times">
+		            <div class="form-group">
+		              <input
+		                type="text"
+		                class="datepicker-here form-control"
+		                placeholder="Start Date" required/>
+		              <span class="to"> to </span>
+		              <input
+		                type="text"
+		                class="datepicker-here form-control"
+		                disabled
+		                placeholder="End Date" required/>
+		            </div>
+		            <div>
+		              <input
+		                type="text"
+		                autocomplete="off"
+		                placeholder="Start Time"
+		                class="form-control time-select" required/>
+		              <span class="to"> to </span>
+		              <input
+		                type="text"
+		                placeholder="End Time"
+		                disabled
+		                class="form-control time-select" required/>
+		            </div>
+		          </div>
+
+							<div class="row">
+								<div class="col-xs-4">
+									<button class="btn btn-warning btn-wide" aria-hidden="true" data-dismiss="modal" data-toggle="modal" data-target="#createJobModal">
+					          Back
+					        </button>
+								</div>
+								<div class="col-xs-8">
+					        <button type="submit" class="preview-job-btn btn btn-primary btn-wide" aria-hidden="true">
+					          Preview Job Post
+					        </button>
+								</div>
+							</div>
+		        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- // TEMP JOB MODAL -->
+
+	<!-- PERM JOB MODAL -->
+		<div id="permanentJobModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+						<h4 class="modal-title">Create Job Post (2/2)</h4>
+					</div>
+					<div class="modal-body">
+						<form data-toggle="validator" role="form" id="permSecForm">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-6">
+										<input type="number" class="form-control" id="salaryInput" placeholder="Salary (HKD)" required>
+									</div>
+									<div class="col-xs-6">
+										<input type="number" class="form-control" id="salaryRange" placeholder="Salary Range (HKD)">
+									</div>
+								</div>
+							</div>
+							<div class="form-group radio-buttons">
+			          <label class="radio-inline"><input type="radio" id="salaryUnit" name="salaryUnit" required>Monthly</label>
+			          <label class="radio-inline"><input type="radio" name="salaryUnit" required>Weekly</label>
+			          <label class="radio-inline"><input type="radio" name="salaryUnit" required>Daily</label>
+			          <label class="radio-inline"><input type="radio" name="salaryUnit" required>Hourly</label>
+			        </div>
+							<div class="row">
+								<div class="col-xs-4">
+									<button class="btn btn-warning btn-wide" aria-hidden="true" data-dismiss="modal" data-toggle="modal" data-target="#createJobModal">
+					          Back
+					        </button>
+								</div>
+								<div class="col-xs-8">
+					        <button type="submit" class="preview-job-btn btn btn-primary btn-wide" aria-hidden="true">
+					          Preview Job Post
+					        </button>
+								</div>
+							</div>
+		        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<div id="signInModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -1032,6 +1061,30 @@
 									<div class="col-xs-4 postInfoLabel">Job Type:</div>
 									<div class="col-xs-8 postInfo">placeholder</div>
 								</div>
+								<div class="row">
+									<div class="col-xs-4 postInfoLabel">Job Description:</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-4 postInfoLabel">Address:</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-4 postInfoLabel">District:</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
+								<div class="row tempPostInfo">
+									<div class="col-xs-4 postInfoLabel">Hourly Rate</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
+								<div class="row tempPostInfo">
+									<div class="col-xs-4 postInfoLabel">Payment Method</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
+								<div class="row tempPostInfo">
+									<div class="col-xs-4 postInfoLabel">Position(s) Available:</div>
+									<div class="col-xs-8 postInfo">placeholder</div>
+								</div>
 								<div class="row tempPostInfo">
 									<div class="col-xs-4 postInfoLabel">Job Dates:</div>
 									<div class="col-xs-8 postInfo">placeholder</div>
@@ -1040,12 +1093,16 @@
 									<div class="col-xs-4 postInfoLabel">Job Times:</div>
 									<div class="col-xs-8 postInfo">placeholder</div>
 								</div>
-								<div class="row">
-									<div class="col-xs-4 postInfoLabel">Job Description:</div>
+								<div class="row permPostInfo">
+									<div class="col-xs-4 postInfoLabel">Salary:</div>
 									<div class="col-xs-8 postInfo">placeholder</div>
 								</div>
-								<div class="row">
-									<div class="col-xs-4 postInfoLabel">Location(s):</div>
+								<div class="row permPostInfo">
+									<div class="col-xs-4 postInfoLabel">Salary Max:</div>
+									<div class="col-xs-8 postInfo">N/A</div>
+								</div>
+								<div class="row permPostInfo">
+									<div class="col-xs-4 postInfoLabel">Salary Unit:</div>
 									<div class="col-xs-8 postInfo">placeholder</div>
 								</div>
 							</div>
@@ -1061,7 +1118,7 @@
 			            <label for="inputPassword" class="sr-only">
 			              Password
 			            </label>
-			            <input type="password" data-minlength="8" class="form-control" id="inputPassword" data-error="Minimum of 8 characters" placeholder="Password" required>
+			            <input type="password" data-minlength="8" class="form-control" id="inputPassword" data-error="Minimum of 8 characters" placeholder="Password" data-minlength="6" required>
 									<div class="help-block with-errors"></div>
 			          </div>
 							</div>

@@ -1,42 +1,172 @@
-
 $(document).ready(function() { init() });
 
-function init () {
-  eventHandlers();
-  initStartTimePicker();
+/*====================================
+=            ALL SECTIONS            =
+====================================*/
+var jobType,
+    locationType,
+    formData,
+    salaryUnit,
+    url = 'http://localhost:3000';
+
+function gatherPostingInfo(isSecondSection) {
+  formData = {
+    name: $('#jobPosition').val(),
+    category: $('#jobCategory').val(),
+    jobType: jobType,
+    description: $('#jobDescription').val(),
+    address_one: $('.address-input').eq(0).val()
+  };
+
+  if (jobType === 'temporary' && isSecondSection) {
+    formData.start_date = $('.datepicker-here').eq(0).val();
+    formData.endDate = $('.datepicker-here').eq(1).val();
+    formData.start_time = $('.time-select').eq(0).val();
+    formData.end_time = $('.time-select').eq(1).val();
+    formData.users_required = $('#positionsAvailable').val();
+    formData.hourly_rates = $('#hourlyRateInput').val();
+    formData.payment_method = $('#paymentMethod').val();
+  }
+
+  if (jobType === 'permanent' && isSecondSection) {
+    formData.salary = $('#salaryInput').val();
+    if ($('#salaryRange').val() !== (undefined || '')) {
+      formData.salary_max = $('#salaryRange').val();
+    }
+    formData.salary_unit = salaryUnit;
+  }
+
+  return checkInfoValidity();
 }
 
-function eventHandlers () {
-  $('.dropdown li a').off().on('click', selectJobCategoryHandler);
-  $('label.radio-inline').eq(0).off().on('click', selectTempHandler);
-  $('label.radio-inline').eq(1).off().on('click', selectPermHandler);
-  $('label.radio-inline').eq(2).off().on('click', displayAddressInput);
-  $('label.radio-inline').eq(3).off().on('click', displayDistricts);
-  $('.post-job-btn').eq(0).on('click', handlePostSubmit);
-  $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
-  $('#authAndPostButton').off().on('click', authAndPostHandler)
+function checkInfoValidity () {
+  for (var key in formData) {
+    var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
+
+    if (unfilled) {
+      console.log('there is an unfilled ', key)
+      return false;
+    }
+  }
+
+  if (formData.salary_max && formData.salary_max < formData.salary) {
+    return false;
+  }
+
+  return formData
 }
+
+/*=====================================
+=            FIRST SECTION            =
+=====================================*/
 
 function selectJobCategoryHandler (e) {
   $('#jobCategory').text($(this).text());
   $('#jobCategory').val($(this).text());
 }
 
-var jobType;
+function locationAutocomplete () {
+  var input = document.getElementById('addressInput')
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  google.maps.event.addDomListener(window, 'load', autocomplete);
+}
+
+function selectDistrictHandler (e) {
+  $('#district').text($(this).text());
+  $('#district').val($(this).text());
+}
 
 function selectTempHandler (e) {
-  $('.date-and-times')
-    .css('display', 'block');
-
-  initStartDatePicker();
   jobType = 'temporary';
+  $('#continueButton').eq(0).attr('data-target', `#temporaryJobModal`)
+
+  $('#tempSecForm').validator({
+
+  })
 }
 
 function selectPermHandler (e) {
-  $('.date-and-times')
-    .css('display', 'none');
-
   jobType = 'permanent';
+  $('#continueButton').eq(0).attr('data-target', `#permanentJobModal`)
+
+  $('#permSecForm').validator({
+
+  })
+}
+
+function continueHandler (e) {
+  e.preventDefault();
+  if (gatherPostingInfo(false)) {
+    promptContinue();
+  }
+}
+
+function promptContinue () {
+  $('#continueButton').eq(0)
+    .attr('data-dismiss', `modal`)
+    .attr('data-toggle', `modal`)
+
+}
+
+ /*===================================================
+ =            BOTH TEMP AND PERM SECTIONS            =
+ ===================================================*/
+
+function previewJobHandler (e) {
+  e.preventDefault()
+
+  if (gatherPostingInfo(true)) {
+    populatePreviewCard();
+    var num = jobType === 'temporary' ? 0 : 1;
+    return promptSignIn(num);
+  }
+  console.log('unfilled form data.');
+}
+
+
+function populatePreviewCard () {
+  $('.postInfo').eq(0).text($('#jobPosition').val());
+  $('.postInfo').eq(1).text($('#jobCategory').val());
+  $('.postInfo').eq(2).text(jobType.toUpperCase());
+  $('.postInfo').eq(3).text($('#jobDescription').val());
+  $('.postInfo').eq(4).text($('.address-input').eq(0).val());
+  $('.postInfo').eq(5).text($('#district').val());
+
+  if (jobType === 'temporary') {
+    $('.tempPostInfo').css('display', 'block');
+
+    var dates = $('.datepicker-here').eq(0).val() + ' to ' + $('.datepicker-here').eq(1).val();
+    var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
+
+    $('.postInfo').eq(6).text('$'+$('#hourlyRateInput').val());
+    $('.postInfo').eq(7).text($('#paymentMethod').val());
+    $('.postInfo').eq(8).text($('#positionsAvailable').val());
+    $('.postInfo').eq(9).text(dates);
+    $('.postInfo').eq(10).text(times);
+  }
+
+  if (jobType === 'permanent') {
+    $('.permPostInfo').css('display', 'block');
+    $('.postInfo').eq(11).text($('#salaryInput').val());
+    if (formData.salary_max) {
+      $('.postInfo').eq(12).text($('#salaryRange').val());
+    }
+    $('.postInfo').eq(13).text(salaryUnit.toUpperCase());
+  }
+}
+
+function promptSignIn (num) {
+  $('.preview-job-btn').eq(num).attr('data-dismiss', 'modal');
+  $('.preview-job-btn').eq(num).attr('data-toggle', 'modal');
+  $('.preview-job-btn').eq(num).attr('data-target', '#signInModal');
+}
+
+ /*========================================
+ =            TEMP JOB SECTION            =
+ ========================================*/
+function selectPaymentHandler (e) {
+  $('#paymentMethod').text($(this).text());
+  $('#paymentMethod').val($(this).text());
 }
 
 function initStartDatePicker () {
@@ -62,7 +192,9 @@ function initEndDatePicker (startDate) {
 function initStartTimePicker () {
   var $startTimeSelector = $('.time-select').eq(0);
 
-  $startTimeSelector.timepicker();
+  $startTimeSelector.timepicker({
+    minTime: "9:00am"
+  });
   $startTimeSelector.on('changeTime', function() {
     enableEndTimePicker($(this).val())
   })
@@ -77,128 +209,25 @@ function enableEndTimePicker (minTime) {
   $endTimeSelector.prop('disabled', false);
 }
 
-function locationAutocomplete () {
-  var input = document.getElementById('addressInput')
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  google.maps.event.addDomListener(window, 'load', autocomplete);
+/*========================================
+=            PERM JOB SECTION            =
+========================================*/
+function selectMonthlyHandler (e) {
+  salaryUnit = 'Monthly';
+}
+function selectWeeklyHandler (e) {
+  salaryUnit = 'Weekly';
+}
+function selectDailyHandler (e) {
+  salaryUnit = 'Daily';
+}
+function selectHourlyHandler (e) {
+  salaryUnit = 'Hourly';
 }
 
-var locationType;
-function displayAddressInput () {
-  locationType = 'single';
-  $('.districts').eq(0).css('display', 'none');
-  $('.address-input').eq(0)
-    .val('')
-    .css('display', 'block')
-    .attr('data-validate', 'true')
-    .prop('required', true);
-  $('#jobPostForm').validator('update');
-  locationAutocomplete();
-}
-
-function displayDistricts () {
-  locationType = 'multiple';
-  $('.address-input').eq(0)
-    .css('display', 'none')
-    .prop('required', false)
-    .attr('data-validate', 'false');
-  $('.districts').eq(0)
-    .css('display', 'block');
-  $('#jobPostForm').validator('update');
-}
-
-var districts = {};
-
-function toggleCheckbox (el) {
-  districts[el.value] = !districts[el.value];
-  $('.address-input').eq(0).val('hi');
-}
-
-var formData;
-
-function handlePostSubmit (e) {
-  e.preventDefault();
-  populatePreviewCard();
-  formData = gatherPostingInfo();
-
-  if (formData) {
-    console.log('there is form data.');
-    return promptSignIn();
-  }
-  console.log('unfilled form data.');
-  // postData
-}
-
-function populatePreviewCard () {
-  $('.postInfo').eq(0).text($('#jobPosition').val());
-  $('.postInfo').eq(1).text($('#jobCategory').val());
-  if (jobType) {
-    $('.postInfo').eq(2).text(jobType.toUpperCase());
-  }
-  $('.postInfo').eq(5).text($('#jobDescription').val());
-
-  if (jobType === 'temporary') {
-    $('.tempPostInfo').css('display', 'block');
-    var dates = $('.datepicker-here').eq(0).val() + ' to ' + $('.datepicker-here').eq(1).val();
-    var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
-
-    $('.postInfo').eq(3).text(dates);
-    $('.postInfo').eq(4).text(times);
-  }
-
-  if (locationType === 'multiple') {
-    var textVal = ''
-    for (var key in districts) textVal += key+' ';
-    $('.postInfo').eq(6).text(textVal);
-  } else {
-    $('.postInfo').eq(6).text($('.address-input').eq(0).val());
-  }
-
-}
-
-function gatherPostingInfo() {
-  formData = {
-    jobPosition: $('#jobPosition').val(),
-    jobCategory: $('#jobCategory').val(),
-    jobType: jobType,
-    jobDescription: $('#jobDescription').val(),
-    locationType: locationType
-  };
-
-  if (jobType === 'temporary') {
-    formData.startDate = $('.datepicker-here').eq(0).val();
-    formData.endDate = $('.datepicker-here').eq(1).val();
-    formData.startTime = $('.time-select').eq(0).val();
-    formData.endTime = $('.time-select').eq(1).val();
-  }
-
-  if (locationType === 'multiple') {
-    formData.locations = districts;
-  } else {
-    formData.location = $('.address-input').eq(0).val();
-  }
-
-  // CHECK IF FORM HAS ERRORS
-  for (var key in formData) {
-    var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
-
-    if (unfilled) {
-      console.log('there is an unfilled ', key)
-      return false;
-    }
-  }
-
-  console.log(formData);
-
-  return formData
-}
-
-function promptSignIn () {
-  $('.post-job-btn').eq(0).attr('data-dismiss', 'modal');
-  $('.post-job-btn').eq(0).attr('data-toggle', 'modal');
-  $('.post-job-btn').eq(0).attr('data-target', '#signInModal');
-}
-
+ /*====================================
+ =            AUTH SECTION            =
+ ====================================*/
 var signIn = true;
 
 function toggleAuthView (e) {
@@ -267,8 +296,6 @@ function gatherAuthInfo () {
   return authInfo;
 }
 
-var url = 'http://localhost:3000'
-
 function authAndPost (authInfo) {
 
   if (signIn) {
@@ -303,4 +330,51 @@ function postJob (responseHeaders, isPermJob) {
   url += isPermJob ? '/master/v5/jobs' : '/master/v5/parttime_jobs';
 
   axios.post(url, formData)
+}
+
+ /*============================
+ =            INIT            =
+ ============================*/
+function firstEvents () {
+  $('.jobCategoryDropdown li a').off().on('click', selectJobCategoryHandler);
+  $('.districtsDropdown li a').off().on('click', selectDistrictHandler);
+  $('label.radio-inline').eq(0).off().on('click', selectTempHandler);
+  $('label.radio-inline').eq(1).off().on('click', selectPermHandler);
+}
+
+function tempEvents () {
+  $('.paymentMethodDropdown li a').off().on('click', selectPaymentHandler);
+  initStartDatePicker();
+  initStartTimePicker();
+}
+
+function permEvents() {
+  $('label.radio-inline').eq(2).off().on('click', selectMonthlyHandler);
+  $('label.radio-inline').eq(3).off().on('click', selectWeeklyHandler);
+  $('label.radio-inline').eq(4).off().on('click', selectDailyHandler);
+  $('label.radio-inline').eq(5).off().on('click', selectHourlyHandler);
+}
+
+function authEvents() {
+  $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
+}
+
+function btnEvents() {
+  $('.btn-wide').off().on('click', function(e){ e.preventDefault(); })
+  $('#continueButton').off().on('click', continueHandler);
+  $('.preview-job-btn').off().on('click', previewJobHandler);
+  $('#authAndPostButton').off().on('click', authAndPostHandler);
+}
+
+function eventHandlers () {
+  firstEvents();
+  tempEvents();
+  permEvents();
+  authEvents();
+  btnEvents();
+}
+
+function init () {
+  eventHandlers();
+  locationAutocomplete();
 }

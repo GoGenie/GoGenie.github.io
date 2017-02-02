@@ -5,6 +5,10 @@
   margin-bottom: 20px;
 }
 
+.halfsies {
+  width: 50%;
+}
+
 ul.dropdown-menu {
   width: 100%;
   text-align: left;
@@ -28,17 +32,12 @@ ul.dropdown-menu > li > a {
   margin: 0 40px;
 }
 
-.date-and-times {
-  display: none;
-  margin-bottom: 15px;
-}
-
 .form-group.date-and-times > div > .form-control {
   display: inline-block;
 }
 
 .datepicker-here {
-  width: 47%;
+  width: 48%;
 }
 
 .form-card-2 {
@@ -50,20 +49,15 @@ ul.dropdown-menu > li > a {
 }
 
 .time-select {
-  width: 47%;
+  width: 48%;
 }
 
 .to {
   width: 5%;
 }
 
-.post-job-btn {
+.btn-wide {
   width: 100%;
-  margin-bottom: 15px;
-}
-
-.address-input {
-  display: none;
   margin-bottom: 15px;
 }
 
@@ -132,6 +126,11 @@ ul.dropdown-menu > li > a {
 .tempPostInfo {
   display: none;
 }
+
+.permPostInfo {
+  display: none;
+}
+
 
 .postInfoLabel {
   padding-right: 10px;
