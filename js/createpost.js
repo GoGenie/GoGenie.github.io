@@ -15,7 +15,8 @@ function gatherPostingInfo(isSecondSection) {
     category: $('#jobCategory').val(),
     jobType: jobType,
     description: $('#jobDescription').val(),
-    address_one: $('.address-input').eq(0).val()
+    address_one: $('.address-input').eq(0).val(),
+    district: $('#district').val()
   };
 
   if (jobType === 'temporary' && isSecondSection) {
@@ -40,20 +41,25 @@ function gatherPostingInfo(isSecondSection) {
 }
 
 function checkInfoValidity () {
+  var retVal = formData;
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
     if (unfilled) {
-      console.log('there is an unfilled ', key)
-      return false;
+
+      if (key === 'category') $('#jobCategory').addClass('has-error');
+      if (key === 'district') $('#district').addClass('has-error');
+      if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
+      console.log('this key:', key);
+      retVal = false;
     }
   }
 
   if (formData.salary_max && formData.salary_max < formData.salary) {
-    return false;
+    retVal = false;
   }
 
-  return formData
+  return retVal;
 }
 
 /*=====================================
@@ -63,6 +69,7 @@ function checkInfoValidity () {
 function selectJobCategoryHandler (e) {
   $('#jobCategory').text($(this).text());
   $('#jobCategory').val($(this).text());
+  $('#jobCategory').removeClass('has-error');
 }
 
 function locationAutocomplete () {
@@ -74,24 +81,17 @@ function locationAutocomplete () {
 function selectDistrictHandler (e) {
   $('#district').text($(this).text());
   $('#district').val($(this).text());
+  $('#district').removeClass('has-error');
 }
 
 function selectTempHandler (e) {
   jobType = 'temporary';
   $('#continueButton').eq(0).attr('data-target', `#temporaryJobModal`)
-
-  $('#tempSecForm').validator({
-
-  })
 }
 
 function selectPermHandler (e) {
   jobType = 'permanent';
   $('#continueButton').eq(0).attr('data-target', `#permanentJobModal`)
-
-  $('#permSecForm').validator({
-
-  })
 }
 
 function continueHandler (e) {
@@ -100,7 +100,6 @@ function continueHandler (e) {
     promptContinue();
   }
 }
-
 function promptContinue () {
   $('#continueButton').eq(0)
     .attr('data-dismiss', `modal`)
@@ -167,6 +166,7 @@ function promptSignIn (num) {
 function selectPaymentHandler (e) {
   $('#paymentMethod').text($(this).text());
   $('#paymentMethod').val($(this).text());
+  $('#paymentMethod').removeClass('has-error');
 }
 
 function initStartDatePicker () {

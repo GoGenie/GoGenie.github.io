@@ -845,14 +845,16 @@
 					</div>
 					<div class="modal-body">
 						<form data-toggle="validator" role="form" id="firstSecForm">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-xs-6">
-										<input type="text" class="form-control" id="jobPosition" placeholder="Enter Job Position" required>
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="form-group">
+										<input type="text" class="form-control" id="jobPosition" placeholder="Enter Job Position"  data-categorize="true" required>
 									</div>
-									<div class="col-xs-6">
+								</div>
+								<div class="col-xs-6">
+									<div class="form-group">
 					          <div class="dropdown jobCategoryDropdown">
-					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory" data-category="true">
+					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
 					              Select Job Category
 					            </button>
 					            <ul class="dropdown-menu" aria-labelledby="jobCategory">
@@ -866,15 +868,16 @@
 					          </div>
 									</div>
 								</div>
-							<!-- </div>
-							<div class="form-group"> -->
 			        </div>
-			        <div class="form-group">
-			        	<div class="row">
-			        		<div class="col-xs-6">
-						        <input type="text" class="form-control address-input" id="addressInput" placeholder="Enter Location" required>
+
+		        	<div class="row">
+		        		<div class="col-xs-6">
+					        <div class="form-group">
+						        <input type="text" class="form-control address-input" id="addressInput" placeholder="Enter Location" data-districts="true" required>
 			        		</div>
-			        		<div class="col-xs-6">
+		        		</div>
+		        		<div class="col-xs-6">
+					        <div class="form-group">
 										<div class="dropdown districtsDropdown">
 					            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="district">
 					              Select District
