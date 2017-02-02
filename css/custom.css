@@ -48,6 +48,11 @@ a:active {
   color: #3A83A9;
 }
 
+.create-post-row {
+  margin: 30px;
+}
+
+
 .feature-section {
   margin: 30px auto;
   padding: 50px;

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>GoGENIE Staffing Solution - Temporary Staffing Made Easy. We can also help you with Part Time and Full Time Recruitment</title>
+
+  <meta name="description" content="GoGENIE combats the headache of hiring temporary workers. Our mobile app provides a platform for employers to post and hire a temporary worker in as fast as 5 minutes. GoGENIE eliminates market inefficiency and offers businesses quality temporary workers.  Our vision at GoGENIE is to become the global platform for all work placements where employers and job seekers can hire or work for anyone, anywhere, any time.">
+  <meta name="keywords" content="你口袋裏的助手 新一代流動兼職兵團 職神 GoGENIE gogenieapp 炒散週記 快錢 散工 外快 賺錢 求職 招職 招聘 搵工 快錢 兼職 判頭 打工 炒散 蛇頭 筍工 兼職 臨時工 working holiday 工作假期 揾錢 part-time job ManPower Adecco 彈性工作 散工生涯 散工買樓夢 散工夢飛翔 炒散兼職王 自由工作 搵錢話咁易 搵錢快靚正 炒散變富豪 炒散無難度 Parttime Part time Fulltime Job Work
+  Temporary Staffing Recruitment Money Salary Wage Income">
+  <meta name="author" content="職神 - GoGENIE">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="職神 - GoGENIE">
+  <meta itemprop="description" content="新一代流動兼職兵團 ">
+  <meta itemprop="image" content="<%= asset_path('ogimage-facebook.jpg') %>">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="職神 - GoGENIE">
+  <meta name="twitter:description" content="新一代流動兼職兵團 ">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="職神 - GoGENIE" />
+  <meta property="og:url" content="http://www.gogenieapp.com/" />
+  <meta property="og:image" content="<%= asset_path('ogimage-linkedin.jpg') %>" /> <!-- 180x110 Image for Linkedin -->
+  <meta property="og:image:width" content="180" />
+  <meta property="og:image:height" content="110" />
+  <meta property="og:image" content="<%= asset_path('ogimage-facebook.jpg') %>" /> <!-- 200x200 Image for Facebook -->
+  <meta property="og:image:width" content="200" />
+  <meta property="og:image:height" content="200" />
+  <meta property="og:description" content="新一代流動兼職兵團" />
+  <meta property="og:site_name" content="職神 - GoGENIE" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="img/genie/genie-favicon.ico" type="image/x-icon" />
+  <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
+
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Web Fonts  -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="css/vendor/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="css/vendor/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="css/vendor/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal-bs3patch.css">
+  <link rel="stylesheet" href="css/bootstrap-modal/bootstrap-modal.css">
+  <link rel="stylesheet" href="css/datepicker.min.css">
+  <link rel="stylesheet" href="css/timepicker.css">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/theme-elements.css">
+  <link rel="stylesheet" href="css/theme-blog.css">
+  <link rel="stylesheet" href="css/theme-shop.css">
+  <link rel="stylesheet" href="css/theme-animate.css">
+
+  <!-- Current Page CSS -->
+  <!-- <link rel="stylesheet" href="css/vendor/rs-plugin/css/settings.css" media="screen">
+  <link rel="stylesheet" href="css/vendor/rs-plugin/css/layers.css" media="screen">
+  <link rel="stylesheet" href="css/vendor/rs-plugin/css/navigation.css" media="screen">
+
+  <link rel="stylesheet" href="css/vendor/circle-flip-slideshow/css/component.css" media="screen"> -->
+
+  <!-- Skin CSS -->
+  <link rel="stylesheet" href="css/skins/default.css">
+
+  <!-- Theme Custom CSS -->
+  <link rel="stylesheet" href="css/createpost.css">
+
+  <!-- Head Libs -->
+  <script src="css/vendor/modernizr/modernizr.js"></script>
+
+  <!--[if IE]>
+    <link rel="stylesheet" href="css/ie.css">
+  <![endif]-->
+
+  <!--[if lte IE 8]>
+    <script src="css/vendor/respond/respond.js"></script>
+    <script src="css/vendor/excanvas/excanvas.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="col-sm-6">
+      <form class="form-card">
+        <h1>Create Job Post</h1>
+        <div class="form-group">
+          <input type="text" class="form-control" id="jobPosition" placeholder="Job Position">
+        </div>
+
+        <div class="form-group">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="jobCategory">
+              Select Job Category
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="jobCategory">
+              <li><a href="#">Category A</a></li>
+              <li><a href="#">Category B</a></li>
+              <li><a href="#">Category C</a></li>
+              <li><a href="#">Category D</a></li>
+              <li><a href="#">Category E</a></li>
+              <li><a href="#">Category F</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-group radio-buttons">
+          <label class="radio-inline"><input type="radio" name="jobType">Temporary</label>
+          <label class="radio-inline"><input type="radio" name="jobType">Permanent</label>
+        </div>
+
+        <div class="form-group date-and-times">
+          <div class="form-group">
+            <input
+              type="text"
+              class="datepicker-here form-control"
+              placeholder="Start Date" />
+            <span class="to">
+              -
+            </span>
+            <input
+              type="text"
+              class="datepicker-here form-control"
+              disabled
+              placeholder="End Date" />
+          </div>
+          <div>
+            <input
+              type="text"
+              autocomplete="off"
+              placeholder="Start Time"
+              class="form-control time-select" />
+            <span class="to">
+              -
+            </span>
+            <input
+              type="text"
+              placeholder="End Time"
+              disabled
+              class="form-control time-select" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="8"></textarea>
+        </div>
+
+        <div class="form-group radio-buttons">
+          <label class="radio-inline"><input type="radio" name="locationType">Single Location</label>
+          <label class="radio-inline"><input type="radio" name="locationType">Multiple Locations</label>
+        </div>
+
+        <div class="location-selection">
+          <input type="text" class="form-control address-input" placeholder="Enter Location">
+
+          <div class="districts">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 1" onchange="toggleCheckbox(this)">
+              District 1
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 2" onchange="toggleCheckbox(this)">
+              District 2
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 3" onchange="toggleCheckbox(this)">
+              District 3
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 4"
+              onchange="toggleCheckbox(this)">
+              District 4
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 5"
+              onchange="toggleCheckbox(this)">
+              District 5
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 6"
+              onchange="toggleCheckbox(this)">
+              District 6
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 7"
+              onchange="toggleCheckbox(this)">
+              District 7
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 8"
+              onchange="toggleCheckbox(this)">
+              District 8
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 9"
+              onchange="toggleCheckbox(this)">
+              District 9
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 10"
+              onchange="toggleCheckbox(this)">
+              District 10
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 11"
+              onchange="toggleCheckbox(this)">
+              District 11
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 12"
+              onchange="toggleCheckbox(this)">
+              District 12
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 13"
+              onchange="toggleCheckbox(this)">
+              District 13
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 14"
+              onchange="toggleCheckbox(this)">
+              District 14
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 15"
+              onchange="toggleCheckbox(this)">
+              District 15
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 16"
+              onchange="toggleCheckbox(this)">
+              District 16
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 17"
+              onchange="toggleCheckbox(this)">
+              District 17
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="District 18"
+              onchange="toggleCheckbox(this)">
+              District 18
+            </label>
+          </div>
+
+        </div>
+
+        <button type="button" class="post-job-btn btn btn-primary">
+          Post Job
+        </button>
+
+      </form>
+    </div>
+
+
+    <div class="col-sm-6">
+      <div class="form-card-2">
+        <h1>Please Sign In</h1>
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="inputEmail" class="sr-only">
+              Email
+            </label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="sr-only">
+              Password
+            </label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">
+            Sign In
+          </button>
+        </form>
+        <div id="formFooter">
+          <p>
+            Don't have an account? <a href=#>Sign up!</a>
+          </p>
+        </div>
+      </div>
+      some decoration :)
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script src="js/datepicker/datepicker.min.js"></script>
+  <!-- English Language -->
+  <script src="js/datepicker/timepicker.min.js"></script>
+  <script src="js/datepicker/en.js"></script>
+
+  <script src="js/bootstrap-modal/bootstrap-modal.js"></script>
+  <script src="js/bootstrap-modal/bootstrap-modalmanager.js"></script>
+
+  <script src="js/createpost.js"></script>
+</body>
+</html>

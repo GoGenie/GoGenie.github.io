@@ -1,0 +1,147 @@
+body {
+  background: lightblue;
+  padding-top: 20px;
+}
+
+.form-card {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+ul.dropdown-menu {
+  width: 100%;
+  text-align: left;
+}
+
+ul.dropdown-menu > li > a {
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  text-align: left;
+}
+
+
+.radio-buttons {
+  text-align: center;
+}
+
+.radio-inline {
+  margin: 0 40px;
+}
+
+.date-and-times {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.form-group.date-and-times > div > .form-control {
+  display: inline-block;
+}
+
+.datepicker-here {
+  width: 47%;
+}
+
+.form-card-2 {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 30px;
+  margin-bottom: 20px;
+  /*display: none;*/
+}
+
+.time-select {
+  width: 47%;
+}
+
+.to {
+  width: 5%;
+}
+
+.post-job-btn {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.address-input {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.districts {
+  display: none;
+  margin-bottom: 15px;
+}
+
+.form-inline {
+  text-align: left;
+  margin: 12px auto;
+}
+
+.form-inline > .form-group {
+  /*text-align: left;*/
+  text-align: center;
+  /*margin-right: 25px;*/
+  width: 230px;
+}
+
+.form-inline > .form-group > input {
+  max-width: 90%;
+}
+
+.modal-body {
+  padding-bottom: 0px;
+}
+
+.preview-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
+  padding: 18px;
+  margin: 15px 0px 30px;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.glyphicon.glyphicon-pencil:hover {
+  cursor: pointer;
+}
+
+.postInfo {
+  margin: 0px;
+}
+
+.tempPostInfo {
+  display: none;
+}
+
+.postInfoLabel {
+  padding-right: 10px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.postInfoData {
+  padding-left: 10px;
+  text-align: left;
+};
+
+.modal-footer > a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#authAndPostButton {
+  float: right;
+}
+
+#registrationForm {
+  text-align: left;
+  border-radius: 1px solid #e5e5e5;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
