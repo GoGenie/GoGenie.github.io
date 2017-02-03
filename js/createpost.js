@@ -39,34 +39,37 @@ function gatherPostingInfo(isSecondSection) {
     venue_long: venue_long
   }
 
-  var days = $('.date-and-times .inline').eq(1).val();
+  var days = $('#days').val();
 
-  if (jobType === 'temporary' && isSecondSection) {
-    formData.name           = $('#jobPosition').val();
-    formData.address_one    = $('.address-input').eq(0).val();
-    formData.start_date     = $('.datepicker-here').eq(0).val();
-    formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
-    formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
-    formData.users_required = $('#positionsAvailable').val();
-    formData.hourly_rates   = $('#hourlyRateInput').val();
-    formData.payment_method = $('#paymentMethod').val();
-    formData.duration       = getDuration(formData.start_time, formData.end_time);
-    formData.rate           = getRate(formData.duration, formData.hourly_rates, days);
-    formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
-  }
-
-  if (jobType === 'permanent' && isSecondSection) {
-    formData.position    = $('#jobPosition').val();
-    formData.salary      = $('#salaryInput').val();
-    formData.salary_unit = salaryUnit;
-    formData.address     = $('.address-input').eq(0).val();
-
-    if ($('#salaryRange').val() !== undefined || $('#salaryRange').val() !== '') {
-      formData.salary_max = $('#salaryRange').val();
+  if (jobType === 'temporary') {
+    formData.name = $('#jobPosition').val();
+    if (isSecondSection) {
+      formData.address_one    = $('.address-input').eq(0).val();
+      formData.start_date     = $('.datepicker-here').eq(0).val();
+      formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
+      formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
+      formData.users_required = $('#positionsAvailable').val();
+      formData.hourly_rates   = $('#hourlyRateInput').val();
+      formData.payment_method = $('#paymentMethod').val();
+      formData.duration       = getDuration(formData.start_time, formData.end_time);
+      formData.rate           = getRate(formData.duration, formData.hourly_rates, days);
+      formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
     }
   }
-  console.log('this is the form data!', formData);
 
+  if (jobType === 'permanent') {
+    formData.position    = $('#jobPosition').val();
+    if (isSecondSection) {
+      formData.salary      = $('#salaryInput').val();
+      formData.salary_unit = salaryUnit;
+      formData.address     = $('.address-input').eq(0).val();
+
+      if ($('#salaryRange').val() !== undefined || $('#salaryRange').val() !== '') {
+        formData.salary_max = $('#salaryRange').val();
+      }
+    }
+  }
+  console.log('formdata:', formData)
   return checkInfoValidity();
 }
 
@@ -79,6 +82,7 @@ function checkInfoValidity () {
       if (key === 'category') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
       if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
+      console.log('unfilled:', key);
       retVal = false;
     }
   }
@@ -128,15 +132,24 @@ function selectPermHandler (e) {
 function continueHandler (e) {
   e.preventDefault();
   if (gatherPostingInfo(false)) {
-    promptContinue();
+    promptContinue(true);
+  } else {
+    promptContinue(false);
   }
 }
-function promptContinue () {
-  $('#continueButton').eq(0)
-    .attr('data-dismiss', `modal`)
-    .attr('data-toggle', `modal`)
 
+function promptContinue (proceed) {
+  if (proceed) {
+    $('#continueButton')
+      .attr('data-dismiss', `modal`)
+      .attr('data-toggle', `modal`);
+  } else {
+    $('#continueButton')
+      .removeAttr('data-dismiss')
+      .removeAttr('data-toggle');
+  }
 }
+
 
  /*===================================================
  =            BOTH TEMP AND PERM SECTIONS            =
@@ -155,11 +168,11 @@ function previewJobHandler (e) {
 
 
 function populatePreviewCard () {
-  $('.postInfo').eq(0).text(formData.name);
+  $('.postInfo').eq(0).text($('#jobPosition').val());
   $('.postInfo').eq(1).text(formData.category);
   $('.postInfo').eq(2).text(jobType.toUpperCase());
   $('.postInfo').eq(3).text(formData.description);
-  $('.postInfo').eq(4).text(formData.address_one);
+  $('.postInfo').eq(4).text($('.address-input').eq(0).val());
   $('.postInfo').eq(5).text(formData.district);
 
   if (jobType === 'temporary') {
@@ -173,7 +186,7 @@ function populatePreviewCard () {
     $('.postInfo').eq(7).text(formData.payment_method);
     $('.postInfo').eq(8).text(formData.users_required);
     $('.postInfo').eq(9).text(formData.start_date);
-    $('.postInfo').eq(10).text($('.date-and-times .inline').eq(1).val());
+    $('.postInfo').eq(10).text($('#days').val());
     $('.postInfo').eq(11).text(times);
   }
 
@@ -294,7 +307,7 @@ function authAndPostHandler (e) {
 
   if (authInfo) {
     console.log('there is auth info')
-    return authAndPost(authInfo);
+    return authenticate(authInfo);
   }
   console.log('no auth info.')
 }
@@ -320,18 +333,30 @@ function gatherAuthInfo () {
   return authInfo;
 }
 
-function authAndPost (authInfo) {
-
-  postUrl = url + (signIn ? '/master_auth/sign_in' : 'master_auth');
+function authenticate (authInfo) {
+  postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
   axios.post(postUrl, authInfo)
   .then(function(response) {
-    if (jobType === 'permanent') postJob(response, true)
-    if (jobType === 'temporary') postJob(response, false)
+    if (jobType === 'permanent') return postJob(response, true)
+    if (jobType === 'temporary') return postJob(response, false)
+    return console.log('no jobtype specified.')
   })
   .catch(function(error) {
     console.log((signIn ? 'error signing in' : 'error signing up'));
+    var code = error.toString().slice(-3)
+    console.log(code, error)
+    return handleError(code, authInfo)
   })
+}
+
+function handleError (code, authInfo) {
+  console.log(code)
+  if (code === '403') {
+    $('.email-help').eq(0)
+      .css('color', '#a94442')
+      .text('That e-mail exists. Please try again.')
+  }
 }
 
 function postJob (response, isPermJob) {
@@ -339,14 +364,34 @@ function postJob (response, isPermJob) {
 
   axios.post(postUrl, formData, {
     headers: response.headers
-  })
-  .then(function(response) {
-    console.log('success posting.', response);
-  })
-  .catch(function(error) {
+  }).then(function(response) {
+    promptAfterPost(response)
+  }).catch(function(error) {
     console.log('error posting.', error)
   })
 }
+
+function promptAfterPost (response) {
+  console.log('afterpost!', response)
+
+  clearAllFields();
+
+  $('#signInModal').modal('toggle');
+  $('#afterPostModal').modal('toggle');
+}
+
+function clearAllFields () {
+  // clear all the fields
+}
+
+
+/*==========================================
+=            AFTER POST SECTION            =
+==========================================*/
+
+
+
+
 
  /*============================
  =            INIT            =

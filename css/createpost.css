@@ -28,9 +28,11 @@ ul.dropdown-menu > li > a {
 }
 
 .has-error {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   border-color: #a94442;
+}
+
+.btn.has-error {
+  border-color: red;
 }
 
 .radio-buttons {
@@ -64,6 +66,11 @@ ul.dropdown-menu > li > a {
   margin-bottom: 15px;
 }
 
+.btn .caret {
+  margin-left: 15px;
+  margin-bottom: 2px;
+}
+
 .pac-container {
   z-index: 20;
   /*position: fixed;*/
@@ -78,6 +85,7 @@ ul.dropdown-menu > li > a {
 }
 
 .modal-title {
+  text-align: center;
   font-size: 28px;
 }
 
@@ -176,4 +184,53 @@ ul.dropdown-menu > li > a {
   padding: 15px;
   margin-top: 20px;
   border-radius: 4px;
+}
+
+.afterpost-body {
+  text-align: center;
+}
+
+.carousel {
+  margin-bottom: 18px;
+}
+
+.carousel-control.left {
+  background-image: none;
+}
+
+.carousel-control.right {
+  background-image: none;
+}
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+  height: 400px;
+}
+
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+}
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+
+#afterPostModal .modal-footer {
+  text-align: center;
 }
