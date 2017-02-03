@@ -3,39 +3,61 @@ $(document).ready(function() { init() });
 /*====================================
 =            ALL SECTIONS            =
 ====================================*/
-var jobType,
+var formData     = {},
+    url          = 'http://localhost:3000',
+    jobType,
     locationType,
-    formData,
-    salaryUnit,
-    url = 'http://localhost:3000';
+    salaryUnit;
+
+function combineDateTime (date, time) {
+  return moment(date+' '+time, 'MM/DD/YYYY h:mmA').toDate();
+}
+
+function getDuration (start, end) {
+  var timeDiff = Math.abs(start - end);
+  return Math.ceil(timeDiff / (1000 * 60));
+}
+
+function getRate (duration, hourly, days) {
+  return (Math.ceil(duration / 60) * hourly).toFixed(0) * Number(days);
+}
+
+function addDays (date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 
 function gatherPostingInfo(isSecondSection) {
-  formData = {
-    name: $('#jobPosition').val(),
-    category: $('#jobCategory').val(),
-    jobType: jobType,
-    description: $('#jobDescription').val(),
-    address_one: $('.address-input').eq(0).val(),
-    district: $('#district').val()
-  };
+  formData.name        = $('#jobPosition').val();
+  formData.category    = $('#jobCategory').val();
+  formData.jobType     = jobType;
+  formData.description = $('#jobDescription').val();
+  formData.address_one = $('.address-input').eq(0).val();
+  formData.district    = $('#district').val();
+  var days = $('.date-and-times .inline').eq(1).val();
 
   if (jobType === 'temporary' && isSecondSection) {
-    formData.start_date = $('.datepicker-here').eq(0).val();
-    formData.endDate = $('.datepicker-here').eq(1).val();
-    formData.start_time = $('.time-select').eq(0).val();
-    formData.end_time = $('.time-select').eq(1).val();
+    formData.start_date     = $('.datepicker-here').eq(0).val();
+    formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
+    formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
     formData.users_required = $('#positionsAvailable').val();
-    formData.hourly_rates = $('#hourlyRateInput').val();
+    formData.hourly_rates   = $('#hourlyRateInput').val();
     formData.payment_method = $('#paymentMethod').val();
+    formData.duration       = getDuration(formData.start_time, formData.end_time);
+    formData.rate           = getRate(formData.duration, formData.hourly_rates, days);
+    formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
   }
 
   if (jobType === 'permanent' && isSecondSection) {
-    formData.salary = $('#salaryInput').val();
-    if ($('#salaryRange').val() !== (undefined || '')) {
+    formData.salary      = $('#salaryInput').val();
+    formData.salary_unit = salaryUnit;
+
+    if ($('#salaryRange').val() !== undefined || $('#salaryRange').val() !== '') {
       formData.salary_max = $('#salaryRange').val();
     }
-    formData.salary_unit = salaryUnit;
   }
+  console.log('this is the form data!', formData);
 
   return checkInfoValidity();
 }
@@ -46,17 +68,11 @@ function checkInfoValidity () {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
     if (unfilled) {
-
       if (key === 'category') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
       if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
-      console.log('this key:', key);
       retVal = false;
     }
-  }
-
-  if (formData.salary_max && formData.salary_max < formData.salary) {
-    retVal = false;
   }
 
   return retVal;
@@ -76,6 +92,13 @@ function locationAutocomplete () {
   var input = document.getElementById('addressInput')
   var autocomplete = new google.maps.places.Autocomplete(input);
   google.maps.event.addDomListener(window, 'load', autocomplete);
+  google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete));
+}
+
+function saveLocation (autocomplete) {
+  var place = autocomplete.getPlace();
+  formData.venue_lat = place.geometry.location.lat();
+  formData.venue_long = place.geometry.location.lng();
 }
 
 function selectDistrictHandler (e) {
@@ -124,31 +147,32 @@ function previewJobHandler (e) {
 
 
 function populatePreviewCard () {
-  $('.postInfo').eq(0).text($('#jobPosition').val());
-  $('.postInfo').eq(1).text($('#jobCategory').val());
+  $('.postInfo').eq(0).text(formData.name);
+  $('.postInfo').eq(1).text(formData.category);
   $('.postInfo').eq(2).text(jobType.toUpperCase());
-  $('.postInfo').eq(3).text($('#jobDescription').val());
-  $('.postInfo').eq(4).text($('.address-input').eq(0).val());
-  $('.postInfo').eq(5).text($('#district').val());
+  $('.postInfo').eq(3).text(formData.description);
+  $('.postInfo').eq(4).text(formData.address_one);
+  $('.postInfo').eq(5).text(formData.district);
 
   if (jobType === 'temporary') {
     $('.tempPostInfo').css('display', 'block');
 
-    var dates = $('.datepicker-here').eq(0).val() + ' to ' + $('.datepicker-here').eq(1).val();
+    var dates = formData.start_date + ' to ' + $('.datepicker-here').eq(1).val();
     var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
 
-    $('.postInfo').eq(6).text('$'+$('#hourlyRateInput').val());
-    $('.postInfo').eq(7).text($('#paymentMethod').val());
-    $('.postInfo').eq(8).text($('#positionsAvailable').val());
-    $('.postInfo').eq(9).text(dates);
-    $('.postInfo').eq(10).text(times);
+    $('.postInfo').eq(6).text('$'+formData.hourly_rates);
+    $('.postInfo').eq(7).text(formData.payment_method);
+    $('.postInfo').eq(8).text(formData.users_required);
+    $('.postInfo').eq(9).text(formData.start_date);
+    $('.postInfo').eq(10).text($('.date-and-times .inline').eq(1).val());
+    $('.postInfo').eq(11).text(times);
   }
 
   if (jobType === 'permanent') {
     $('.permPostInfo').css('display', 'block');
-    $('.postInfo').eq(11).text($('#salaryInput').val());
+    $('.postInfo').eq(11).text(formData.salary);
     if (formData.salary_max) {
-      $('.postInfo').eq(12).text($('#salaryRange').val());
+      $('.postInfo').eq(12).text(formData.salary_max);
     }
     $('.postInfo').eq(13).text(salaryUnit.toUpperCase());
   }
@@ -158,6 +182,7 @@ function promptSignIn (num) {
   $('.preview-job-btn').eq(num).attr('data-dismiss', 'modal');
   $('.preview-job-btn').eq(num).attr('data-toggle', 'modal');
   $('.preview-job-btn').eq(num).attr('data-target', '#signInModal');
+
 }
 
  /*========================================
@@ -173,18 +198,6 @@ function initStartDatePicker () {
   console.log('initialize date picker')
   $('.datepicker-here').eq(0).datepicker({
     minDate: new Date(),
-    language: 'en',
-    onSelect: function(fd, date) {
-      initEndDatePicker(date);
-    }
-  })
-}
-
-function initEndDatePicker (startDate) {
-  $('.datepicker-here').eq(1).prop('disabled', false);
-
-  $('.datepicker-here').eq(1).datepicker({
-    minDate: startDate,
     language: 'en'
   })
 }
@@ -193,8 +206,9 @@ function initStartTimePicker () {
   var $startTimeSelector = $('.time-select').eq(0);
 
   $startTimeSelector.timepicker({
-    minTime: "9:00am"
+    minTime: '9:00am'
   });
+
   $startTimeSelector.on('changeTime', function() {
     enableEndTimePicker($(this).val())
   })
@@ -232,13 +246,13 @@ var signIn = true;
 
 function toggleAuthView (e) {
 
-  var $modalTitle = $('h4.modal-title').eq(1),
+  var $modalTitle    = $('h4.modal-title').eq(3),
       $toggleMessage = $('.modal-footer > a').eq(0),
-      $postButton = $('#authAndPostButton'),
-      $emailInput = $('#inputEmail'),
+      $postButton    = $('#authAndPostButton'),
+      $emailInput    = $('#inputEmail'),
       $passwordInput = $('#inputPassword'),
-      $companyInput = $('#inputCompanyName'),
-      $phoneInput = $('#inputPhone');
+      $companyInput  = $('#inputCompanyName'),
+      $phoneInput    = $('#inputPhone');
 
   $emailInput.val('');
   $passwordInput.val('');

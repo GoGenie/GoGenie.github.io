@@ -46,24 +46,12 @@ ul.dropdown-menu > li > a {
   margin-bottom: 20px;
 }
 
-.form-group.date-and-times > div > .form-control {
-  display: inline-block;
-}
-
-.datepicker-here {
-  width: 48%;
-}
-
 .form-card-2 {
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
   padding: 30px;
   margin-bottom: 20px;
   /*display: none;*/
-}
-
-.time-select {
-  width: 48%;
 }
 
 .to {
@@ -123,6 +111,11 @@ ul.dropdown-menu > li > a {
   overflow-y: auto;
 }
 
+.inline {
+  width: 48%;
+  display: inline-block;
+}
+
 .preview-card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
   padding: 18px;
@@ -155,7 +148,6 @@ ul.dropdown-menu > li > a {
 .permPostInfo {
   display: none;
 }
-
 
 .postInfoLabel {
   padding-right: 10px;
