@@ -5,6 +5,8 @@ $(document).ready(function() { init() });
 ====================================*/
 var formData     = {},
     url          = 'http://localhost:3000',
+    venue_lat    = 0,
+    venue_long   = 0,
     jobType,
     locationType,
     salaryUnit;
@@ -29,15 +31,19 @@ function addDays (date, days) {
 }
 
 function gatherPostingInfo(isSecondSection) {
-  formData.name        = $('#jobPosition').val();
-  formData.category    = $('#jobCategory').val();
-  formData.jobType     = jobType;
-  formData.description = $('#jobDescription').val();
-  formData.address_one = $('.address-input').eq(0).val();
-  formData.district    = $('#district').val();
+  formData = {
+    category: $('#jobCategory').val(),
+    description: $('#jobDescription').val(),
+    district: $('#district').val(),
+    venue_lat: venue_lat,
+    venue_long: venue_long
+  }
+
   var days = $('.date-and-times .inline').eq(1).val();
 
   if (jobType === 'temporary' && isSecondSection) {
+    formData.name           = $('#jobPosition').val();
+    formData.address_one    = $('.address-input').eq(0).val();
     formData.start_date     = $('.datepicker-here').eq(0).val();
     formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
     formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
@@ -50,8 +56,10 @@ function gatherPostingInfo(isSecondSection) {
   }
 
   if (jobType === 'permanent' && isSecondSection) {
+    formData.position    = $('#jobPosition').val();
     formData.salary      = $('#salaryInput').val();
     formData.salary_unit = salaryUnit;
+    formData.address     = $('.address-input').eq(0).val();
 
     if ($('#salaryRange').val() !== undefined || $('#salaryRange').val() !== '') {
       formData.salary_max = $('#salaryRange').val();
@@ -97,8 +105,8 @@ function locationAutocomplete () {
 
 function saveLocation (autocomplete) {
   var place = autocomplete.getPlace();
-  formData.venue_lat = place.geometry.location.lat();
-  formData.venue_long = place.geometry.location.lng();
+  venue_lat = place.geometry.location.lat();
+  venue_long = place.geometry.location.lng();
 }
 
 function selectDistrictHandler (e) {
@@ -156,6 +164,7 @@ function populatePreviewCard () {
 
   if (jobType === 'temporary') {
     $('.tempPostInfo').css('display', 'block');
+    $('.permPostInfo').css('display', 'none');
 
     var dates = formData.start_date + ' to ' + $('.datepicker-here').eq(1).val();
     var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
@@ -170,11 +179,12 @@ function populatePreviewCard () {
 
   if (jobType === 'permanent') {
     $('.permPostInfo').css('display', 'block');
-    $('.postInfo').eq(11).text(formData.salary);
+    $('.tempPostInfo').css('display', 'none');
+    $('.postInfo').eq(12).text(formData.salary);
     if (formData.salary_max) {
-      $('.postInfo').eq(12).text(formData.salary_max);
+      $('.postInfo').eq(13).text(formData.salary_max);
     }
-    $('.postInfo').eq(13).text(salaryUnit.toUpperCase());
+    $('.postInfo').eq(14).text(salaryUnit.toUpperCase());
   }
 }
 
@@ -271,8 +281,8 @@ function toggleAuthView (e) {
     $modalTitle.text('Sign in to post');
     $toggleMessage.text('Or register to post job');
     $postButton.text('Sign in and post job');
-    $companyInput.removeProp('required');
-    $phoneInput.removeProp('required');
+    $companyInput.prop('required', false);
+    $phoneInput.prop('required', false);
     signIn = true;
   }
 }
@@ -312,38 +322,30 @@ function gatherAuthInfo () {
 
 function authAndPost (authInfo) {
 
-  if (signIn) {
-    axios.post(url+'/master_auth/sign_in', authInfo)
-    .then(function(response) {
-      postJob(response.headers)
-      console.log('response', response);
-    })
-    .catch(function(error) {
-      console.log('error signing in', error);
-    })
-  } else {
-    // if sign up.
-    axios.post(url+'/master_auth', authInfo)
-    .then(function(response) {
-      if (jobType === 'permanent') {
-        postJob(response.headers, true)
-      } else if (jobType === 'temporary') {
-        postJob(response.headers, false)
-      } else {
-        console.log('jobType is not permanent nor temporary: ', jobType);
-      }
-      postJob(response.headers)
-    })
-    .catch(function(error) {
-      console.log('error signing up', error);
-    })
-  }
+  postUrl = url + (signIn ? '/master_auth/sign_in' : 'master_auth');
+
+  axios.post(postUrl, authInfo)
+  .then(function(response) {
+    if (jobType === 'permanent') postJob(response, true)
+    if (jobType === 'temporary') postJob(response, false)
+  })
+  .catch(function(error) {
+    console.log((signIn ? 'error signing in' : 'error signing up'));
+  })
 }
 
-function postJob (responseHeaders, isPermJob) {
-  url += isPermJob ? '/master/v5/jobs' : '/master/v5/parttime_jobs';
+function postJob (response, isPermJob) {
+  postUrl = url + (isPermJob ? '/master/v5/parttime_jobs' : '/master/v5/jobs');
 
-  axios.post(url, formData)
+  axios.post(postUrl, formData, {
+    headers: response.headers
+  })
+  .then(function(response) {
+    console.log('success posting.', response);
+  })
+  .catch(function(error) {
+    console.log('error posting.', error)
+  })
 }
 
  /*============================

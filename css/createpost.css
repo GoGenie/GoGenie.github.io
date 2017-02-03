@@ -43,7 +43,7 @@ ul.dropdown-menu > li > a {
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-card-2 {
@@ -106,9 +106,9 @@ ul.dropdown-menu > li > a {
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 18px;
   padding-bottom: 0px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .inline {
