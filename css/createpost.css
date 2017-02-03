@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
 .form-card {
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;
   padding: 30px;
   margin-bottom: 20px;
+}
+
+.form-control {
+  height: 39px;
+  font-size: 18px;
 }
 
 ul.dropdown-menu {
@@ -17,6 +24,7 @@ ul.dropdown-menu > li > a {
 .dropdown-toggle {
   width: 100%;
   text-align: left;
+  font-size: 18px;
 }
 
 .has-error {
@@ -27,10 +35,15 @@ ul.dropdown-menu > li > a {
 
 .radio-buttons {
   text-align: center;
+  font-size: 18px;
 }
 
 .radio-inline {
   margin: 0 40px;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }
 
 .form-group.date-and-times > div > .form-control {
@@ -58,6 +71,7 @@ ul.dropdown-menu > li > a {
 }
 
 .btn-wide {
+  font-size: 18px;
   width: 100%;
   margin-bottom: 15px;
 }
@@ -72,6 +86,11 @@ ul.dropdown-menu > li > a {
 
 .modal {
   z-index: 20;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.modal-title {
+  font-size: 28px;
 }
 
 .modal-backdrop {
@@ -99,6 +118,7 @@ ul.dropdown-menu > li > a {
 }
 
 .modal-body {
+  padding: 20px;
   padding-bottom: 0px;
   overflow-y: auto;
 }
@@ -112,6 +132,10 @@ ul.dropdown-menu > li > a {
   text-align: center;
   overflow: scroll;
   max-height: 270px;
+}
+
+.preview-header {
+  margin-bottom: 10px;
 }
 
 .glyphicon.glyphicon-pencil:hover {
@@ -139,6 +163,11 @@ ul.dropdown-menu > li > a {
   font-weight: bold;
 }
 
+.modal-footer > a {
+  font-size: 16px;
+  margin-left: 5px
+}
+
 .modal-footer > a:hover {
   text-decoration: none;
   cursor: pointer;
@@ -146,6 +175,7 @@ ul.dropdown-menu > li > a {
 
 #authAndPostButton {
   float: right;
+  font-size: 16px;
 }
 
 #registrationForm {
