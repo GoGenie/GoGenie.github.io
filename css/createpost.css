@@ -208,7 +208,7 @@ ul.dropdown-menu > li > a {
 }
 
 .carousel-fade .carousel-inner .item {
-  opacity: 0;
+  opacity: 1;
   -webkit-transition-property: opacity;
   -moz-transition-property: opacity;
   -o-transition-property: opacity;

@@ -102,7 +102,7 @@ function selectJobCategoryHandler (e) {
 
 function locationAutocomplete () {
   var input = document.getElementById('addressInput')
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  var autocomplete = new google.maps.places.Autocomplete(input, {componentRestrictions: });
   google.maps.event.addDomListener(window, 'load', autocomplete);
   google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete));
 }
