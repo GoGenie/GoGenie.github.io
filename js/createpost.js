@@ -10,7 +10,7 @@ var formData                = {},
       'Cheque': '支票支付',
       'Transfer': '銀行過數'
     },
-    getChineseDistrict             = {
+    getChineseDistrict      = {
       'Central and Western': '中西區',
       'Eastern': '東區',
       'Southern': '南區',
@@ -30,6 +30,12 @@ var formData                = {},
       'Tuen Mun': '屯門區',
       'Yuen Long': '元朗區',
       'Other': '其他'
+    },
+    getChineseSalaryUnit    = {
+      'Monthly': '月薪',
+      'Weekly': '週薪',
+      'Daily': '日薪',
+      'Hourly': '時薪'
     },
     venue_lat               = 0,
     venue_long              = 0,
@@ -91,7 +97,7 @@ function gatherPostingInfo(isSecondSection) {
 
     if (isSecondSection) {
       formData.salary      = $('#salaryInput').val();
-      formData.salary_unit = salaryUnit;
+      formData.salary_unit = getChineseSalaryUnit[salaryUnit];
       formData.address     = $('.address-input').eq(0).val();
 
       if ($('#salaryRange').val() !== '') {
@@ -212,7 +218,7 @@ function populatePreviewCard () {
     var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
 
     $('.postInfo').eq(6).text('$'+formData.hourly_rates);
-    $('.postInfo').eq(7).text(formData.payment_method);
+    $('.postInfo').eq(7).text($('#paymentMethod').val());
     $('.postInfo').eq(8).text(formData.users_required);
     $('.postInfo').eq(9).text(formData.start_date);
     $('.postInfo').eq(10).text($('#days').val());
@@ -279,16 +285,16 @@ function enableEndTimePicker (minTime) {
 ========================================*/
 
 function selectMonthlyHandler (e) {
-  salaryUnit = '月薪';
+  salaryUnit = 'Monthly';
 }
 function selectWeeklyHandler (e) {
-  salaryUnit = '週薪';
+  salaryUnit = 'Weekly';
 }
 function selectDailyHandler (e) {
-  salaryUnit = '日薪';
+  salaryUnit = 'Daily';
 }
 function selectHourlyHandler (e) {
-  salaryUnit = '時薪';
+  salaryUnit = 'Hourly';
 }
 
  /*====================================
@@ -396,6 +402,7 @@ function postJob (response, isPermJob) {
 function promptAfterPost (response) {
 
   clearAllFields();
+  $('#firstSecForm').validator('update');
 
   $('#signInModal').modal('toggle');
   $('#afterPostModal').modal('toggle');
@@ -403,16 +410,30 @@ function promptAfterPost (response) {
 
 function clearAllFields () {
   // clear all the fields
+  $('#jobPosition').val('');
+  $('#jobCategory').text('Select Category').val('');
+  $('.address-input').eq(0).val('');
+  $('#district').text('Select District').val('');
+  $('#jobDescription').val('');
+
+  $('#positionsAvailable').val('');
+  $('#hourlyRateInput').val('');
+  $('#paymentMethod').text('Select Method').val('');
+  $('.datepicker-here').eq(0).val('');
+  $('#days').val('');
+  $('.time-select').eq(0).val('');
+  $('.time-select').eq(1).val('');
+  $('#salaryInput').val('');
+  $('#salaryRange').val('');
+
+  $('#inputEmail').val('');
+  $('#inputPassword').val('');
+  $('#inputCompanyName').val('');
+  $('#inputPhone').val('');
+
+  // clears all radio inputs
+  $('.radio-inline > input').prop('checked', false);
 }
-
-
-/*==========================================
-=            AFTER POST SECTION            =
-==========================================*/
-
-
-
-
 
  /*============================
  =            INIT            =

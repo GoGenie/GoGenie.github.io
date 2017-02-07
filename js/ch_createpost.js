@@ -384,16 +384,30 @@ function promptAfterPost (response) {
 
 function clearAllFields () {
   // clear all the fields
+  $('#jobPosition').val('');
+  $('#jobCategory').text('請選擇工作類別').val('');
+  $('.address-input').eq(0).val('');
+  $('#district').text('請選擇地區').val('');
+  $('#jobDescription').val('');
+
+  $('#positionsAvailable').val('');
+  $('#hourlyRateInput').val('');
+  $('#paymentMethod').text('請選擇出糧方式').val('');
+  $('.datepicker-here').eq(0).val('');
+  $('#days').val('');
+  $('.time-select').eq(0).val('');
+  $('.time-select').eq(1).val('');
+  $('#salaryInput').val('');
+  $('#salaryRange').val('');
+
+  $('#inputEmail').val('');
+  $('#inputPassword').val('');
+  $('#inputCompanyName').val('');
+  $('#inputPhone').val('');
+
+  // clears all radio inputs
+  $('.radio-inline > input').prop('checked', false);
 }
-
-
-/*==========================================
-=            AFTER POST SECTION            =
-==========================================*/
-
-
-
-
 
  /*============================
  =            INIT            =

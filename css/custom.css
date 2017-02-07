@@ -49,7 +49,7 @@ a:active {
 }
 
 .create-post-row {
-  margin: 30px;
+  margin: 20px;
 }
 
 
@@ -166,6 +166,7 @@ section.tnc  ul > li,
   }
 
 .demo-button {
+  margin-top: 10px;
   font-size: 24px;
   background-color: #0099e6;
 }
