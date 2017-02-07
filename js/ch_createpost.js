@@ -4,7 +4,7 @@ $(document).ready(function() { init() });
 =            ALL SECTIONS            =
 ====================================*/
 var formData     = {},
-    url          = 'http://api-dev.gogenieapp.com',
+    url          = 'http://api.gogenieapp.com',
     venue_lat    = 0,
     venue_long   = 0,
     jobType,

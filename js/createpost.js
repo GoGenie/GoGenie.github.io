@@ -4,7 +4,7 @@ $(document).ready(function() { init() });
 =            ALL SECTIONS            =
 ====================================*/
 var formData                = {},
-    url                     = 'http://api-dev.gogenieapp.com',
+    url                     = 'http://api.gogenieapp.com',
     // url                     = 'http://localhost:3000',
 
     getChinesePaymentMethod = {
