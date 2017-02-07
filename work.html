@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
 
     <!-- Basic -->
     <meta charset="utf-8">
@@ -26,10 +27,12 @@
     <!-- Open Graph data -->
     <meta property="og:title" content="職神 - GoGENIE" />
     <meta property="og:url" content="http://www.gogenieapp.com/" />
-    <meta property="og:image" content="<%= asset_path('ogimage-linkedin.jpg') %>" /> <!-- 180x110 Image for Linkedin -->
+    <meta property="og:image" content="<%= asset_path('ogimage-linkedin.jpg') %>" />
+    <!-- 180x110 Image for Linkedin -->
     <meta property="og:image:width" content="180" />
     <meta property="og:image:height" content="110" />
-    <meta property="og:image" content="<%= asset_path('ogimage-facebook.jpg') %>" /> <!-- 200x200 Image for Facebook -->
+    <meta property="og:image" content="<%= asset_path('ogimage-facebook.jpg') %>" />
+    <!-- 200x200 Image for Facebook -->
     <meta property="og:image:width" content="200" />
     <meta property="og:image:height" content="200" />
     <meta property="og:description" content="新一代流動兼職兵團" />
@@ -85,122 +88,127 @@
       <script src="css/vendor/excanvas/excanvas.js"></script>
     <![endif]-->
 
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="body">
-      <header id="header" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 57, "stickySetTop": "-57px", "stickyChangeLogo": true}'>
-        <div class="header-body">
-          <div class="header-container container">
-            <div class="header-row">
-              <div class="header-column">
-                <div class="header-logo">
-                  <a href="index.html">
-                    <img alt="Porto" width="269" height="100" data-sticky-width="188" data-sticky-height="70" data-sticky-top="30" src="img/genie/gogenie-logo-eng.png">
-                  </a>
-                </div>
-              </div>
-              <div class="header-column">
-                <div class="header-row">
-                  <nav class="header-nav-top">
-                    <ul class="nav nav-pills">
-                      <li>
-                        <a href="#" class="dropdown-menu-toggle" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <img src="img/blank.gif" class="flag flag-us" alt="English" /> English
-                          <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguage">
-                          <li><a href="work.html"><img src="img/blank.gif" class="flag flag-us" alt="English" /> English</a></li>
-                          <li><a href="ch_work.html"><img src="img/blank.gif" class="flag flag-hk" alt="中文" /> 中文</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-                <div class="header-row">
-                  <div class="header-nav">
-                    <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
+        <header id="header" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 57, "stickySetTop": "-57px", "stickyChangeLogo": true}'>
+            <div class="header-body">
+                <div class="header-container container">
+                    <div class="header-row">
+                        <div class="header-column">
+                            <div class="header-logo">
+                                <a href="index.html">
+                                    <img alt="Porto" width="269" height="100" data-sticky-width="188" data-sticky-height="70" data-sticky-top="30" src="img/genie/gogenie-logo-eng.png">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="header-column">
+                            <div class="header-row">
+                                <nav class="header-nav-top">
+                                    <ul class="nav nav-pills">
+                                        <li>
+                                            <a href="#" class="dropdown-menu-toggle" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                <img src="img/blank.gif" class="flag flag-us" alt="English" /> English
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLanguage">
+                                                <li>
+                                                    <a href="work.html"><img src="img/blank.gif" class="flag flag-us" alt="English" /> English</a>
+                                                </li>
+                                                <li>
+                                                    <a href="ch_work.html"><img src="img/blank.gif" class="flag flag-hk" alt="中文" /> 中文</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-row">
+                                <div class="header-nav">
+                                    <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
                       <i class="fa fa-bars"></i>
                     </button>
-                    <ul class="header-social-icons social-icons hidden-xs">
-                      <li class="social-icons-facebook"><a href="https://www.facebook.com/gogenieapp" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                    </ul>
-                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
-                      <nav>
-                        <ul class="nav nav-pills" id="mainNav">
-                          <li>
-                            <a href="index.html" title="Hire Staff">
+                                    <ul class="header-social-icons social-icons hidden-xs">
+                                        <li class="social-icons-facebook"><a href="https://www.facebook.com/gogenieapp" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    </ul>
+                                    <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
+                                        <nav>
+                                            <ul class="nav nav-pills" id="mainNav">
+                                                <li>
+                                                    <a href="index.html" title="Hire Staff">
                               Hire Staff
                             </a>
-                          </li>
-                          <li class="active">
-                            <a href="work.html">
+                                                </li>
+                                                <li class="active">
+                                                    <a href="work.html">
                               Find Work
                             </a>
-                          </li>
-                          <!-- <li>
+                                                </li>
+                                                <!-- <li>
                             <a href="http://blog.gogenieapp.com/" target="_blank" title="Blog">
                               Blog
                             </a>
                           </li> -->
-                          <li>
-                            <a href="#footer">
+                                                <li>
+                                                    <a href="#footer">
                               Contact Us
                             </a>
-                          </li>
-                        </ul>
-                      </nav>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </header>
+        </header>
 
-      <div class="row landing-top">
+        <div class="row landing-top">
+            <div class="container">
+                <div class="col-sm-6">
+                    <div class="text-center headline" data-appear-animation="bounceIn" data-appear-animation-delay="200">
+                        <h1>Job Seeking<br> Made Easy</h1>
+                        <h2>The fastest way to find work is <em>Here</em></h2>
+                        <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="text-center screenshot-main" data-appear-animation="bounceInRight" data-appear-animation-delay="200">
+                        <img src="img/genie/genie-employee-landing-eng.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-intro" id="home-intro">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>
+                            Are you looking to hire? We're here to <em>Help</em>
+                            <span>There are many employees waiting for you.</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="get-started">
+                            <a href="index.html" class="btn btn-lg btn-primary">Find Workers Now!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="container">
-          <div class="col-sm-6">
-            <div class="text-center headline" data-appear-animation="bounceIn" data-appear-animation-delay="200">
-              <h1>Job Seeking<br> Made Easy</h1>
-              <h2>The fastest way to find work is <em>Here</em></h2>
-              <a href="https://itunes.apple.com/us/app/zhi-shen-jian-zhi-xin-yi-dai/id1013711536?ls=1&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
-              <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6">
-            <div class="text-center screenshot-main" data-appear-animation="bounceInRight" data-appear-animation-delay="200">
-              <img src="img/genie/genie-employee-landing-eng.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="home-intro" id="home-intro">
-        <div class="container">
-
-          <div class="row">
-            <div class="col-md-8">
-              <p>
-                Are you looking to hire? We're here to <em>Help</em>
-                <span>There are many employees waiting for you.</span>
-              </p>
-            </div>
-            <div class="col-md-4">
-              <div class="get-started">
-                <a href="index.html" class="btn btn-lg btn-primary">Find Workers Now!</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row center">
-          <div class="col-md-12">
-            <h1 class="mb-sm word-rotator-title">
+            <div class="row center">
+                <div class="col-md-12">
+                    <h1 class="mb-sm word-rotator-title">
               GoGENIE empowers
               <strong class="inverted">
                 <span class="word-rotate" data-plugin-options='{"delay": 2000, "animDelay": 300}'>
@@ -215,666 +223,673 @@
               </strong>
               to find jobs efficiently and effectively.
             </h1>
-            <p class="lead">
-              We make job searching easy! It takes less than 2 minutes to sign up for an account and applying for a job is just one click away.
-            </p>
-          </div>
+                    <p class="lead">
+                        We make job searching easy! It takes less than 2 minutes to sign up for an account and applying for a job is just one click away.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="home-concept">
-        <div class="container">
+        <div class="home-concept">
+            <div class="container">
 
-          <div class="row center">
-            <span class="sun"></span>
-            <span class="cloud"></span>
-            <div class="col-md-2 col-md-offset-1">
-              <div class="process-image appear-animation" data-appear-animation="bounceIn">
-                <img src="img/genie/genie-icon-download.jpeg" alt="" />
-                <strong>Download</strong>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="process-image appear-animation" data-appear-animation="bounceIn" data-appear-animation-delay="200">
-                <img src="img/genie/genie-icon-signup.png" alt="" />
-                <strong>Sign Up</strong>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="process-image appear-animation" data-appear-animation="bounceIn" data-appear-animation-delay="400">
-                <img src="img/genie/genie-icon-pick.png" alt="" />
-                <strong>Apply</strong>
-              </div>
-            </div>
-            <div class="col-md-4 col-md-offset-1">
-              <div class="project-image">
-                <div id="fcSlideshow" class="fc-slideshow">
-                  <ul class="fc-slides">
-                    <li><img class="img-responsive" src="img/genie/genie-employee1.png" alt="" /></li>
-                    <li><img class="img-responsive" src="img/genie/genie-employee2.png" alt="" /></li>
-                    <li><img class="img-responsive" src="img/genie/genie-employee3.png" alt="" /></li>
-                    <li><img class="img-responsive" src="img/genie/genie-employee4.png" alt="" /></li>
-                    <li><img class="img-responsive" src="img/genie/genie-employee5.png" alt="" /></li>
-                  </ul>
+                <div class="row center">
+                    <span class="sun"></span>
+                    <span class="cloud"></span>
+                    <div class="col-md-2 col-md-offset-1">
+                        <div class="process-image appear-animation" data-appear-animation="bounceIn">
+                            <img src="img/genie/genie-icon-download.jpeg" alt="" />
+                            <strong>Download</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="process-image appear-animation" data-appear-animation="bounceIn" data-appear-animation-delay="200">
+                            <img src="img/genie/genie-icon-signup.png" alt="" />
+                            <strong>Sign Up</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="process-image appear-animation" data-appear-animation="bounceIn" data-appear-animation-delay="400">
+                            <img src="img/genie/genie-icon-pick.png" alt="" />
+                            <strong>Apply</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="project-image">
+                            <div id="fcSlideshow" class="fc-slideshow">
+                                <ul class="fc-slides">
+                                    <li><img class="img-responsive" src="img/genie/genie-employee1.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/genie/genie-employee2.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/genie/genie-employee3.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/genie/genie-employee4.png" alt="" /></li>
+                                    <li><img class="img-responsive" src="img/genie/genie-employee5.png" alt="" /></li>
+                                </ul>
+                            </div>
+                            <strong class="our-work">Hired!</strong>
+                        </div>
+                    </div>
                 </div>
-                <strong class="our-work">Hired!</strong>
-              </div>
-            </div>
-          </div>
 
+            </div>
         </div>
-      </div>
 
-      <div class="row feature-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 center">
-              <h2 class="heading-dark">Our <strong>Features</strong></h2>
-            </div>
-          </div>
+        <div class="row feature-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 center">
+                        <h2 class="heading-dark">Our <strong>Features</strong></h2>
+                    </div>
+                </div>
 
-            <div class="row">
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
-                  <div class="feature-box-icon">
-                    <i class="icon-user-following icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Prescreened Employers</h4>
-                    <p class="mb-lg">We prescreen all Employers and ensure quality jobs are posted.</p>
-                  </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
+                            <div class="feature-box-icon">
+                                <i class="icon-user-following icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Prescreened Employers</h4>
+                                <p class="mb-lg">We prescreen all Employers and ensure quality jobs are posted.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                            <div class="feature-box-icon">
+                                <i class="icon-social-youtube icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Automated Online Interviews</h4>
+                                <p class="mb-lg">Employers can view your prerecorded interviews so you can save time and travel costs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-icon">
+                                <i class="icon-speech icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Job Alerts</h4>
+                                <p class="mb-lg">We actively pushes jobs that you are interested in to you.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-                  <div class="feature-box-icon">
-                    <i class="icon-social-youtube icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Automated Online Interviews</h4>
-                    <p class="mb-lg">Employers can view your prerecorded interviews so you can save time and travel costs.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                  <div class="feature-box-icon">
-                    <i class="icon-speech icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Job Alerts</h4>
-                    <p class="mb-lg">We actively pushes jobs that you are interested in to you.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="row mt-md">
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
-                  <div class="feature-box-icon">
-                    <i class="icon-layers icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Career Resume Builder</h4>
-                    <p class="mb-lg">Keep a record of all your job experiences and skills set.</p>
-                  </div>
+                <div class="row mt-md">
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
+                            <div class="feature-box-icon">
+                                <i class="icon-layers icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Career Resume Builder</h4>
+                                <p class="mb-lg">Keep a record of all your job experiences and skills set.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                            <div class="feature-box-icon">
+                                <i class="icon-star icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Reliable Rating System</h4>
+                                <p class="mb-lg">Employers and GoGENIEs can review each other after each job. We are building a community that encourages fairness and communication. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-icon">
+                                <i class="icon-energy icons"></i>
+                            </div>
+                            <div class="feature-box-info">
+                                <h4 class="mb-sm">Super Fast</h4>
+                                <p class="mb-lg">Applying for a job only takes a single click.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-                  <div class="feature-box-icon">
-                    <i class="icon-star icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Reliable Rating System</h4>
-                    <p class="mb-lg">Employers and GoGENIEs can review each other after each job. We are building a community that encourages fairness and communication. </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="feature-box feature-box-style-4 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                  <div class="feature-box-icon">
-                    <i class="icon-energy icons"></i>
-                  </div>
-                  <div class="feature-box-info">
-                    <h4 class="mb-sm">Super Fast</h4>
-                    <p class="mb-lg">Applying for a job only takes a single click.</p>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <div class="container hire-section">
+    <div class="container hire-section">
         <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-12 center">
-              <h2 class="heading-dark">How to <strong>Apply</strong> for Work</h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="col-sm-6">
-              <div class="text-center headline">
-                <div class="text-left col-sm-10 col-sm-offset-2">
-                  <div data-appear-animation="fadeInLeft" data-appear-animation-delay="400">
-                    <div class="instructions-bullets">
-                      <span class="numberCircle">1</span><span class="heading-primary lead tall">Download GoGENIE</span>
-                    </div>
-                    <div class="text-center">
-                      <a href="https://itunes.apple.com/us/app/zhi-shen-jian-zhi-xin-yi-dai/id1013711536?ls=1&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
-                      <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
-                    </div>
-                  </div>
-                  <div data-appear-animation="fadeInLeft" data-appear-animation-delay="600">
-                    <div class="instructions-bullets">
-                      <span class="numberCircle">2</span><span class="heading-primary lead tall">Create an Account</span>
-                    </div>
-                    <div class="instructions-text">
-                      Enter your personal details and upload profile picture.
-                    </div>
-                  </div>
-                  <div data-appear-animation="fadeInLeft" data-appear-animation-delay="800">
-                    <div class="instructions-bullets">
-                      <span class="numberCircle">3</span><span class="heading-primary lead tall">Apply for a Job</span>
-                    </div>
-                    <div class="instructions-text">
-                      Find the job you like and apply with a single click. Start earning more money today!
-                    </div>
-                  </div>
+            <div class="col-md-12">
+                <div class="col-md-12 center">
+                    <h2 class="heading-dark">How to <strong>Apply</strong> for Work</h2>
                 </div>
-              </div>
             </div>
-            <div class="col-sm-6">
-              <div class="text-center screenshot-hire" data-appear-animation="fadeInRight" data-appear-animation-delay="200">
-                <img src="img/genie/genie-apply_instructions-eng.png" alt="">
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="container">
         <div class="row">
-          <hr class="tall">
-          <h2 class="mb-sm word-rotator-title center">
+            <div class="col-md-12">
+                <div class="col-sm-6">
+                    <div class="text-center headline">
+                        <div class="text-left col-sm-10 col-sm-offset-2">
+                            <div data-appear-animation="fadeInLeft" data-appear-animation-delay="400">
+                                <div class="instructions-bullets">
+                                    <span class="numberCircle">1</span><span class="heading-primary lead tall">Download GoGENIE</span>
+                                </div>
+                                <div class="text-center">
+                                    <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
+                                    <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employee App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+                                </div>
+                            </div>
+                            <div data-appear-animation="fadeInLeft" data-appear-animation-delay="600">
+                                <div class="instructions-bullets">
+                                    <span class="numberCircle">2</span><span class="heading-primary lead tall">Create an Account</span>
+                                </div>
+                                <div class="instructions-text">
+                                    Enter your personal details and upload profile picture.
+                                </div>
+                            </div>
+                            <div data-appear-animation="fadeInLeft" data-appear-animation-delay="800">
+                                <div class="instructions-bullets">
+                                    <span class="numberCircle">3</span><span class="heading-primary lead tall">Apply for a Job</span>
+                                </div>
+                                <div class="instructions-text">
+                                    Find the job you like and apply with a single click. Start earning more money today!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-center screenshot-hire" data-appear-animation="fadeInRight" data-appear-animation-delay="200">
+                        <img src="img/genie/genie-apply_instructions-eng.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <hr class="tall">
+            <h2 class="mb-sm word-rotator-title center">
             <strong>Work</strong> Available</h2>
-          </h2>
-          <h4 class="heading-primary lead tall center">and many more...</h4>
+            </h2>
+            <h4 class="heading-primary lead tall center">and many more...</h4>
         </div>
-      </div>
+    </div>
 
-      <div class="container">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <ul class="image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options='{"delegate": "a.lightbox-portfolio", "type": "image", "gallery": {"enabled": true}}'>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+            <div class="col-md-12">
+                <ul class="image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options='{"delegate": "a.lightbox-portfolio", "type": "image", "gallery": {"enabled": true}}'>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-beautician.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Beautician</span>
-                        <span class="thumb-info-type">Healthcare & Beauty</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Healthcare & Beauty</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-data-entry.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Data Entry</span>
-                        <span class="thumb-info-type">Clerical</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Clerical</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-promoter.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Promoter</span>
-                        <span class="thumb-info-type">Events & Exhibition</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Events & Exhibition</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-waiter.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Waiter</span>
-                        <span class="thumb-info-type">Hospitality</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Hospitality</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-packer.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Packer</span>
-                        <span class="thumb-info-type">Logistics</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Logistics</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-hardware-support.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Hardware Support</span>
-                        <span class="thumb-info-type">Maintenance</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Maintenance</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-designer.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Designer</span>
-                        <span class="thumb-info-type">Professional Services</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-              <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
-                <div class="image-gallery-item">
-                  <span class="thumb-info">
+                            <span class="thumb-info-type">Professional Services</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li class="col-md-3 col-sm-6 col-xs-12 isotope-item websites">
+                        <div class="image-gallery-item">
+                            <span class="thumb-info">
                     <span class="thumb-info-wrapper">
                       <img src="img/genie/genie-sales.jpg" class="img-responsive" alt="">
                       <span class="thumb-info-title">
                         <span class="thumb-info-inner">Sales</span>
-                        <span class="thumb-info-type">Retail</span>
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
+                            <span class="thumb-info-type">Retail</span>
+                            </span>
+                            </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div class="container">
+    <div class="container">
         <div class="row">
-          <hr class="tall">
+            <hr class="tall">
         </div>
-      </div>
+    </div>
 
-      <div class="container customers-section">
+    <div class="container customers-section">
         <div class="row center">
-          <div class="col-md-12">
-            <h2 class="mb-sm word-rotator-title">
+            <div class="col-md-12">
+                <h2 class="mb-sm word-rotator-title">
               Over 100,000 people and 3,000 businesses in 4 countries use <strong>GoGENIE</strong>.
             </h2>
-            <h4 class="heading-primary lead tall">Meet some of your potential employers.</h4>
-          </div>
+                <h4 class="heading-primary lead tall">Meet some of your potential employers.</h4>
+            </div>
         </div>
 
         <div class="row center">
-          <div class="owl-carousel owl-theme" data-plugin-options='{"items": 6, "autoplay": true, "autoplayTimeout": 3000}'>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-virginatlantic.png" alt="">
+            <div class="owl-carousel owl-theme" data-plugin-options='{"items": 6, "autoplay": true, "autoplayTimeout": 3000}'>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-virginatlantic.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-marriott.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-excelsior.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-maxims.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-midlands.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-globalsources.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-kuaidadi.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-manulife.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-greenpeace.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-brooksbrother.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-deliveroo.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-honestbee.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-yeechoo.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-easyship.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-generalassembly.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-clockenflap.png" alt="">
+                </div>
+                <div>
+                    <img class="img-responsive" src="img/genie/genie-client-cosmoprof.png" alt="">
+                </div>
             </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-marriott.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-excelsior.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-maxims.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-midlands.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-globalsources.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-kuaidadi.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-manulife.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-greenpeace.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-brooksbrother.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-deliveroo.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-honestbee.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-yeechoo.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-easyship.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-generalassembly.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-clockenflap.png" alt="">
-            </div>
-            <div>
-              <img class="img-responsive" src="img/genie/genie-client-cosmoprof.png" alt="">
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <section class="section section-custom-map-2">
+    <section class="section section-custom-map-2">
         <section class="section section-default section-footer">
-          <div class="container" data-appear-animation="bounceIn" data-appear-animation-delay="200">
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
-              <h2 class="heading-dark mt-xl center">What <strong>Job Seekers</strong> Say</h2>
-                <div class="owl-carousel owl-theme nav-bottom rounded-nav" data-plugin-options='{"items": 1, "autoplay": true, "autoplayTimeout": 7000}'>
-                  <div>
-                    <div class="col-md-12">
-                      <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-                        <blockquote>
-                          <p>I just want to say thank you GoGENIE for helping me get past the hardest part of my life.<br>(translated from Chinese.)</p>
-                        </blockquote>
-                        <div class="testimonial-author">
-                          <p><strong>Siu Fun</strong><span>Single Mother</span></p>
+            <div class="container" data-appear-animation="bounceIn" data-appear-animation-delay="200">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h2 class="heading-dark mt-xl center">What <strong>Job Seekers</strong> Say</h2>
+                        <div class="owl-carousel owl-theme nav-bottom rounded-nav" data-plugin-options='{"items": 1, "autoplay": true, "autoplayTimeout": 7000}'>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p>I just want to say thank you GoGENIE for helping me get past the hardest part of my life.<br>(translated from Chinese.)</p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong>Siu Fun</strong><span>Single Mother</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p>I needed extra cash to help pay for for my daughter's tuition and with GoGENIE I was able to find jobs that fit outside of my full time work schedule.<br>(translated from Chinese.)</p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong>Wong Lung</strong><span>Bus Driver, Father of Three</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p>I was able to try out different types of jobs while I was in the process of looking for a new job. It (GoGENIE) gave me a lot of flexbility.<br>(translated from Chinese.)</p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong>Anna Ho</strong><span>In between jobs</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-12">
+                                    <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
+                                        <blockquote>
+                                            <p>I was able to take my parents on a vacation thanks to GoGENIE. I have used several part time platforms in the past and nothing comes close. All my friends are now using it.</p>
+                                        </blockquote>
+                                        <div class="testimonial-author">
+                                            <p><strong>Bobby Chan</strong><span>College Student</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="col-md-12">
-                      <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-                        <blockquote>
-                          <p>I needed extra cash to help pay for for my daughter's tuition and with GoGENIE I was able to find jobs that fit outside of my full time work schedule.<br>(translated from Chinese.)</p>
-                        </blockquote>
-                        <div class="testimonial-author">
-                          <p><strong>Wong Lung</strong><span>Bus Driver, Father of Three</span></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="col-md-12">
-                      <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-                        <blockquote>
-                          <p>I was able to try out different types of jobs while I was in the process of looking for a new job. It (GoGENIE) gave me a lot of flexbility.<br>(translated from Chinese.)</p>
-                        </blockquote>
-                        <div class="testimonial-author">
-                          <p><strong>Anna Ho</strong><span>In between jobs</span></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="col-md-12">
-                      <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-none">
-                        <blockquote>
-                          <p>I was able to take my parents on a vacation thanks to GoGENIE. I have used several part time platforms in the past and nothing comes close. All my friends are now using it.</p>
-                        </blockquote>
-                        <div class="testimonial-author">
-                          <p><strong>Bobby Chan</strong><span>College Student</span></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </section>
-      </section>
+    </section>
 
-      <div class="container">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="col-md-12 center">
-              <h2 class="heading-dark">Our <strong>Awards</strong></h2>
+            <div class="col-md-12">
+                <div class="col-md-12 center">
+                    <h2 class="heading-dark">Our <strong>Awards</strong></h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <div class="feature-box">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-hkict.jpg" alt="">
+                                <h4 class="heading-primary mb-none">Hong Kong ICT Awards 2016</h4>
+                                <p class="tall">Best Mobile App (Enterprise Solutions)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-hongkongbusiness.png" alt="">
+                                <h4 class="heading-primary mb-none">Hong Kong's Top 20 Hottest Startups 2016</h4>
+                                <p class="tall">Hong Kong's Top 20 Hottest Startups 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-cocoonpitchnight.jpg" alt="">
+                                <h4 class="heading-primary mb-none">Cocoon Pitch Night Finals</h4>
+                                <p class="tall">Champion and Audience Favorite Startup Award</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <div class="feature-box">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-hksec.png" alt="">
+                                <h4 class="heading-primary mb-none">Hong Kong Social Enterprise Challenge</h4>
+                                <p class="tall">Champion of the Hong Kong Social Enterprise Challenge</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-hkfyg.jpg" alt="">
+                                <h4 class="heading-primary mb-none">Hong Kong Federation of Youth Groups</h4>
+                                <p class="tall">Champion of the Co-Creator Impact Night</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-risebreakthrough.jpg" alt="">
+                                <h4 class="heading-primary mb-none">RISE Breakthrough Hong Kong</h4>
+                                <p class="tall">Finalist of the RISE Breakthrough Hong Kong</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <div class="feature-box">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-amaa.png" alt="">
+                                <h4 class="heading-primary mb-none">Asia Mobile App Contest 2016</h4>
+                                <p class="tall">Merit Winner for Creative Lifestyle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-jcsic.png" alt="">
+                                <h4 class="heading-primary mb-none">The HKFYG Jockey Club Innovation Centre</h4>
+                                <p class="tall">Runner-Up of the Social Innovation Challenge 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-cacsc.png" alt="">
+                                <h4 class="heading-primary mb-none">Create@Alibaba Cloud Startup Contest 2016</h4>
+                                <p class="tall">Hong Kong Regional Finalist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
+                        <div class="feature-box">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-redherring.png" alt="">
+                                <h4 class="heading-primary mb-none">Red Herring</h4>
+                                <p class="tall">Top 100 Asia Company 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-seedstar.png" alt="">
+                                <h4 class="heading-primary mb-none">Seedstars World Hong Kong 2016</h4>
+                                <p class="tall">Runner-Up of the Seedstars World Hong Kong</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 award">
+                        <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                            <div class="feature-box-info">
+                                <img class="img-responsive" src="img/genie/genie-award-tie.png" alt="">
+                                <h4 class="heading-primary mb-none">Silicon Valley Ti50 Awards</h4>
+                                <p class="tall">Top 50 Global Startup 2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-              <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
-                <div class="feature-box">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-hkict.jpg" alt="">
-                    <h4 class="heading-primary mb-none">Hong Kong ICT Awards 2016</h4>
-                    <p class="tall">Best Mobile App (Enterprise Solutions)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 award">
-                <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-hongkongbusiness.png" alt="">
-                    <h4 class="heading-primary mb-none">Hong Kong's Top 20 Hottest Startups 2016</h4>
-                    <p class="tall">Hong Kong's Top 20 Hottest Startups 2016</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 award">
-                <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-cocoonpitchnight.jpg" alt="">
-                    <h4 class="heading-primary mb-none">Cocoon Pitch Night Finals</h4>
-                    <p class="tall">Champion and Audience Favorite Startup Award</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
-                <div class="feature-box">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-hksec.png" alt="">
-                    <h4 class="heading-primary mb-none">Hong Kong Social Enterprise Challenge</h4>
-                    <p class="tall">Champion of the Hong Kong Social Enterprise Challenge</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 award">
-                <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-hkfyg.jpg" alt="">
-                    <h4 class="heading-primary mb-none">Hong Kong Federation of Youth Groups</h4>
-                    <p class="tall">Champion of the Co-Creator Impact Night</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 award">
-                <div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                  <div class="feature-box-info">
-                    <img class="img-responsive" src="img/genie/genie-award-risebreakthrough.jpg" alt="">
-                    <h4 class="heading-primary mb-none">RISE Breakthrough Hong Kong</h4>
-                    <p class="tall">Finalist of the RISE Breakthrough Hong Kong</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-							<div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
-								<div class="feature-box">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-amaa.png" alt="">
-										<h4 class="heading-primary mb-none">Asia Mobile App Contest 2016</h4>
-										<p class="tall">Merit Winner for Creative Lifestyle</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4 award">
-								<div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-jcsic.png" alt="">
-										<h4 class="heading-primary mb-none">The HKFYG Jockey Club Innovation Centre</h4>
-										<p class="tall">Runner-Up of the Social Innovation Challenge 2016</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4 award">
-								<div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-cacsc.png" alt="">
-										<h4 class="heading-primary mb-none">Create@Alibaba Cloud Startup Contest 2016</h4>
-										<p class="tall">Hong Kong Regional Finalist</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 award" data-appear-animation="fadeInUp" data-appear-animation-delay="200">
-								<div class="feature-box">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-redherring.png" alt="">
-										<h4 class="heading-primary mb-none">Red Herring</h4>
-										<p class="tall">Top 100 Asia Company 2016</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4 award">
-								<div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="400">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-seedstar.png" alt="">
-										<h4 class="heading-primary mb-none">Seedstars World Hong Kong 2016</h4>
-										<p class="tall">Runner-Up of the Seedstars World Hong Kong</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4 award">
-								<div class="feature-box" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-									<div class="feature-box-info">
-										<img class="img-responsive" src="img/genie/genie-award-tie.png" alt="">
-										<h4 class="heading-primary mb-none">Silicon Valley Ti50 Awards</h4>
-										<p class="tall">Top 50 Global Startup 2016</p>
-									</div>
-								</div>
-							</div>
-						</div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <footer id="footer">
+    <footer id="footer">
         <div class="container">
-          <div class="row">
-            <div class="footer-ribbon">
-              <span>Get in Touch</span>
-            </div>
-            <div class="col-md-6">
-              <h4 class="heading-primary">About GoGENIE</h4>
-              <p>GoGENIE hire better with the leading app in the industry. Post jobs for free and hire temporary and part time workers efficiently. Over 100,000 people and 3,000 businesses in 4 countries use us to hire. Find out how you can find your temporary or part time staff now!</p>
-
-              <hr class="light">
-
-              <div class="contact-details">
-                <ul class="contact">
-                  <li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1238 International Building, 175 Hoi Bun Road, Kwun Tong, Hong Kong</p></li>
-                  <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> (852) 6306-3770</p></li>
-                  <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:cs@gogenieapp.com">cs@gogenieapp.com</a></p></li>
-                </ul>
-              </div>
-              <br>
-              <h4 class="mb-none">Follow Us</h4>
-              <br>
-              <ul class="header-social-icons social-icons">
-                <li class="social-icons-facebook"><a href="https://www.facebook.com/gogenieapp" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                <li class="social-icons-twitter"><a href="https://twitter.com/gogenieapp" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                <li class="social-icons-linkedin"><a href="https://www.linkedin.com/company/gogenieapp" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li class="social-icons-instagram"><a href="https://www.instagram.com/gogenieapp/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                <li class="social-icons-google"><a href="https://plus.google.com/+Gogenieapp/" target="_blank" title="Google"><i class="fa fa-google"></i></a></li>
-                <li class="social-icons-pinterest"><a href="https://www.pinterest.com/gogenieapp/" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <h4 class="mb-none">Contact Us</h4>
-              <p>Contact us or give us a call to discover how we can help.</p>
-              <form id="contactForm" action="MAILTO:cs@gogenieapp.com" method="POST">
-                <input type="hidden" value="Contact Form" name="subject" id="subject">
-                <div class="row">
-                  <div class="form-group">
-                    <div class="col-md-6">
-                      <label>Your name *</label>
-                      <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label>Your email address *</label>
-                      <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
-                    </div>
-                  </div>
+            <div class="row">
+                <div class="footer-ribbon">
+                    <span>Get in Touch</span>
                 </div>
-                <div class="row">
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <label>Message *</label>
-                      <textarea maxlength="5000" data-msg-required="Please enter your message." rows="2" class="form-control" name="message" id="message" required></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    <input type="submit" value="Send Message" class="btn btn-primary mb-xl" data-loading-text="Loading...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="alert alert-success hidden" id="contactSuccess">
-                      Message has been sent to us.
-                    </div>
+                <div class="col-md-6">
+                    <h4 class="heading-primary">About GoGENIE</h4>
+                    <p>GoGENIE hire better with the leading app in the industry. Post jobs for free and hire temporary and part time workers efficiently. Over 100,000 people and 3,000 businesses in 4 countries use us to hire. Find out how you can find your
+                        temporary or part time staff now!</p>
 
-                    <div class="alert alert-danger hidden" id="contactError">
-                      Error sending your message.
+                    <hr class="light">
+
+                    <div class="contact-details">
+                        <ul class="contact">
+                            <li>
+                                <p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1238 International Building, 175 Hoi Bun Road, Kwun Tong, Hong Kong</p>
+                            </li>
+                            <li>
+                                <p><i class="fa fa-phone"></i> <strong>Phone:</strong> (852) 6306-3770</p>
+                            </li>
+                            <li>
+                                <p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:cs@gogenieapp.com">cs@gogenieapp.com</a></p>
+                            </li>
+                        </ul>
                     </div>
-                  </div>
+                    <br>
+                    <h4 class="mb-none">Follow Us</h4>
+                    <br>
+                    <ul class="header-social-icons social-icons">
+                        <li class="social-icons-facebook"><a href="https://www.facebook.com/gogenieapp" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li class="social-icons-twitter"><a href="https://twitter.com/gogenieapp" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li class="social-icons-linkedin"><a href="https://www.linkedin.com/company/gogenieapp" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="social-icons-instagram"><a href="https://www.instagram.com/gogenieapp/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li class="social-icons-google"><a href="https://plus.google.com/+Gogenieapp/" target="_blank" title="Google"><i class="fa fa-google"></i></a></li>
+                        <li class="social-icons-pinterest"><a href="https://www.pinterest.com/gogenieapp/" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
                 </div>
-              </form>
+                <div class="col-md-6">
+                    <h4 class="mb-none">Contact Us</h4>
+                    <p>Contact us or give us a call to discover how we can help.</p>
+                    <form id="contactForm" action="MAILTO:cs@gogenieapp.com" method="POST">
+                        <input type="hidden" value="Contact Form" name="subject" id="subject">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>Your name *</label>
+                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Your email address *</label>
+                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label>Message *</label>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="2" class="form-control" name="message" id="message" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="submit" value="Send Message" class="btn btn-primary mb-xl" data-loading-text="Loading...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="alert alert-success hidden" id="contactSuccess">
+                                    Message has been sent to us.
+                                </div>
+
+                                <div class="alert alert-danger hidden" id="contactError">
+                                    Error sending your message.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
         <div class="footer-copyright">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8">
-                <p>© 2016 CRAMCLUB COMPANY LIMITED. All Rights Reserved.</p>
-              </div>
-              <div class="col-md-4">
-                <nav id="sub-menu">
-                  <ul>
-                    <!-- <li><a href="#">FAQ</a></li> -->
-                    <li><a href="tnc.html">Terms & Condition</a></li>
-                  </ul>
-                </nav>
-              </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>© 2016 CRAMCLUB COMPANY LIMITED. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <nav id="sub-menu">
+                            <ul>
+                                <!-- <li><a href="#">FAQ</a></li> -->
+                                <li><a href="tnc.html">Terms & Condition</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </footer>
+    </footer>
     </div>
 
     <!-- Vendor -->
@@ -926,18 +941,20 @@
 
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
     <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-64263788-1']);
+        _gaq.push(['_trackPageview']);
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-64263788-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
     </script>
 
-  </body>
+</body>
+
 </html>
