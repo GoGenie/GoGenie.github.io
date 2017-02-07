@@ -12,13 +12,10 @@ var formData     = {},
     salaryUnit;
 
 function combineDateTime (date, time) {
-  console.log('date:', date, 'time:', time);
-  console.log('moment conversion:', moment(date+' '+time, 'YYYY-MM-DD h:mmA').toDate())
   return moment(date+' '+time, 'YYYY-MM-DD h:mmA').toDate();
 }
 
 function getDuration (start, end) {
-  console.log('start, end', start, end)
   var timeDiff = Math.abs(start - end);
   return Math.ceil(timeDiff / (1000 * 60));
 }
@@ -34,7 +31,6 @@ function addDays (date, days) {
 }
 
 function gatherPostingInfo(isSecondSection) {
-  console.log('gatherposting')
   formData = {
     description: $('#jobDescription').val(),
     district: $('#district').val(),
@@ -95,7 +91,6 @@ function checkInfoValidity () {
     }
   }
 
-  console.log('is not unfilled,', retVal, formData)
 
   return retVal;
 }
@@ -342,12 +337,19 @@ function gatherAuthInfo () {
 }
 
 function authenticate (authInfo) {
-  postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
+  var postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
   axios.post(postUrl, authInfo)
   .then(function(response) {
-    if (jobType === 'permanent') return postJob(response, true)
-    if (jobType === 'temporary') return postJob(response, false)
+    if (!signIn) {
+      putBasicInfo(response, authInfo, function() {
+        if (jobType === 'permanent') return postJob(response, true);
+        if (jobType === 'temporary') return postJob(response, false);
+      })
+    } else {
+      if (jobType === 'permanent') return postJob(response, true);
+      if (jobType === 'temporary') return postJob(response, false);
+    }
   })
   .catch(function(error) {
     var code = error.toString().slice(-3)
@@ -355,11 +357,32 @@ function authenticate (authInfo) {
   })
 }
 
+function putBasicInfo (response, authInfo, callback) {
+  var putUrl = url + '/master/v5/profile_infos/info',
+      data   = {
+        basic_info: {
+          name: authInfo.name,
+          phone: authInfo.phone,
+          contact: '',
+          website_url: '',
+          bio: ''
+        }
+      };
+
+  axios.put(putUrl, data, {
+    headers: response.headers
+  }).then(function(response) {
+    callback();
+  }).catch(function(error) {
+    console.log('there was an error in putBasicInfo', error);
+  })
+}
+
 function handleError (code, authInfo) {
   if (code === '403') {
     $('.email-help').eq(0)
       .css('color', '#a94442')
-      .text('That e-mail exists. Please try again.')
+      .text('請填寫其他的電郵.')
   }
 }
 
