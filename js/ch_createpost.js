@@ -3,46 +3,22 @@ $(document).ready(function() { init() });
 /*====================================
 =            ALL SECTIONS            =
 ====================================*/
-var formData                = {},
-    url                     = 'http://api-dev.gogenieapp.com',
-    getChinesePaymentMethod = {
-      'Cash': '現金支付',
-      'Cheque': '支票支付',
-      'Transfer': '銀行過數'
-    },
-    getChineseDistrict             = {
-      'Central and Western': '中西區',
-      'Eastern': '東區',
-      'Southern': '南區',
-      'Wan Chai': '灣仔區',
-      'Sham Shui Po': '深水埗區',
-      'Kowloon City': '九龍城區',
-      'Kwun Tong': '觀塘區',
-      'Wong Tai Sin': '黃大仙區',
-      'Yau Tsim Mong': '油尖旺區',
-      'Islands': '離島區',
-      'Kwai Tsing': '葵青區',
-      'North': '北區',
-      'Sai Kung': '西貢區',
-      'Sha Tin': '沙田區',
-      'Tai Po': '大埔區',
-      'Tsuen Wan': '荃灣區',
-      'Tuen Mun': '屯門區',
-      'Yuen Long': '元朗區',
-      'Other': '其他'
-    },
-    venue_lat               = 0,
-    venue_long              = 0,
+var formData     = {},
+    url          = 'http://api-dev.gogenieapp.com',
+    venue_lat    = 0,
+    venue_long   = 0,
     jobType,
     locationType,
     salaryUnit;
 
-
 function combineDateTime (date, time) {
-  return moment(date+' '+time, 'MM/DD/YYYY h:mmA').toDate();
+  console.log('date:', date, 'time:', time);
+  console.log('moment conversion:', moment(date+' '+time, 'YYYY-MM-DD h:mmA').toDate())
+  return moment(date+' '+time, 'YYYY-MM-DD h:mmA').toDate();
 }
 
 function getDuration (start, end) {
+  console.log('start, end', start, end)
   var timeDiff = Math.abs(start - end);
   return Math.ceil(timeDiff / (1000 * 60));
 }
@@ -58,9 +34,10 @@ function addDays (date, days) {
 }
 
 function gatherPostingInfo(isSecondSection) {
+  console.log('gatherposting')
   formData = {
     description: $('#jobDescription').val(),
-    district: getChineseDistrict[$('#district').val()],
+    district: $('#district').val(),
     venue_lat: venue_lat,
     venue_long: venue_long
   }
@@ -78,7 +55,7 @@ function gatherPostingInfo(isSecondSection) {
       formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
       formData.users_required = $('#positionsAvailable').val();
       formData.hourly_rates   = $('#hourlyRateInput').val();
-      formData.payment_method = getChinesePaymentMethod[$('#paymentMethod').val()];
+      formData.payment_method = $('#paymentMethod').val();
       formData.duration       = getDuration(formData.start_time, formData.end_time);
       formData.rate           = getRate(formData.duration, formData.hourly_rates, days);
       formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
@@ -107,8 +84,9 @@ function checkInfoValidity () {
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
+
     if (unfilled) {
-      console.log('this is the key:', key);
+      console.log('is unfilled.', key);
       if (key === 'category') $('#jobCategory').addClass('has-error');
       if (key === 'category_new') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
@@ -116,6 +94,8 @@ function checkInfoValidity () {
       retVal = false;
     }
   }
+
+  console.log('is not unfilled,', retVal, formData)
 
   return retVal;
 }
@@ -134,10 +114,10 @@ function locationAutocomplete () {
   var input = document.getElementById('addressInput')
   var autocomplete = new google.maps.places.Autocomplete(input, {componentRestrictions: {country: 'HK'}});
   google.maps.event.addDomListener(window, 'load', autocomplete);
-  google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete, input));
+  google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete));
 }
 
-function saveLocation (autocomplete, input) {
+function saveLocation (autocomplete) {
   var place = autocomplete.getPlace();
   venue_lat = place.geometry.location.lat();
   venue_long = place.geometry.location.lng();
@@ -188,6 +168,8 @@ function promptContinue (proceed) {
 function previewJobHandler (e) {
   e.preventDefault()
 
+
+
   if (gatherPostingInfo(true)) {
     populatePreviewCard();
     var num = jobType === 'temporary' ? 0 : 1;
@@ -202,7 +184,7 @@ function populatePreviewCard () {
   $('.postInfo').eq(2).text(jobType.toUpperCase());
   $('.postInfo').eq(3).text(formData.description);
   $('.postInfo').eq(4).text($('.address-input').eq(0).val());
-  $('.postInfo').eq(5).text($('#district').val());
+  $('.postInfo').eq(5).text(formData.district);
 
   if (jobType === 'temporary') {
     $('.tempPostInfo').css('display', 'block');
@@ -249,7 +231,7 @@ function selectPaymentHandler (e) {
 function initStartDatePicker () {
   $('.datepicker-here').eq(0).datepicker({
     minDate: new Date(),
-    language: 'en'
+    language: 'ch'
   })
 }
 
@@ -277,7 +259,6 @@ function enableEndTimePicker (minTime) {
 /*========================================
 =            PERM JOB SECTION            =
 ========================================*/
-
 function selectMonthlyHandler (e) {
   salaryUnit = '月薪';
 }
@@ -313,16 +294,16 @@ function toggleAuthView (e) {
   $postButton.addClass('disabled');
 
   if (signIn) {
-    $modalTitle.text('Register and Post Job')
-    $toggleMessage.text('Or sign in to post job!');
-    $postButton.text('Register and post job');
+    $modalTitle.text('請注冊帳戶完成刊登工作')
+    $toggleMessage.text('已有帳戶? 按此登入');
+    $postButton.text('完成刊登工作');
     $companyInput.prop('required', true);
     $phoneInput.prop('required', true);
     signIn = false;
   } else {
-    $modalTitle.text('Sign in to post');
-    $toggleMessage.text('Or register to post job');
-    $postButton.text('Sign in and post job');
+    $modalTitle.text('請登入帳戶完成刊登工作');
+    $toggleMessage.text('未有帳戶? 建立新帳戶');
+    $postButton.text('完成刊登工作');
     $companyInput.prop('required', false);
     $phoneInput.prop('required', false);
     signIn = true;

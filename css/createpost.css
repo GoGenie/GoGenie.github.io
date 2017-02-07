@@ -35,6 +35,11 @@ ul.dropdown-menu > li > a {
   border-color: red;
 }
 
+.jobTypeDescription + .tooltip > .tooltip-inner {
+  font-size: 15px;
+  padding: 10px;
+}
+
 .radio-buttons {
   text-align: center;
   font-size: 18px;
