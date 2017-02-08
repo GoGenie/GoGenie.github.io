@@ -4,7 +4,8 @@ $(document).ready(function() { init() });
 =            ALL SECTIONS            =
 ====================================*/
 var formData     = {},
-    url          = 'http://api.gogenieapp.com',
+    url          = 'http://localhost:3000',
+    // url          = 'http://api.gogenieapp.com',
     venue_lat    = 0,
     venue_long   = 0,
     jobType,
@@ -91,7 +92,6 @@ function checkInfoValidity () {
     }
   }
 
-
   return retVal;
 }
 
@@ -136,25 +136,17 @@ function selectPermHandler (e) {
 
 function continueHandler (e) {
   e.preventDefault();
-  if (gatherPostingInfo(false)) {
-    promptContinue(true);
-  } else {
-    promptContinue(false);
+
+  if (gatherPostingInfo(false) || venue_lat !== 0 && venue_long !== 0) {
+    $('#createJobModal').modal('hide')
+    if (jobType === 'temporary') $('#temporaryJobModal').modal('show')
+    if (jobType === 'permanent') $('#permanentJobModal').modal('show')
+  } else if (venue_lat === 0 && venue_long === 0){
+    $('.location-help').eq(0)
+      .css('color', '#a94442')
+      .text('請從列表內選擇一個地址')
   }
 }
-
-function promptContinue (proceed) {
-  if (proceed) {
-    $('#continueButton')
-      .attr('data-dismiss', `modal`)
-      .attr('data-toggle', `modal`);
-  } else {
-    $('#continueButton')
-      .removeAttr('data-dismiss')
-      .removeAttr('data-toggle');
-  }
-}
-
 
  /*===================================================
  =            BOTH TEMP AND PERM SECTIONS            =
@@ -163,12 +155,9 @@ function promptContinue (proceed) {
 function previewJobHandler (e) {
   e.preventDefault()
 
-
-
   if (gatherPostingInfo(true)) {
     populatePreviewCard();
-    var num = jobType === 'temporary' ? 0 : 1;
-    return promptSignIn(num);
+    return promptSignIn(jobType === 'temporary');
   }
 }
 
@@ -207,11 +196,10 @@ function populatePreviewCard () {
   }
 }
 
-function promptSignIn (num) {
-  $('.preview-job-btn').eq(num).attr('data-dismiss', 'modal');
-  $('.preview-job-btn').eq(num).attr('data-toggle', 'modal');
-  $('.preview-job-btn').eq(num).attr('data-target', '#signInModal');
-
+function promptSignIn (tempSelected) {
+  if (tempSelected) $('#temporaryJobModal').modal('hide');
+  if (!tempSelected) $('#permanentJobModal').modal('hide');
+  $('#signInModal').modal('show');
 }
 
  /*========================================
@@ -305,7 +293,7 @@ function toggleAuthView (e) {
   }
 }
 
-function authAndPostHandler (e) {
+function authAndPostClickHandler (e) {
   e.preventDefault();
 
   var authInfo = gatherAuthInfo();
@@ -337,6 +325,10 @@ function gatherAuthInfo () {
 }
 
 function authenticate (authInfo) {
+
+  $('#signInModal').modal('hide');
+  $('#submittedModal').modal('show');
+
   var postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
   axios.post(postUrl, authInfo)
@@ -382,7 +374,12 @@ function handleError (code, authInfo) {
   if (code === '403') {
     $('.email-help').eq(0)
       .css('color', '#a94442')
-      .text('請填寫其他的電郵.')
+      .text('請填寫其他的電郵。')
+  }
+  if (code === '401') {
+    $('.email-help').eq(0)
+      .css('color', '#a94442')
+      .text('你的電子郵件和密碼不正確。 請再試一次。')
   }
 }
 
@@ -398,9 +395,11 @@ function postJob (response, isPermJob) {
 }
 
 function promptAfterPost (response) {
-
   clearAllFields();
-
+  $('#firstSecForm').validator('update');
+  signIn = false;
+  toggleAuthView();
+  $('#instruction-carousel').carousel(0);
   $('#signInModal').modal('toggle');
   $('#afterPostModal').modal('toggle');
 }
@@ -432,6 +431,11 @@ function clearAllFields () {
   $('.radio-inline > input').prop('checked', false);
 }
 
+function closeSubmittedModal () {
+  $('#submittedModal').modal('hide');
+  $('#signInModal').modal('show');
+}
+
  /*============================
  =            INIT            =
  ============================*/
@@ -458,13 +462,14 @@ function permEvents() {
 
 function authEvents() {
   $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
+  $('#okayButton').on('click', closeSubmittedModal);
 }
 
 function btnEvents() {
   $('.btn-wide').off().on('click', function(e){ e.preventDefault(); })
   $('#continueButton').off().on('click', continueHandler);
   $('.preview-job-btn').off().on('click', previewJobHandler);
-  $('#authAndPostButton').off().on('click', authAndPostHandler);
+  $('#authAndPostButton').off().on('click', authAndPostClickHandler);
 }
 
 function eventHandlers () {

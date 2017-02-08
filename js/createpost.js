@@ -4,8 +4,8 @@ $(document).ready(function() { init() });
 =            ALL SECTIONS            =
 ====================================*/
 var formData                = {},
-    url                     = 'http://api.gogenieapp.com',
-    // url                     = 'http://localhost:3000',
+    // url                     = 'http://api.gogenieapp.com',
+    url                     = 'http://localhost:3000',
 
     getChinesePaymentMethod = {
       'Cash': '現金支付',
@@ -159,35 +159,26 @@ function selectDistrictHandler (e) {
 
 function selectTempHandler (e) {
   jobType = 'temporary';
-  $('#continueButton').eq(0).attr('data-target', `#temporaryJobModal`)
 }
 
 function selectPermHandler (e) {
   jobType = 'permanent';
-  $('#continueButton').eq(0).attr('data-target', `#permanentJobModal`)
 }
 
 function continueHandler (e) {
   e.preventDefault();
-  if (gatherPostingInfo(false)) {
-    promptContinue(true);
-  } else {
-    promptContinue(false);
-  }
-}
 
-function promptContinue (proceed) {
-  if (proceed) {
-    $('#continueButton')
-      .attr('data-dismiss', `modal`)
-      .attr('data-toggle', `modal`);
-  } else {
-    $('#continueButton')
-      .removeAttr('data-dismiss')
-      .removeAttr('data-toggle');
+  if (gatherPostingInfo(false) || venue_lat !== 0 && venue_long !== 0) {
+    $('#createJobModal').modal('hide')
+    if (jobType === 'temporary') $('#temporaryJobModal').modal('show')
+    if (jobType === 'permanent') $('#permanentJobModal').modal('show')
+  } else if (venue_lat === 0 && venue_long === 0){
+    $('.location-help').eq(0)
+      .css('color', '#a94442')
+      .text('Please select a location from the dropdown list')
   }
-}
 
+}
 
  /*===================================================
  =            BOTH TEMP AND PERM SECTIONS            =
@@ -198,8 +189,7 @@ function previewJobHandler (e) {
 
   if (gatherPostingInfo(true)) {
     populatePreviewCard();
-    var num = jobType === 'temporary' ? 0 : 1;
-    return promptSignIn(num);
+    return promptSignIn(jobType === 'temporary');
   }
 }
 
@@ -238,11 +228,10 @@ function populatePreviewCard () {
   }
 }
 
-function promptSignIn (num) {
-  $('.preview-job-btn').eq(num).attr('data-dismiss', 'modal');
-  $('.preview-job-btn').eq(num).attr('data-toggle', 'modal');
-  $('.preview-job-btn').eq(num).attr('data-target', '#signInModal');
-
+function promptSignIn (tempSelected) {
+  if (tempSelected)  $('#temporaryJobModal').modal('hide');
+  if (!tempSelected) $('#permanentJobModal').modal('hide');
+  $('#signInModal').modal('show');
 }
 
  /*========================================
@@ -337,7 +326,7 @@ function toggleAuthView (e) {
   }
 }
 
-function authAndPostHandler (e) {
+function authAndPostClickHandler (e) {
   e.preventDefault();
 
   var authInfo = gatherAuthInfo();
@@ -369,6 +358,10 @@ function gatherAuthInfo () {
 }
 
 function authenticate (authInfo) {
+
+  $('#signInModal').modal('hide');
+  $('#submittedModal').modal('show');
+
   var postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
   axios.post(postUrl, authInfo)
@@ -416,6 +409,11 @@ function handleError (code, authInfo) {
       .css('color', '#a94442')
       .text('That e-mail exists. Please try again.')
   }
+  if (code === '401') {
+    $('.email-help').eq(0)
+      .css('color', '#a94442')
+      .text('Your email and password do not match. Please try again.')
+  }
 }
 
 function postJob (response, isPermJob) {
@@ -430,12 +428,15 @@ function postJob (response, isPermJob) {
 }
 
 function promptAfterPost (response) {
-
   clearAllFields();
   $('#firstSecForm').validator('update');
+  signIn = false;
+  toggleAuthView();
+  $('#instruction-carousel').carousel(0);
 
-  $('#signInModal').modal('toggle');
-  $('#afterPostModal').modal('toggle');
+  $('#submittedModal').modal('hide');
+  $('#signInModal').modal('hide');
+  $('#afterPostModal').modal('show');
 }
 
 function clearAllFields () {
@@ -465,6 +466,11 @@ function clearAllFields () {
   $('.radio-inline > input').prop('checked', false);
 }
 
+function closeSubmittedModal () {
+  $('#submittedModal').modal('hide');
+  $('#signInModal').modal('show');
+}
+
  /*============================
  =            INIT            =
  ============================*/
@@ -491,13 +497,14 @@ function permEvents() {
 
 function authEvents() {
   $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
+  $('#okayButton').on('click', closeSubmittedModal);
 }
 
 function btnEvents() {
   $('.btn-wide').off().on('click', function(e){ e.preventDefault(); })
   $('#continueButton').off().on('click', continueHandler);
   $('.preview-job-btn').off().on('click', previewJobHandler);
-  $('#authAndPostButton').off().on('click', authAndPostHandler);
+  $('#authAndPostButton').off().on('click', authAndPostClickHandler);
 }
 
 function eventHandlers () {

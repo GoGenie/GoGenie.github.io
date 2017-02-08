@@ -94,6 +94,10 @@ ul.dropdown-menu > li > a {
   font-size: 28px;
 }
 
+body.modal-open {
+  overflow: auto;
+}
+
 .modal-backdrop {
   z-index: 10;
 }​
@@ -190,6 +194,13 @@ ul.dropdown-menu > li > a {
   margin-top: 20px;
   border-radius: 4px;
 }
+
+#submittedModal .modal-body {
+  padding: 30px;
+}
+
+
+
 
 .afterpost-body {
   text-align: center;

@@ -795,7 +795,7 @@
               <div class="col-xs-7">
                 <div class="form-group">
                   <label for="jobPosition">工作職位</label>
-                  <input type="text" class="form-control" id="jobPosition" placeholder="請填寫工作職位" data-categorize="true" required>
+                  <input type="text" class="form-control" id="jobPosition" placeholder="請填寫工作職位" data-categorize="true" maxlength='2500' required>
                 </div>
               </div>
               <div class="col-xs-5">
@@ -825,7 +825,8 @@
               <div class="col-xs-7">
                 <div class="form-group">
                   <label for="addressInput">工作位置</label>
-                  <input type="text" class="form-control address-input" id="addressInput" placeholder="請填寫工作地址" data-districts="true" required>
+                  <input type="text" class="form-control address-input" id="addressInput" placeholder="請填寫工作地址" data-districts="true" data-error="請填寫此格" required>
+                  <div class="help-block with-errors location-help"></div>
                 </div>
               </div>
               <div class="col-xs-5">
@@ -1091,14 +1092,14 @@
                 <label for="inputEmail" class="sr-only">
                   電郵地址
                 </label>
-                <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址" data-error="That email address is invalid" required>
+                <input type="email" class="form-control" id="inputEmail" placeholder="電郵地址" data-error="必需填寫有效的電郵" required>
                 <div class="help-block with-errors email-help"></div>
               </div>
               <div class="form-group col-xs-6">
                 <label for="inputPassword" class="sr-only">
                   輸入密碼
                 </label>
-                <input type="password" data-minlength="8" class="form-control" id="inputPassword" data-error="Minimum of 8 characters" placeholder="輸入密碼" data-minlength="6" required>
+                <input type="password" data-minlength="8" class="form-control" id="inputPassword" data-error="密碼太短" placeholder="輸入密碼" required>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -1113,7 +1114,8 @@
                 <label for="inputPhone" class="sr-only">
                   聯絡電話
                 </label>
-                <input type="phone" class="form-control" id="inputPhone" placeholder="聯絡電話">
+                <input type="number" class="form-control" id="inputPhone" placeholder="聯絡電話" data-minlength='8' maxlength='8' data-error="請輸入有效的8位數香港電話號碼">
+                <div class="help-block with-errors"></div>
               </div>
             </div>
           </div>
@@ -1130,6 +1132,26 @@
     </div>
   </div>
   <!--// AUTH MODAL -->
+
+  <div id="submittedModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+          <h3 class="postSubmitted">
+            請等等！我們正在處理你的資料
+          </h3>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="okayButton" class="btn btn-success btn-wide" aria-hidden="true">
+            關閉
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- AFTERPOST MODAL -->
   <div id="afterPostModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
