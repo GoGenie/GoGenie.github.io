@@ -142,7 +142,7 @@ function checkInfoValidity (isSecondSection, isTemp) {
         retVal = false;
         $('.salary-range-error').eq(0)
           .css('color', '#a94442')
-          .text('Please enter a salary range that is greater than the specified salary');
+          .text('薪金範圍必須大過工作薪金');
       }
     }
   }
