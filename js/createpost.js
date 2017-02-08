@@ -113,6 +113,7 @@ function gatherPostingInfo(isSecondSection) {
     formData.category    = $('#jobCategory').val();
 
     if (isSecondSection) {
+      console.log('im here now. 117')
       formData.salary      = $('#salaryInput').val();
       formData.salary_unit = getChineseSalaryUnit[salaryUnit];
       formData.address     = $('.address-input').eq(0).val();
@@ -124,10 +125,10 @@ function gatherPostingInfo(isSecondSection) {
   }
   /*----------  All Sections  ----------*/
 
-  return checkInfoValidity(isSecondSection);
+  return checkInfoValidity(isSecondSection, jobType === 'temporary');
 }
 
-function checkInfoValidity (isSecondSection) {
+function checkInfoValidity (isSecondSection, isTemp) {
   var retVal = formData;
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
@@ -144,39 +145,45 @@ function checkInfoValidity (isSecondSection) {
   }
 
   if (isSecondSection) {
-    if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
-      retVal = false;
-      $('.time-select-error').eq(0)
-        .css('color', '#a94442')
-        .text('Your job posting has to be at least an hour long');
-    }
 
-    if (!$('#days').val() || $('#days').val() < 1) {
-      retVal = false;
-      $('.start-date-error').eq(0)
-        .css('color', '#a94442')
-        .text('Duration has to be at least 1 day');
-    }
-
-    if ($('#positionsAvailable').val() < 1) {
-      retVal = false;
-      $('.positions-available-error').eq(0)
-        .css('color', '#a94442')
-        .text('At least 1 position has to made be available');
-    }
-
-    if ($('#hourlyRateInput').val() < 45) {
-      retVal = false;
-      $('.hourly-rate-error').eq(0)
-        .css('color', '#a94442')
-        .text('Please enter an hourly rate of at least $45');
-    }
-
-    if (!$('.datepicker-here').val()) {
-      retVal = false;
-      $('.start-date-error').eq(0)
-        .css('color', '#a94442')
-        .text('Please select a start date.');
+    if (isTemp) {
+      if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
+        retVal = false;
+        $('.time-select-error').eq(0)
+          .css('color', '#a94442')
+          .text('Your job posting has to be at least an hour long');
+      }
+      if (!$('#days').val() || $('#days').val() < 1) {
+        retVal = false;
+        $('.start-date-error').eq(0)
+          .css('color', '#a94442')
+          .text('Duration has to be at least 1 day');
+      }
+      if ($('#positionsAvailable').val() < 1) {
+        retVal = false;
+        $('.positions-available-error').eq(0)
+          .css('color', '#a94442')
+          .text('At least 1 position has to made be available');
+      }
+      if ($('#hourlyRateInput').val() < 45) {
+        retVal = false;
+        $('.hourly-rate-error').eq(0)
+          .css('color', '#a94442')
+          .text('Please enter an hourly rate of at least $45');
+      }
+      if (!$('.datepicker-here').val()) {
+        retVal = false;
+        $('.start-date-error').eq(0)
+          .css('color', '#a94442')
+          .text('Please select a start date.');
+      }
+    } else {
+      if (formData.salary_max && $('#salaryRange').val() < $('#salaryInput').val()) {
+        retVal = false;
+        $('.salary-range-error').eq(0)
+          .css('color', '#a94442')
+          .text('Please enter a salary range that is greater than the specified salary');
+      }
     }
 
   }
@@ -191,6 +198,7 @@ function clearValidationFields () {
   $('.positions-available-error').eq(0).text('')
   $('.hourly-rate-error').eq(0).text('')
   $('.email-help').eq(0).text('')
+  $('.salary-range-error').eq(0).text('')
 
   $('#jobCategory').removeClass('has-error');
   $('#jobCategory').removeClass('has-error');
@@ -308,6 +316,7 @@ function populatePreviewCard () {
 }
 
 function promptSignIn (tempSelected) {
+  console.log('tempselected', tempSelected)
   if (tempSelected)  $('#temporaryJobModal').modal('hide');
   if (!tempSelected) $('#permanentJobModal').modal('hide');
   $('#signInModal').modal('show');

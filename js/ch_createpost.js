@@ -86,10 +86,10 @@ function gatherPostingInfo(isSecondSection) {
   }
   /*----------  All Sections  ----------*/
 
-  return checkInfoValidity();
+  return checkInfoValidity(isSecondSection, jobType === 'temporary');
 }
 
-function checkInfoValidity () {
+function checkInfoValidity (isSecondSectionm, isTemp) {
   var retVal = formData;
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
@@ -106,39 +106,44 @@ function checkInfoValidity () {
   }
 
   if (isSecondSection) {
-    if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
-      retVal = false;
-      $('.time-select-error').eq(0)
-        .css('color', '#a94442')
-        .text('工作時間必須至少一小時');
-    }
-
-    if (!$('#days').val() || $('#days').val() < 1) {
-      retVal = false;
-      $('.start-date-error').eq(0)
-        .css('color', '#a94442')
-        .text('工作日數必須至少有1天');
-    }
-
-    if ($('#positionsAvailable').val() < 1) {
-      retVal = false;
-      $('.positions-available-error').eq(0)
-        .css('color', '#a94442')
-        .text('工作人數必須至少有1個');
-    }
-
-    if ($('#hourlyRateInput').val() < 45) {
-      retVal = false;
-      $('.hourly-rate-error').eq(0)
-        .css('color', '#a94442')
-        .text('工作時薪必須$45或以上');
-    }
-
-    if (!$('.datepicker-here').val()) {
-      retVal = false;
-      $('.start-date-error').eq(0)
-        .css('color', '#a94442')
-        .text('請選擇開始時間');
+    if (isTemp) {
+      if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
+        retVal = false;
+        $('.time-select-error').eq(0)
+          .css('color', '#a94442')
+          .text('工作時間必須至少一小時');
+      }
+      if (!$('#days').val() || $('#days').val() < 1) {
+        retVal = false;
+        $('.start-date-error').eq(0)
+          .css('color', '#a94442')
+          .text('工作日數必須至少有1天');
+      }
+      if ($('#positionsAvailable').val() < 1) {
+        retVal = false;
+        $('.positions-available-error').eq(0)
+          .css('color', '#a94442')
+          .text('工作人數必須至少有1個');
+      }
+      if ($('#hourlyRateInput').val() < 45) {
+        retVal = false;
+        $('.hourly-rate-error').eq(0)
+          .css('color', '#a94442')
+          .text('工作時薪必須$45或以上');
+      }
+      if (!$('.datepicker-here').val()) {
+        retVal = false;
+        $('.start-date-error').eq(0)
+          .css('color', '#a94442')
+          .text('請選擇開始時間');
+      }
+    } else {
+      if (formData.salary_max && $('#salaryRange').val() < $('#salaryInput').val()) {
+        retVal = false;
+        $('.salary-range-error').eq(0)
+          .css('color', '#a94442')
+          .text('Please enter a salary range that is greater than the specified salary');
+      }
     }
   }
 
@@ -152,6 +157,7 @@ function clearValidationFields () {
   $('.start-date-error').eq(0).text('')
   $('.hourly-rate-error').eq(0).text('')
   $('.email-help').eq(0).text('')
+  $('.salary-range-error').eq(0).text('')
 
   $('#jobCategory').removeClass('has-error');
   $('#jobCategory').removeClass('has-error');
