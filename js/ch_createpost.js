@@ -4,8 +4,8 @@ $(document).ready(function() { init() });
 =            ALL SECTIONS            =
 ====================================*/
 var formData     = {},
-    url          = 'http://localhost:3000',
-    // url          = 'http://api.gogenieapp.com',
+    // url          = 'http://localhost:3000',
+    url          = 'http://api.gogenieapp.com',
     venue_lat    = 0,
     venue_long   = 0,
     jobType,
