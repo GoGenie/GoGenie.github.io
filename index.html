@@ -864,12 +864,13 @@
             </div>
             <div class="form-group radio-buttons">
               <span class="jobTypeDescription" data-toggle="tooltip" data-placement="top" title="Select this to hire one-off workers and temporary staff.">
-				          <label class="radio-inline"><input type="radio" id="jobType" name="jobType" required>Temporary</label>
-			          </span>
+			          <label class="radio-inline"><input type="radio" id="jobType" name="jobType" required>Temporary</label>
+		          </span>
               <span class="jobTypeDescription" data-toggle="tooltip" data-placement="top" title="Select this to hire freelance, part time or full time staff.">
-				          <label class="radio-inline"><input type="radio" name="jobType" required>Permanent</label>
-			          </span>
+			          <label class="radio-inline"><input type="radio" name="jobType" required>Permanent</label>
+		          </span>
             </div>
+            <div class="help-block with-errors jobtype-help"></div>
             <div class="form-group">
               <textarea class="form-control" id="jobDescription" placeholder="Job Description" rows="4" required maxlength='2500'></textarea>
             </div>
@@ -897,10 +898,12 @@
                 <div class="col-xs-4">
                   <label for="positionsAvailable">Positions Available</label>
                   <input type="number" class="form-control" id="positionsAvailable" placeholder="# of workers" required>
+                  <div class="help-block with-errors positions-available-error"></div>
                 </div>
                 <div class="col-xs-4">
-                  <label for="positionsAvailable">Hourly Rate (HKD)</label>
+                  <label for="hourlyRateInput">Hourly Rate (HKD)</label>
                   <input type="number" class="form-control" id="hourlyRateInput" placeholder="" required>
+                  <div class="help-block with-errors hourly-rate-error"></div>
                 </div>
                 <div class="col-xs-4">
                   <label for="paymentMethod">Payment Method</label>
@@ -924,6 +927,7 @@
                   <div class="col-xs-6">
                     <label>Start Date</label>
                     <input type="text" class="datepicker-here form-control" placeholder="Select date" required/>
+                    <div class="help-block with-errors start-date-error"></div>
                   </div>
                   <div class="col-xs-6">
                     <label>Duration</label>
@@ -940,6 +944,7 @@
                   <div class="col-xs-6">
                     <label>End Time</label>
                     <input type="text" placeholder="Select Time" disabled class="form-control time-select" required/>
+                    <div class="help-block with-errors time-select-error"></div>
                   </div>
                 </div>
               </div>
@@ -1115,8 +1120,8 @@
                 <label for="inputPhone" class="sr-only">
                   Phone Number
                 </label>
-                <input type="number" class="form-control" id="inputPhone" placeholder="Phone Number" data-minlength='8' maxlength='8' data-maxlength='8' data-error="Please enter a valid 8-digit Hong Kong phone number.">
-                <div class="help-block with-errors"></div>
+                <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number" data-minlength='8' maxlength='8' data-error="Please enter a valid 8-digit Hong Kong phone number.">
+                <div class="help-block with-errors phone-error"></div>
               </div>
             </div>
           </div>

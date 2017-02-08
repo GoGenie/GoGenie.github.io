@@ -13,7 +13,7 @@ var formData     = {},
     salaryUnit;
 
 function combineDateTime (date, time) {
-  return moment(date+' '+time, 'YYYY-MM-DD h:mmA').toDate();
+  return moment(date+' '+time, 'YYYY-MM-DD h:mma').toDate();
 }
 
 function getDuration (start, end) {
@@ -32,12 +32,17 @@ function addDays (date, days) {
 }
 
 function gatherPostingInfo(isSecondSection) {
+
+  /*----------  First Section  ----------*/
+
   formData = {
     description: $('#jobDescription').val(),
     district: $('#district').val(),
     venue_lat: venue_lat,
     venue_long: venue_long
   }
+
+  /*----------  Temp Section  ----------*/
 
   var days = $('#days').val();
 
@@ -50,6 +55,10 @@ function gatherPostingInfo(isSecondSection) {
       formData.start_date     = $('.datepicker-here').eq(0).val();
       formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
       formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
+      // Makes sure the end date is the next day for over-night jobs
+      if (formData.end_time && formData.end_time - formData.start_time < 0)
+        formData.end_time = addDays(formData.end_time, 1);
+
       formData.users_required = $('#positionsAvailable').val();
       formData.hourly_rates   = $('#hourlyRateInput').val();
       formData.payment_method = $('#paymentMethod').val();
@@ -58,6 +67,8 @@ function gatherPostingInfo(isSecondSection) {
       formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
     }
   }
+
+  /*----------  Perm Section  ----------*/
 
   if (jobType === 'permanent') {
     formData.position    = $('#jobPosition').val();
@@ -73,6 +84,8 @@ function gatherPostingInfo(isSecondSection) {
       }
     }
   }
+  /*----------  All Sections  ----------*/
+
   return checkInfoValidity();
 }
 
@@ -81,18 +94,69 @@ function checkInfoValidity () {
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
 
-
     if (unfilled) {
       console.log('is unfilled.', key);
       if (key === 'category') $('#jobCategory').addClass('has-error');
       if (key === 'category_new') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
       if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
+      if (key === 'rate') $('#paymentMethod').addClass('has-error');
       retVal = false;
     }
   }
 
+  if (isSecondSection) {
+    if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
+      retVal = false;
+      $('.time-select-error').eq(0)
+        .css('color', '#a94442')
+        .text('工作時間必須至少一小時');
+    }
+
+    if (!$('#days').val() || $('#days').val() < 1) {
+      retVal = false;
+      $('.start-date-error').eq(0)
+        .css('color', '#a94442')
+        .text('工作日數必須至少有1天');
+    }
+
+    if ($('#positionsAvailable').val() < 1) {
+      retVal = false;
+      $('.positions-available-error').eq(0)
+        .css('color', '#a94442')
+        .text('工作人數必須至少有1個');
+    }
+
+    if ($('#hourlyRateInput').val() < 45) {
+      retVal = false;
+      $('.hourly-rate-error').eq(0)
+        .css('color', '#a94442')
+        .text('工作時薪必須$45或以上');
+    }
+
+    if (!$('.datepicker-here').val()) {
+      retVal = false;
+      $('.start-date-error').eq(0)
+        .css('color', '#a94442')
+        .text('請選擇開始時間');
+    }
+  }
+
   return retVal;
+}
+
+function clearValidationFields () {
+  $('.jobtype-help').eq(0).text('')
+  $('.time-select-error').eq(0).text('')
+  $('.positions-available-error').eq(0).text('')
+  $('.start-date-error').eq(0).text('')
+  $('.hourly-rate-error').eq(0).text('')
+  $('.email-help').eq(0).text('')
+
+  $('#jobCategory').removeClass('has-error');
+  $('#jobCategory').removeClass('has-error');
+  $('#district').removeClass('has-error');
+  $('#paymentMethod').removeClass('has-error');
 }
 
 /*=====================================
@@ -109,13 +173,17 @@ function locationAutocomplete () {
   var input = document.getElementById('addressInput')
   var autocomplete = new google.maps.places.Autocomplete(input, {componentRestrictions: {country: 'HK'}});
   google.maps.event.addDomListener(window, 'load', autocomplete);
-  google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete));
+  google.maps.event.addDomListener(autocomplete, 'place_changed', saveLocation.bind(this, autocomplete, input));
 }
 
-function saveLocation (autocomplete) {
+function saveLocation (autocomplete, input) {
   var place = autocomplete.getPlace();
   venue_lat = place.geometry.location.lat();
   venue_long = place.geometry.location.lng();
+
+  $('.location-help').eq(0)
+    .css('color', '#a94442')
+    .text('')
 }
 
 function selectDistrictHandler (e) {
@@ -126,18 +194,16 @@ function selectDistrictHandler (e) {
 
 function selectTempHandler (e) {
   jobType = 'temporary';
-  $('#continueButton').eq(0).attr('data-target', `#temporaryJobModal`)
 }
 
 function selectPermHandler (e) {
   jobType = 'permanent';
-  $('#continueButton').eq(0).attr('data-target', `#permanentJobModal`)
 }
 
 function continueHandler (e) {
   e.preventDefault();
-
-  if (gatherPostingInfo(false) || venue_lat !== 0 && venue_long !== 0) {
+  clearValidationFields();
+  if (gatherPostingInfo(false) && venue_lat !== 0 && venue_long !== 0 && jobType) {
     $('#createJobModal').modal('hide')
     if (jobType === 'temporary') $('#temporaryJobModal').modal('show')
     if (jobType === 'permanent') $('#permanentJobModal').modal('show')
@@ -145,6 +211,10 @@ function continueHandler (e) {
     $('.location-help').eq(0)
       .css('color', '#a94442')
       .text('請從列表內選擇一個地址')
+  } else if (!jobType) {
+    $('.jobtype-help').eq(0)
+      .css('color', '#a94442')
+      .text('請選擇臨時工作或固定工作');
   }
 }
 
@@ -154,6 +224,7 @@ function continueHandler (e) {
 
 function previewJobHandler (e) {
   e.preventDefault()
+  clearValidationFields();
 
   if (gatherPostingInfo(true)) {
     populatePreviewCard();
@@ -226,7 +297,8 @@ function initStartTimePicker () {
   });
 
   $startTimeSelector.on('changeTime', function() {
-    enableEndTimePicker($(this).val())
+    var minEndTime = moment($(this).val(), 'h:mma').add(1, 'hours').format('h:mma');
+    enableEndTimePicker(minEndTime);
   })
 }
 
@@ -275,6 +347,7 @@ function toggleAuthView (e) {
   $phoneInput.val('');
   $companyInput.val('');
   $postButton.addClass('disabled');
+  clearValidationFields();
 
   if (signIn) {
     $modalTitle.text('請注冊帳戶完成刊登工作')
@@ -316,6 +389,12 @@ function gatherAuthInfo () {
 
   for (var key in authInfo) {
     var unfilled = !authInfo[key];
+    if (!($('#inputPhone').val()*1)) {
+      unfilled = true;
+      $('.phone-error').eq(0)
+        .css('color', '#a94442')
+        .text('請輸入有效的8位數香港電話號碼')
+    }
 
     if (unfilled) {
       return;
@@ -371,6 +450,11 @@ function putBasicInfo (response, authInfo, callback) {
 }
 
 function handleError (code, authInfo) {
+  setTimeout(function(){
+    $('#submittedModal').modal('hide');
+    $('#signInModal').modal('show');
+  }, 900)
+
   if (code === '403') {
     $('.email-help').eq(0)
       .css('color', '#a94442')
@@ -380,6 +464,9 @@ function handleError (code, authInfo) {
     $('.email-help').eq(0)
       .css('color', '#a94442')
       .text('你的電子郵件和密碼不正確。 請再試一次。')
+  }
+  if (code === 'postJob') {
+    console.log('sign in/up successful but there was an error trying to post job..', err);
   }
 }
 
@@ -400,8 +487,9 @@ function promptAfterPost (response) {
   signIn = false;
   toggleAuthView();
   $('#instruction-carousel').carousel(0);
-  $('#signInModal').modal('toggle');
-  $('#afterPostModal').modal('toggle');
+  $('#submittedModal').modal('hide');
+  $('#signInModal').modal('hide');
+  $('#afterPostModal').modal('show');
 }
 
 function clearAllFields () {
@@ -462,7 +550,6 @@ function permEvents() {
 
 function authEvents() {
   $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
-  $('#okayButton').on('click', closeSubmittedModal);
 }
 
 function btnEvents() {
@@ -470,6 +557,7 @@ function btnEvents() {
   $('#continueButton').off().on('click', continueHandler);
   $('.preview-job-btn').off().on('click', previewJobHandler);
   $('#authAndPostButton').off().on('click', authAndPostClickHandler);
+  $('#okayButton').off().on('click', closeSubmittedModal);
 }
 
 function eventHandlers () {

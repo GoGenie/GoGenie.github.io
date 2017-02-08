@@ -47,6 +47,9 @@ var formData                = {},
 
 
 function combineDateTime (date, time) {
+  if (!date) {
+    return false;
+  }
   return moment(date+' '+time, 'MM/DD/YYYY h:mmA').toDate();
 }
 
@@ -66,12 +69,17 @@ function addDays (date, days) {
 }
 
 function gatherPostingInfo(isSecondSection) {
+
+  /*----------  First Section  ----------*/
+
   formData = {
     description: $('#jobDescription').val(),
     district: getChineseDistrict[$('#district').val()],
     venue_lat: venue_lat,
     venue_long: venue_long
   }
+
+  /*----------  Temp Section  ----------*/
 
   var days = $('#days').val();
 
@@ -84,14 +92,21 @@ function gatherPostingInfo(isSecondSection) {
       formData.start_date     = $('.datepicker-here').eq(0).val();
       formData.start_time     = combineDateTime(formData.start_date, $('.time-select').eq(0).val());
       formData.end_time       = combineDateTime(formData.start_date, $('.time-select').eq(1).val());
+      // Makes sure the end date is the next day for over-night jobs
+      if (formData.end_time && formData.end_time - formData.start_time < 0)
+        formData.end_time = addDays(formData.end_time, 1);
+
       formData.users_required = $('#positionsAvailable').val();
       formData.hourly_rates   = $('#hourlyRateInput').val();
       formData.payment_method = getChinesePaymentMethod[$('#paymentMethod').val()];
       formData.duration       = getDuration(formData.start_time, formData.end_time);
       formData.rate           = getRate(formData.duration, formData.hourly_rates, days);
-      formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
+      if (formData.end_time) {
+        formData.real_end_time  = addDays(formData.end_time, Number(days) - 1);
+      }
     }
   }
+  /*----------  Perm Section  ----------*/
 
   if (jobType === 'permanent') {
     formData.position    = $('#jobPosition').val();
@@ -107,10 +122,12 @@ function gatherPostingInfo(isSecondSection) {
       }
     }
   }
-  return checkInfoValidity();
+  /*----------  All Sections  ----------*/
+
+  return checkInfoValidity(isSecondSection);
 }
 
-function checkInfoValidity () {
+function checkInfoValidity (isSecondSection) {
   var retVal = formData;
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
@@ -121,11 +138,64 @@ function checkInfoValidity () {
       if (key === 'category_new') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
       if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
+      if (key === 'rate') $('#paymentMethod').addClass('has-error');
       retVal = false;
     }
   }
 
+  if (isSecondSection) {
+    if (!$('.time-select').eq(0).val() || !$('.time-select').eq(1).val() || $('.time-select').eq(0).val() === $('.time-select').eq(1).val()){
+      retVal = false;
+      $('.time-select-error').eq(0)
+        .css('color', '#a94442')
+        .text('Your job posting has to be at least an hour long');
+    }
+
+    if (!$('#days').val() || $('#days').val() < 1) {
+      retVal = false;
+      $('.start-date-error').eq(0)
+        .css('color', '#a94442')
+        .text('Duration has to be at least 1 day');
+    }
+
+    if ($('#positionsAvailable').val() < 1) {
+      retVal = false;
+      $('.positions-available-error').eq(0)
+        .css('color', '#a94442')
+        .text('At least 1 position has to made be available');
+    }
+
+    if ($('#hourlyRateInput').val() < 45) {
+      retVal = false;
+      $('.hourly-rate-error').eq(0)
+        .css('color', '#a94442')
+        .text('Please enter an hourly rate of at least $45');
+    }
+
+    if (!$('.datepicker-here').val()) {
+      retVal = false;
+      $('.start-date-error').eq(0)
+        .css('color', '#a94442')
+        .text('Please select a start date.');
+    }
+
+  }
+
   return retVal;
+}
+
+function clearValidationFields () {
+  $('.jobtype-help').eq(0).text('')
+  $('.time-select-error').eq(0).text('')
+  $('.start-date-error').eq(0).text('')
+  $('.positions-available-error').eq(0).text('')
+  $('.hourly-rate-error').eq(0).text('')
+  $('.email-help').eq(0).text('')
+
+  $('#jobCategory').removeClass('has-error');
+  $('#jobCategory').removeClass('has-error');
+  $('#district').removeClass('has-error');
+  $('#paymentMethod').removeClass('has-error');
 }
 
 /*=====================================
@@ -149,6 +219,10 @@ function saveLocation (autocomplete, input) {
   var place = autocomplete.getPlace();
   venue_lat = place.geometry.location.lat();
   venue_long = place.geometry.location.lng();
+
+  $('.location-help').eq(0)
+    .css('color', '#a94442')
+    .text('')
 }
 
 function selectDistrictHandler (e) {
@@ -167,8 +241,8 @@ function selectPermHandler (e) {
 
 function continueHandler (e) {
   e.preventDefault();
-
-  if (gatherPostingInfo(false) || venue_lat !== 0 && venue_long !== 0) {
+  clearValidationFields();
+  if (gatherPostingInfo(false) && venue_lat !== 0 && venue_long !== 0 && jobType) {
     $('#createJobModal').modal('hide')
     if (jobType === 'temporary') $('#temporaryJobModal').modal('show')
     if (jobType === 'permanent') $('#permanentJobModal').modal('show')
@@ -176,6 +250,10 @@ function continueHandler (e) {
     $('.location-help').eq(0)
       .css('color', '#a94442')
       .text('Please select a location from the dropdown list')
+  } else if (!jobType) {
+    $('.jobtype-help').eq(0)
+      .css('color', '#a94442')
+      .text('Please select Temporary or Permanent');
   }
 
 }
@@ -186,6 +264,7 @@ function continueHandler (e) {
 
 function previewJobHandler (e) {
   e.preventDefault()
+  clearValidationFields();
 
   if (gatherPostingInfo(true)) {
     populatePreviewCard();
@@ -258,7 +337,8 @@ function initStartTimePicker () {
   });
 
   $startTimeSelector.on('changeTime', function() {
-    enableEndTimePicker($(this).val())
+    var minEndTime = moment($(this).val(), 'h:mma').add(1, 'hours').format('h:mma');
+    enableEndTimePicker(minEndTime);
   })
 }
 
@@ -308,6 +388,7 @@ function toggleAuthView (e) {
   $phoneInput.val('');
   $companyInput.val('');
   $postButton.addClass('disabled');
+  clearValidationFields();
 
   if (signIn) {
     $modalTitle.text('Register and Post Job')
@@ -349,6 +430,12 @@ function gatherAuthInfo () {
 
   for (var key in authInfo) {
     var unfilled = !authInfo[key];
+    if (key === 'phone' && !($('#inputPhone').val()*1)) {
+      unfilled = true;
+      $('.phone-error').eq(0)
+        .css('color', '#a94442')
+        .text('Please enter a valid Hong Kong phone number')
+    }
 
     if (unfilled) {
       return;
@@ -403,7 +490,12 @@ function putBasicInfo (response, authInfo, callback) {
   })
 }
 
-function handleError (code, authInfo) {
+function handleError (code, err) {
+  setTimeout(function(){
+    $('#submittedModal').modal('hide');
+    $('#signInModal').modal('show');
+  }, 900)
+
   if (code === '403') {
     $('.email-help').eq(0)
       .css('color', '#a94442')
@@ -413,6 +505,9 @@ function handleError (code, authInfo) {
     $('.email-help').eq(0)
       .css('color', '#a94442')
       .text('Your email and password do not match. Please try again.')
+  }
+  if (code === 'postJob') {
+    console.log('sign in/up successful but there was an error trying to post job..', err);
   }
 }
 
@@ -424,6 +519,7 @@ function postJob (response, isPermJob) {
   }).then(function(response) {
     promptAfterPost(response)
   }).catch(function(error) {
+    handleError('postJob', error);
   })
 }
 
@@ -433,7 +529,6 @@ function promptAfterPost (response) {
   signIn = false;
   toggleAuthView();
   $('#instruction-carousel').carousel(0);
-
   $('#submittedModal').modal('hide');
   $('#signInModal').modal('hide');
   $('#afterPostModal').modal('show');
@@ -497,7 +592,6 @@ function permEvents() {
 
 function authEvents() {
   $('.modal-footer > a').eq(0).off().on('click', toggleAuthView);
-  $('#okayButton').on('click', closeSubmittedModal);
 }
 
 function btnEvents() {
@@ -505,6 +599,7 @@ function btnEvents() {
   $('#continueButton').off().on('click', continueHandler);
   $('.preview-job-btn').off().on('click', previewJobHandler);
   $('#authAndPostButton').off().on('click', authAndPostClickHandler);
+  $('#okayButton').off().on('click', closeSubmittedModal);
 }
 
 function eventHandlers () {
