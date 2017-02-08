@@ -165,11 +165,11 @@ function checkInfoValidity (isSecondSection, isTemp) {
           .css('color', '#a94442')
           .text('At least 1 position has to made be available');
       }
-      if ($('#hourlyRateInput').val() < 45) {
+      if ($('#hourlyRateInput').val() < 33) {
         retVal = false;
         $('.hourly-rate-error').eq(0)
           .css('color', '#a94442')
-          .text('Please enter an hourly rate of at least $45');
+          .text('Please enter an hourly rate of at least $33');
       }
       if (!$('.datepicker-here').val()) {
         retVal = false;
@@ -403,6 +403,7 @@ function toggleAuthView (e) {
     $modalTitle.text('Register and Post Job')
     $toggleMessage.text('Or sign in to post job!');
     $postButton.text('Register and post job');
+    $("#registrationDetails").collapse('show')
     $companyInput.prop('required', true);
     $phoneInput.prop('required', true);
     signIn = false;
@@ -410,6 +411,7 @@ function toggleAuthView (e) {
     $modalTitle.text('Sign in to post');
     $toggleMessage.text('Or register to post job');
     $postButton.text('Sign in and post job');
+    $("#registrationDetails").collapse('hide')
     $companyInput.prop('required', false);
     $phoneInput.prop('required', false);
     signIn = true;

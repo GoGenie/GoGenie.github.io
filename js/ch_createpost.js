@@ -89,7 +89,7 @@ function gatherPostingInfo(isSecondSection) {
   return checkInfoValidity(isSecondSection, jobType === 'temporary');
 }
 
-function checkInfoValidity (isSecondSectionm, isTemp) {
+function checkInfoValidity (isSecondSection, isTemp) {
   var retVal = formData;
   for (var key in formData) {
     var unfilled = !formData[key] || (key === 'locations' && Object.keys(formData[key]).length === 0);
@@ -125,11 +125,11 @@ function checkInfoValidity (isSecondSectionm, isTemp) {
           .css('color', '#a94442')
           .text('工作人數必須至少有1個');
       }
-      if ($('#hourlyRateInput').val() < 45) {
+      if ($('#hourlyRateInput').val() < 33) {
         retVal = false;
         $('.hourly-rate-error').eq(0)
           .css('color', '#a94442')
-          .text('工作時薪必須$45或以上');
+          .text('工作時薪必須$33或以上');
       }
       if (!$('.datepicker-here').val()) {
         retVal = false;
@@ -359,6 +359,7 @@ function toggleAuthView (e) {
     $modalTitle.text('請注冊帳戶完成刊登工作')
     $toggleMessage.text('已有帳戶? 按此登入');
     $postButton.text('完成刊登工作');
+    $("#registrationDetails").collapse('show')
     $companyInput.prop('required', true);
     $phoneInput.prop('required', true);
     signIn = false;
@@ -366,6 +367,7 @@ function toggleAuthView (e) {
     $modalTitle.text('請登入帳戶完成刊登工作');
     $toggleMessage.text('未有帳戶? 建立新帳戶');
     $postButton.text('完成刊登工作');
+    $("#registrationDetails").collapse('hide')
     $companyInput.prop('required', false);
     $phoneInput.prop('required', false);
     signIn = true;
