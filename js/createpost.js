@@ -225,7 +225,7 @@ function jobDescriptionFormatter () {
   tinymce.init({
     selector: '#jobDescription',
     menubar: false,
-    toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
+    toolbar: 'bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
     statusbar: false,
     plugins: 'placeholder lists'
   });
