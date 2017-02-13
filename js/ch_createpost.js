@@ -6,6 +6,7 @@ $(document).ready(function() { init() });
 var formData     = {},
     // url          = 'http://localhost:3000',
     url          = 'http://api.gogenieapp.com',
+    tinymceKey   = 'ikxy33vsl4armlnjjzymija5mimki9cl8tcx6rx1n9cjduef',
     venue_lat    = 0,
     venue_long   = 0,
     jobType,
@@ -36,7 +37,8 @@ function gatherPostingInfo(isSecondSection) {
   /*----------  First Section  ----------*/
 
   formData = {
-    description: $('#jobDescription').val(),
+    // description: $('#jobDescription').val(),
+    description: tinymce.activeEditor.getContent(),
     district: $('#district').val(),
     venue_lat: venue_lat,
     venue_long: venue_long
@@ -99,6 +101,9 @@ function checkInfoValidity (isSecondSection, isTemp) {
       if (key === 'category') $('#jobCategory').addClass('has-error');
       if (key === 'category_new') $('#jobCategory').addClass('has-error');
       if (key === 'district') $('#district').addClass('has-error');
+      if (key === 'description') {
+        $('.jobtype-help').eq(0).css('color', '#a94442').text('請填寫工作描述');
+      }
       if (key === 'payment_method') $('#paymentMethod').addClass('has-error');
       if (key === 'rate') $('#paymentMethod').addClass('has-error');
       retVal = false;
@@ -175,6 +180,16 @@ function selectJobCategoryHandler (e) {
   $('#jobCategory').removeClass('has-error');
 }
 
+function jobDescriptionFormatter () {
+  tinymce.init({
+    selector: '#jobDescription',
+    menubar: false,
+    toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
+    statusbar: false,
+    plugins: 'placeholder lists'
+  });
+}
+
 function locationAutocomplete () {
   var input = document.getElementById('addressInput')
   var autocomplete = new google.maps.places.Autocomplete(input, {componentRestrictions: {country: 'HK'}});
@@ -243,7 +258,8 @@ function populatePreviewCard () {
   $('.postInfo').eq(0).text($('#jobPosition').val());
   $('.postInfo').eq(1).text($('#jobCategory').val());
   $('.postInfo').eq(2).text(jobType.toUpperCase());
-  $('.postInfo').eq(3).text(formData.description);
+  // $('.postInfo').eq(3).text(formData.description);
+  $('.postInfo').eq(3).text(tinymce.activeEditor.getContent({format: 'text'}));
   $('.postInfo').eq(4).text($('.address-input').eq(0).val());
   $('.postInfo').eq(5).text(formData.district);
 
@@ -397,7 +413,7 @@ function gatherAuthInfo () {
 
   for (var key in authInfo) {
     var unfilled = !authInfo[key];
-    if (!($('#inputPhone').val()*1)) {
+    if (key === 'phone' && !($('#inputPhone').val()*1)) {
       unfilled = true;
       $('.phone-error').eq(0)
         .css('color', '#a94442')
@@ -506,8 +522,8 @@ function clearAllFields () {
   $('#jobCategory').text('請選擇工作類別').val('');
   $('.address-input').eq(0).val('');
   $('#district').text('請選擇地區').val('');
-  $('#jobDescription').val('');
-
+  tinymce.activeEditor.setContent('');
+  // $('#jobDescription').val('');
   $('#positionsAvailable').val('');
   $('#hourlyRateInput').val('');
   $('#paymentMethod').text('請選擇出糧方式').val('');
@@ -579,4 +595,5 @@ function eventHandlers () {
 function init () {
   eventHandlers();
   locationAutocomplete();
+  jobDescriptionFormatter();
 }
