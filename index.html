@@ -1202,11 +1202,57 @@
         <div class="modal-footer">
           <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
           <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+          <a href="#" id="editCompanyProfileButton" class="btn btn-lg btn-primary">Edit Company Profile</a>
         </div>
       </div>
     </div>
   </div>
   <!-- // AFTERPOST MODAL -->
+
+
+  <!-- LOAD PROFILE MODAL -->
+  <div id="loadProfileModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+        <div class="modal-body">
+          <h3 class="postSubmitted">
+            Please hold on, we are fetching your company profile.
+          </h3>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="okayButton" class="btn btn-success btn-wide" aria-hidden="true">
+            Okay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // LOAD PROFILE MODAL -->
+
+  <!-- COMPANY PROFILE MODAL -->
+  <div id="companyProfileModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">
+            Edit Company Profile
+          </h4>
+        </div>
+        <div class="modal-body afterpost-body">
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // COMPANY PROFILE MODAL -->
+
   <!-- Vendor -->
   <!--[if lt IE 9]>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -1257,6 +1303,7 @@
   <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=ikxy33vsl4armlnjjzymija5mimki9cl8tcx6rx1n9cjduef"></script>
   <script src="js/tinymce/tinymce-placeholder.min.js"></script>
   <script src="js/createpost.js"></script>
+  <script src="js/companyprofile.js"></script>
   <!-- Theme Initialization Files -->
   <script src="js/theme.init.js"></script>
   <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
