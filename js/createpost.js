@@ -300,9 +300,8 @@ function populatePreviewCard () {
   $('.postInfo').eq(0).text($('#jobPosition').val());
   $('.postInfo').eq(1).text($('#jobCategory').val());
   $('.postInfo').eq(2).text(jobType.toUpperCase());
-  $('.postInfo').eq(3).text(tinymce.activeEditor.getContent({format: 'text'}));
-  $('.postInfo').eq(4).text($('.address-input').eq(0).val());
-  $('.postInfo').eq(5).text($('#district').val());
+  $('.postInfo').eq(3).text($('.address-input').eq(0).val());
+  $('.postInfo').eq(4).text($('#district').val());
 
   if (jobType === 'temporary') {
     $('.tempPostInfo').css('display', 'block');
@@ -311,27 +310,27 @@ function populatePreviewCard () {
     var dates = formData.start_date + ' to ' + $('.datepicker-here').eq(1).val();
     var times = $('.time-select').eq(0).val() + ' to ' + $('.time-select').eq(1).val();
 
-    $('.postInfo').eq(6).text('$'+formData.hourly_rates);
-    $('.postInfo').eq(7).text($('#paymentMethod').val());
-    $('.postInfo').eq(8).text(formData.users_required);
-    $('.postInfo').eq(9).text(formData.start_date);
-    $('.postInfo').eq(10).text($('#days').val());
-    $('.postInfo').eq(11).text(times);
+    $('.postInfo').eq(5).text('$'+formData.hourly_rates);
+    $('.postInfo').eq(6).text($('#paymentMethod').val());
+    $('.postInfo').eq(7).text(formData.users_required);
+    $('.postInfo').eq(8).text(formData.start_date);
+    $('.postInfo').eq(9).text($('#days').val());
+    $('.postInfo').eq(10).text(times);
   }
 
   if (jobType === 'permanent') {
     $('.permPostInfo').css('display', 'block');
     $('.tempPostInfo').css('display', 'none');
-    $('.postInfo').eq(12).text(formData.salary);
+    $('.postInfo').eq(11).text(formData.salary);
     if (formData.salary_max) {
-      $('.postInfo').eq(13).text(formData.salary_max);
+      $('.postInfo').eq(12).text(formData.salary_max);
     }
-    $('.postInfo').eq(14).text(salaryUnit.toUpperCase());
+    $('.postInfo').eq(13).text(salaryUnit.toUpperCase());
   }
+  $('.postInfo').eq(14).html(tinymce.activeEditor.getContent());
 }
 
 function promptSignIn (tempSelected) {
-  console.log('tempselected', tempSelected)
   if (tempSelected)  $('#temporaryJobModal').modal('hide');
   if (!tempSelected) $('#permanentJobModal').modal('hide');
   $('#signInModal').modal('show');
