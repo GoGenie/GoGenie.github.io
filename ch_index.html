@@ -869,9 +869,8 @@
                 <label class="radio-inline"><input type="radio" name="jobType" required>固定工作</label>
               </span>
             </div>
-            <div class="help-block with-errors jobtype-help"></div>
             <div class="form-group">
-              <textarea class="form-control" id="jobDescription" placeholder="請填寫工作描述" rows="4"></textarea>
+              <textarea class="form-control" id="jobDescription" placeholder="請填寫工作描述" rows="4" required></textarea>
             </div>
             <button type="submit" id="continueButton" class="btn btn-success btn-wide" aria-hidden="true">
               下頁
@@ -1043,6 +1042,10 @@
                 <div class="col-xs-8 postInfo">placeholder</div>
               </div>
               <div class="row">
+                <div class="col-xs-4 postInfoLabel">工作描述:</div>
+                <div class="col-xs-8 postInfo">placeholder</div>
+              </div>
+              <div class="row">
                 <div class="col-xs-4 postInfoLabel">工作地址:</div>
                 <div class="col-xs-8 postInfo">placeholder</div>
               </div>
@@ -1085,12 +1088,6 @@
               <div class="row permPostInfo">
                 <div class="col-xs-4 postInfoLabel">薪金單位:</div>
                 <div class="col-xs-8 postInfo">placeholder</div>
-              </div>
-              <div class="row">
-                <div class="col-xs-4 postInfoLabel">工作描述:</div>
-              </div>
-              <div class="row">
-                <div class="postInfo jobDescriptionPreview"></div>
               </div>
             </div>
             <div class="row">
@@ -1202,6 +1199,51 @@
     </div>
   </div>
   <!-- // AFTERPOST MODAL -->
+
+
+  <!-- LOAD PROFILE MODAL -->
+  <div id="loadProfileModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+        </div>
+        <div class="modal-body">
+          <h3 class="postSubmitted">
+            Please hold on, we are fetching your company profile.
+          </h3>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="okayButton" class="btn btn-success btn-wide" aria-hidden="true">
+            Okay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // LOAD PROFILE MODAL -->
+
+  <!-- COMPANY PROFILE MODAL -->
+  <div id="companyProfileModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">
+            Edit Company Profile
+          </h4>
+        </div>
+        <div class="modal-body afterpost-body">
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // COMPANY PROFILE MODAL -->
+
   <!-- Vendor -->
   <!--[if lt IE 9]>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -1249,8 +1291,6 @@
   <script src="js/datepicker/datepicker.min.js"></script>
   <script src="js/datepicker/timepicker.min.js"></script>
   <script src="js/datepicker/ch.js"></script>
-  <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=ikxy33vsl4armlnjjzymija5mimki9cl8tcx6rx1n9cjduef"></script>
-  <script src="js/tinymce/tinymce-placeholder.min.js"></script>
   <script src="js/ch_createpost.js"></script>
   <!-- Theme Initialization Files -->
   <script src="js/theme.init.js"></script>
