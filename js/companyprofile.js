@@ -77,12 +77,14 @@ $(document).ready(function() {
   }
 
   function renderCompanyProfileModal(info) {
+    console.log('rendering companyProfileModal, line 80: ', info)
     // populate the modal with company info
     $('#editCompanyName').val(info.name)
     $('#editCompanyContact').val(info.contact)
     $('#editCompanyPhone').val(info.phone)
     $('#editCompanyWebsite').val(info.website_url)
     $('#editCompanyDescription').val(info.bio)
+    $('#profileImage').attr('src', info.profile_image)
     promptCompanyProfileModal();
   }
 
@@ -102,12 +104,33 @@ $(document).ready(function() {
     putCompanyProfile();
   }
 
+
+  function readImage () {
+    if (this.files && this.files[0]) {
+      var FR = new FileReader();
+
+      FR.addEventListener('load', function(e) {
+        console.log('filereader loaded.')
+        document.getElementById('profileImage').src = e.target.result;
+      })
+
+      FR.readAsDataURL(this.files[0]);
+    }
+  }
+
+  function triggerInputClick (e) {
+    console.log('clicked')
+    $('#imageInput').trigger('click');
+  }
+
 /*===================================
 =            Initializers            =
 ===================================*/
   function eventListeners() {
     $('#editCompanyProfileButton').off().on('click', editCompanyProfileHandler)
     $('#updateCompanyProfile').off().on('click', updateCompanyProfileHandler)
+    $('#imageInput').on('change', readImage)
+    $('#imageInputWrapper').on('click', triggerInputClick)
   }
 
   function init() {

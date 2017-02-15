@@ -1247,33 +1247,34 @@
         </div>
         <form data-toggle="validator" id="companyProfileForm">
           <div class="modal-body company-profile-body">
-            <!-- IMAGE GOES HERE -->
             <div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label for="editCompanyName">Company Name</label>
                   <input type="text" class="form-control" id="editCompanyName">
                 </div>
-              </div>
-              <div class="col-sm-6">
                 <div class="form-group">
                   <label for="editCompanyContact">Contact Person</label>
                   <input type="text" class="form-control" id="editCompanyContact">
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
                 <div class="form-group">
                   <label for="editCompanyPhone">Phone Number</label>
-                  <input type="number" data-minlength='8' maxlength='8' class="form-control" id="editCompanyPhone" data-error="Please enter a valid 8-digit Hong Kong phone number.">
-                  <div class="help-block with-errors"></div>
+                  <input type="text" data-minlength='8' maxlength='8' class="form-control" id="editCompanyPhone" data-error="Please enter a valid 8-digit Hong Kong phone number.">
+                  <!-- <div class="help-block with-errors"></div> -->
                 </div>
-              </div>
-              <div class="col-sm-6">
                 <div class="form-group">
                   <label for="editCompanyWebsite">Website</label>
                   <input type="text" class="form-control" id="editCompanyWebsite">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="profile-image-wrapper">
+                  <label for="profileImage">Company Photo</label>
+                  <img id="profileImage" src="" alt="">
+                  <label id="imageInputWrapper" for="imageInput" class="btn-wide btn btn-info">
+                    Choose Photo
+                  </label>
+                  <input id="imageInput" type="file" hidden>
                 </div>
               </div>
             </div>
