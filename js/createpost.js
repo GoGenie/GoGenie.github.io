@@ -7,6 +7,7 @@ $(document).ready(function() {
   var formData                = {},
     // url                     = 'http://api.gogenieapp.com',
     url                     = 'http://localhost:3000',
+    // url                     = 'http://api-dev.gogenieapp.com',
 
     getChinesePaymentMethod = {
       'Cash': '現金支付',

@@ -267,18 +267,28 @@ body.modal-open {
 }
 
 .profile-image-wrapper {
-  width: 200px;
+  width: 242px;
   text-align: left;
   margin: 0 auto;
 }
 
 #profileImage {
   display: block;
-  height: 200px;
+  height: 242px;
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   margin-bottom: 10px;
+}
+
+#imagePreview {
+  display: block;
+  margin: 0 auto;
+  height: 100px;
+  width: 100px;
+  border-radius: 3px;
+  border: 1px solid black;
+  margin-bottom: 15px;
 }
 
 #imageInput {

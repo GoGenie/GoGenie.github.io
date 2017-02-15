@@ -5,7 +5,7 @@ $(document).ready(function() {
 =================================*/
 
   var url = 'http://localhost:3000'
-  // var url = 'http://api.gogenieapp.com'
+  // var url = 'http://api-dev.gogenieapp.com'
 
   function getCompanyProfile(callback) {
     var getUrl = url + '/master/v5/profile_infos/current_info'
@@ -23,8 +23,7 @@ $(document).ready(function() {
   }
 
   function putCompanyProfile() {
-    var authUrl = url + '/'
-        putUrl  = url + '/master/v5/profile_infos/info',
+    var putUrl  = url + '/master/v5/profile_infos/info',
           data  = {
             basic_info: {
               name: $('#editCompanyName').val(),
@@ -37,6 +36,8 @@ $(document).ready(function() {
 
     axios.put(putUrl, data, { headers: responseHeaders })
     .then(function(response) {
+      responseHeaders = response.headers
+      console.log('here is the response:', response)
       renderUpdateValidationModal(response.data.master)
     }).catch(function(error) {
       console.error('there was an error in putCompanyProfile', error);
@@ -44,8 +45,21 @@ $(document).ready(function() {
   }
 
   function putCompanyImage() {
-    var putUrl = url + '/master/v5/profile_infos/upload_image'
+    var putUrl = url + '/master/v5/profile_infos/upload_image',
+          data = {
+            upload_image: {
+              key: 'profile_image',
+              data: document.getElementById('profileImage').src,
+            }
+          }
 
+    axios.put(putUrl, data, { headers: responseHeaders })
+    .then(function(response) {
+      responseHeaders = response.headers;
+      putCompanyProfile();
+    }).catch(function(error) {
+      console.log('there was an error in putCompanyImage', error);
+    })
   }
 
 /*======================================
@@ -73,6 +87,7 @@ $(document).ready(function() {
     $('.companyInfo').eq(2).text(info.phone)
     $('.companyInfo').eq(3).text(info.website_url)
     $('.companyInfo').eq(4).html(info.bio.replace(/\n\r?/g, '<br />'))
+    $('#imagePreview').attr('src', info.profile_image)
     promptUpdateValidationModal()
   }
 
@@ -92,6 +107,8 @@ $(document).ready(function() {
 =            Event Handlers            =
 ======================================*/
 
+  var imageChanged = false;
+
   function editCompanyProfileHandler(e) {
     e.preventDefault();
     promptLoadingModal()
@@ -101,17 +118,17 @@ $(document).ready(function() {
   function updateCompanyProfileHandler(e) {
     e.preventDefault();
     promptLoadingModal();
-    putCompanyProfile();
+    if (imageChanged) return putCompanyImage();
+    return putCompanyProfile();
   }
-
 
   function readImage () {
     if (this.files && this.files[0]) {
       var FR = new FileReader();
 
       FR.addEventListener('load', function(e) {
-        console.log('filereader loaded.')
         document.getElementById('profileImage').src = e.target.result;
+        imageChanged = true;
       })
 
       FR.readAsDataURL(this.files[0]);
