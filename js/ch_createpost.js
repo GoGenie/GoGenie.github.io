@@ -3,6 +3,7 @@ $(document).ready(function() {
   /*====================================
   =            ALL SECTIONS            =
   ====================================*/
+  chineseLanguage = true;
 
   var formData     = {},
     // url          = 'http://localhost:3000',
@@ -417,7 +418,7 @@ $(document).ready(function() {
   function authenticate (authInfo) {
 
     $('#signInModal').modal('hide');
-    $('#submittedModal').modal('show');
+    $('#loadingModal').modal('show');
 
     var postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
@@ -465,7 +466,7 @@ $(document).ready(function() {
 
   function handleError (code, authInfo) {
     setTimeout(function(){
-      $('#submittedModal').modal('hide');
+      $('#loadingModal').modal('hide');
       $('#signInModal').modal('show');
     }, 900)
 
@@ -501,7 +502,7 @@ $(document).ready(function() {
     signIn = false;
     toggleAuthView();
     $('#instruction-carousel').carousel(0);
-    $('#submittedModal').modal('hide');
+    $('#loadingModal').modal('hide');
     $('#signInModal').modal('hide');
     $('#afterPostModal').modal('show');
   }
@@ -530,11 +531,6 @@ $(document).ready(function() {
 
     // clears all radio inputs
     $('.radio-inline > input').prop('checked', false);
-  }
-
-  function closeSubmittedModal () {
-    $('#submittedModal').modal('hide');
-    $('#loadProfileModal').modal('hide');
   }
 
    /*============================
@@ -570,7 +566,6 @@ $(document).ready(function() {
     $('#continueButton').off().on('click', continueHandler);
     $('.preview-job-btn').off().on('click', previewJobHandler);
     $('#authAndPostButton').off().on('click', authAndPostClickHandler);
-    $('.okayButton').off().on('click', closeSubmittedModal);
   }
 
   function eventHandlers () {

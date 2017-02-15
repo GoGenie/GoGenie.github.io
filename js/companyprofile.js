@@ -5,7 +5,8 @@ $(document).ready(function() {
 =================================*/
 
   // var url = 'http://localhost:3000'
-  var url = 'http://api-dev.gogenieapp.com'
+  // var url = 'http://api-dev.gogenieapp.com'
+  var url = 'http://api.gogenieapp.com'
 
   function getCompanyProfile(callback) {
     var getUrl = url + '/master/v5/profile_infos/current_info',
@@ -37,11 +38,10 @@ $(document).ready(function() {
     axios.put(putUrl, data, { headers: responseHeaders })
     .then(function(response) {
       responseHeaders = response.headers
-      console.log('here is the response:', response)
       renderUpdateValidationModal(response.data.master)
     }).catch(function(error) {
       $('.squares-loader').css('display', 'none')
-      $('#loadingModal p').text('Sorry, there was a problem updating your company profile. Please try again later.')
+      $('#loadingModal p').text(chineseLanguage ? : 'Sorry, there was a problem updating your company profile. Please try again later.')
       console.error('there was an error in putCompanyProfile', error);
     })
   }
@@ -61,7 +61,8 @@ $(document).ready(function() {
       putCompanyProfile();
     }).catch(function(error) {
       $('.squares-loader').css('display', 'none')
-      $('#loadingModal p').text('Sorry, there was a problem updating your company profile. Please try again later.')
+      chineseLanguage ?
+      $('#loadingModal p').text(chineseLanguage ? : 'Sorry, there was a problem updating your company profile. Please try again later.')
       console.log('there was an error in putCompanyImage', error);
     })
   }

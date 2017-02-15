@@ -1136,20 +1136,20 @@
   </div>
   <!--// AUTH MODAL -->
 
-  <div id="submittedModal" class="modal fade" role="dialog">
+  <div id="loadingModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-        </div>
-        <div class="modal-body">
-          <h3 class="postSubmitted">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+          <h3 class="modal-title">
             請等等！我們正在處理你的資料
           </h3>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="okayButton btn btn-success btn-wide" aria-hidden="true">
-            關閉
-          </button>
+        <div class="modal-body">
+          <div class="squares-loader">
+            <div class='uil-squares-css' style='transform:scale(0.71);'><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div>
+          </div>
+          <p></p>
         </div>
       </div>
     </div>
@@ -1161,9 +1161,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
-          <h4 class="modal-title">
-              工作刊登成功!
-            </h4>
+          <h4 class="modal-title">工作刊登成功!</h4>
+          <h5 class="modal-subtitle">Download the mobile app to review candidates</h5>
         </div>
         <div class="modal-body afterpost-body">
           <div id="instruction-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -1190,6 +1189,7 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+          <a href="#" id="editCompanyProfileButton" class="btn btn-lg btn-primary">編輯公司資料</a>
         </div>
         <div class="modal-footer">
           <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
@@ -1200,29 +1200,6 @@
   </div>
   <!-- // AFTERPOST MODAL -->
 
-
-  <!-- LOAD PROFILE MODAL -->
-  <div id="loadProfileModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
-        </div>
-        <div class="modal-body">
-          <h3 class="postSubmitted">
-            Please hold on, we are fetching your company profile.
-          </h3>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="okayButton btn btn-success btn-wide" aria-hidden="true">
-            Okay
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- // LOAD PROFILE MODAL -->
-
   <!-- COMPANY PROFILE MODAL -->
   <div id="companyProfileModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -1230,44 +1207,107 @@
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
           <h4 class="modal-title">
-            Edit Company Profile
+            編輯公司資料
           </h4>
         </div>
         <form data-toggle="validator" id="companyProfileForm">
           <div class="modal-body company-profile-body">
-            <!-- IMAGE GOES HERE -->
-
-            <div class="form-group">
-              <label for="editCompanyName">Company Name</label>
-              <input type="text" class="form-control" id="editCompanyName">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="editCompanyName">公司名稱</label>
+                  <input type="text" class="form-control" id="editCompanyName">
+                </div>
+                <div class="form-group">
+                  <label for="editCompanyContact">Contact Person</label>
+                  <input type="text" class="form-control" id="editCompanyContact">
+                </div>
+                <div class="form-group">
+                  <label for="editCompanyPhone">聯絡電話</label>
+                  <input type="text" data-minlength='8' maxlength='8' class="form-control" id="editCompanyPhone" data-error="Please enter a valid 8-digit Hong Kong phone number.">
+                  <!-- <div class="help-block with-errors"></div> -->
+                </div>
+                <div class="form-group">
+                  <label for="editCompanyWebsite">公司網站</label>
+                  <input type="text" class="form-control" id="editCompanyWebsite">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="profile-image-wrapper">
+                  <label for="profileImage">照片</label>
+                  <img id="profileImage" src="" alt="">
+                  <label id="imageInputWrapper" for="imageInput" class="btn-wide btn btn-info">
+                    上載照片
+                  </label>
+                  <input id="imageInput" type="file" hidden>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="editCompanyContact">Contact Person</label>
-              <input type="text" class="form-control" id="editCompanyContact">
-            </div>
-            <div class="form-group">
-              <label for="editCompanyPhone">Phone Number</label>
-              <input type="number" data-minlength='8' maxlength='8' class="form-control" id="editCompanyPhone" data-error="Please enter a valid 8-digit Hong Kong phone number.">
-              <div class="help-block with-errors"></div>
-            </div>
-            <div class="form-group">
-              <label for="editCompanyWebsite">Website</label>
-              <input type="text" class="form-control" id="editCompanyWebsite">
-            </div>
-            <div class="form-group">
-              <label for="editCompanyDescription">Company Description</label>
-              <input type="text" class="form-control" id="editCompanyDescription">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="editCompanyDescription">公司簡介</label>
+                  <textarea class="form-control" maxlength="2500" rows="3" id="editCompanyDescription"></textarea>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success btn-wide" id="updateCompanyProfile">
-              Update Company Profile
+              更新資料
             </button>
           </div>
+        </form>
       </div>
     </div>
   </div>
   <!-- // COMPANY PROFILE MODAL -->
+
+  <!-- UPDATE VALIDATION MODAL -->
+  <div id="updateValidationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">Company profile updated!</h4>
+          <h5 class="modal-subtitle">Download the app to review candidates</h5>
+        </div>
+        <div class="modal-body update-validation-body">
+          <div class="preview-card">
+            <h5 class="preview-header">
+              公司資料
+            </h5>
+            <img id="imagePreview" src="" alt="">
+            <div class="row">
+              <div class="col-xs-6 postInfoLabel">公司名稱:</div>
+              <div class="col-xs-6 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 postInfoLabel">Contact Person:</div>
+              <div class="col-xs-6 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 postInfoLabel">聯絡電話:</div>
+              <div class="col-xs-6 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 postInfoLabel">公司網站:</div>
+              <div class="col-xs-6 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 postInfoLabel">公司簡介:</div>
+              <div class="col-xs-6 postInfo companyInfo">N/A</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer preview-footer">
+          <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
+          <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // UPDATE VALIDATION MODAL -->
 
   <!-- Vendor -->
   <!--[if lt IE 9]>
