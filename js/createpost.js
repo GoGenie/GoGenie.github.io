@@ -578,7 +578,7 @@ $(document).ready(function() {
 
   function closeSubmittedModal () {
     $('#submittedModal').modal('hide');
-    $('#signInModal').modal('show');
+    $('#loadProfileModal').modal('hide');
   }
 
    /*============================
@@ -614,7 +614,7 @@ $(document).ready(function() {
     $('#continueButton').off().on('click', continueHandler);
     $('.preview-job-btn').off().on('click', previewJobHandler);
     $('#authAndPostButton').off().on('click', authAndPostClickHandler);
-    $('#okayButton').off().on('click', closeSubmittedModal);
+    $('.okayButton').off().on('click', closeSubmittedModal);
   }
 
   function eventHandlers () {
@@ -632,4 +632,4 @@ $(document).ready(function() {
 
   init();
 
-})();
+}());

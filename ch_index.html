@@ -1147,7 +1147,7 @@
           </h3>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="okayButton" class="btn btn-success btn-wide" aria-hidden="true">
+          <button type="submit" class="okayButton btn btn-success btn-wide" aria-hidden="true">
             關閉
           </button>
         </div>
@@ -1214,7 +1214,7 @@
           </h3>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="okayButton" class="btn btn-success btn-wide" aria-hidden="true">
+          <button type="submit" class="okayButton btn btn-success btn-wide" aria-hidden="true">
             Okay
           </button>
         </div>
@@ -1233,12 +1233,37 @@
             Edit Company Profile
           </h4>
         </div>
-        <div class="modal-body afterpost-body">
+        <form data-toggle="validator" id="companyProfileForm">
+          <div class="modal-body company-profile-body">
+            <!-- IMAGE GOES HERE -->
 
-        </div>
-        <div class="modal-footer">
-
-        </div>
+            <div class="form-group">
+              <label for="editCompanyName">Company Name</label>
+              <input type="text" class="form-control" id="editCompanyName">
+            </div>
+            <div class="form-group">
+              <label for="editCompanyContact">Contact Person</label>
+              <input type="text" class="form-control" id="editCompanyContact">
+            </div>
+            <div class="form-group">
+              <label for="editCompanyPhone">Phone Number</label>
+              <input type="number" data-minlength='8' maxlength='8' class="form-control" id="editCompanyPhone" data-error="Please enter a valid 8-digit Hong Kong phone number.">
+              <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+              <label for="editCompanyWebsite">Website</label>
+              <input type="text" class="form-control" id="editCompanyWebsite">
+            </div>
+            <div class="form-group">
+              <label for="editCompanyDescription">Company Description</label>
+              <input type="text" class="form-control" id="editCompanyDescription">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success btn-wide" id="updateCompanyProfile">
+              Update Company Profile
+            </button>
+          </div>
       </div>
     </div>
   </div>
@@ -1292,6 +1317,8 @@
   <script src="js/datepicker/timepicker.min.js"></script>
   <script src="js/datepicker/ch.js"></script>
   <script src="js/ch_createpost.js"></script>
+  <script src="js/companyprofile.js"></script>
+
   <!-- Theme Initialization Files -->
   <script src="js/theme.init.js"></script>
   <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
