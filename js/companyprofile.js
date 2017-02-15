@@ -4,12 +4,12 @@ $(document).ready(function() {
 =            API Calls            =
 =================================*/
 
-  var url = 'http://localhost:3000'
-  // var url = 'http://api-dev.gogenieapp.com'
+  // var url = 'http://localhost:3000'
+  var url = 'http://api-dev.gogenieapp.com'
 
   function getCompanyProfile(callback) {
-    var getUrl = url + '/master/v5/profile_infos/current_info'
-    var data = { headers: responseHeaders }
+    var getUrl = url + '/master/v5/profile_infos/current_info',
+          data = { headers: responseHeaders }
 
     axios.get(getUrl, data)
     .then(function(response) {
@@ -40,6 +40,8 @@ $(document).ready(function() {
       console.log('here is the response:', response)
       renderUpdateValidationModal(response.data.master)
     }).catch(function(error) {
+      $('.squares-loader').css('display', 'none')
+      $('#loadingModal p').text('Sorry, there was a problem updating your company profile. Please try again later.')
       console.error('there was an error in putCompanyProfile', error);
     })
   }
@@ -58,6 +60,8 @@ $(document).ready(function() {
       responseHeaders = response.headers;
       putCompanyProfile();
     }).catch(function(error) {
+      $('.squares-loader').css('display', 'none')
+      $('#loadingModal p').text('Sorry, there was a problem updating your company profile. Please try again later.')
       console.log('there was an error in putCompanyImage', error);
     })
   }
@@ -66,19 +70,19 @@ $(document).ready(function() {
 =            Modal Handlers            =
 ======================================*/
   function promptUpdateValidationModal() {
-    $('#loadProfileModal').modal('hide')
+    $('#loadingModal').modal('hide')
     $('#updateValidationModal').modal('show')
   }
 
   function promptCompanyProfileModal() {
-    $('#loadProfileModal').modal('hide')
+    $('#loadingModal').modal('hide')
     $('#companyProfileModal').modal('show')
   }
 
   function promptLoadingModal() {
     $('#companyProfileModal').modal('hide')
     $('#afterPostModal').modal('hide')
-    $('#loadProfileModal').modal('show')
+    $('#loadingModal').modal('show')
   }
 
   function renderUpdateValidationModal(info) {

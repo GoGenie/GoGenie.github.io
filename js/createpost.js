@@ -6,8 +6,8 @@ $(document).ready(function() {
 
   var formData                = {},
     // url                     = 'http://api.gogenieapp.com',
-    url                     = 'http://localhost:3000',
-    // url                     = 'http://api-dev.gogenieapp.com',
+    // url                     = 'http://localhost:3000',
+    url                     = 'http://api-dev.gogenieapp.com',
 
     getChinesePaymentMethod = {
       'Cash': '現金支付',
@@ -460,7 +460,7 @@ $(document).ready(function() {
   function authenticate (authInfo) {
 
     $('#signInModal').modal('hide');
-    $('#submittedModal').modal('show');
+    $('#loadingModal').modal('show');
 
     var postUrl = url + (signIn ? '/master_auth/sign_in' : '/master_auth');
 
@@ -508,7 +508,7 @@ $(document).ready(function() {
 
   function handleError (code, err) {
     setTimeout(function(){
-      $('#submittedModal').modal('hide');
+      $('#loadingModal').modal('hide');
       $('#signInModal').modal('show');
     }, 900)
 
@@ -545,7 +545,7 @@ $(document).ready(function() {
     signIn = false;
     toggleAuthView();
     $('#instruction-carousel').carousel(0);
-    $('#submittedModal').modal('hide');
+    $('#loadingModal').modal('hide');
     $('#signInModal').modal('hide');
     $('#afterPostModal').modal('show');
   }
@@ -577,10 +577,10 @@ $(document).ready(function() {
     $('.radio-inline > input').prop('checked', false);
   }
 
-  function closeSubmittedModal () {
-    $('#submittedModal').modal('hide');
-    $('#loadProfileModal').modal('hide');
-  }
+  // function closeloadingModal () {
+  //   $('#submittedModal').modal('hide');
+  //   $('#loadProfileModal').modal('hide');
+  // }
 
    /*============================
    =            INIT            =
@@ -615,7 +615,7 @@ $(document).ready(function() {
     $('#continueButton').off().on('click', continueHandler);
     $('.preview-job-btn').off().on('click', previewJobHandler);
     $('#authAndPostButton').off().on('click', authAndPostClickHandler);
-    $('.okayButton').off().on('click', closeSubmittedModal);
+    // $('.okayButton').off().on('click', closeSubmittedModal);
   }
 
   function eventHandlers () {

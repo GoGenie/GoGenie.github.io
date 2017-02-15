@@ -94,6 +94,14 @@ ul.dropdown-menu > li > a {
   font-size: 28px;
 }
 
+.modal-subtitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  margin-top: 10px;
+  text-transform: none;
+}
+
 body.modal-open {
   overflow: auto;
 }
@@ -203,12 +211,10 @@ body.modal-open {
   border-radius: 4px;
 }
 
-#submittedModal .modal-body {
-  padding: 30px;
+#loadingModal .modal-body {
+  padding: 0 30px;
+  text-align: center;
 }
-
-
-
 
 .afterpost-body {
   text-align: center;
@@ -255,12 +261,19 @@ body.modal-open {
   z-index: 2;
 }
 
-#afterPostModal .modal-footer {
+.modal-footer.preview-footer {
   text-align: center;
 }
 
 
 /*COMPANY PROFILE*/
+
+#editCompanyProfileButton {
+  z-index: 3;
+  position: absolute;
+  right: 40px;
+  bottom: 5px;
+}
 
 #updateCompanyProfile {
   margin-bottom: 0px;
@@ -295,3 +308,12 @@ body.modal-open {
   display: none;
 }
 
+.box-loader {
+  height: 128px;
+  width: 128px;
+}
+
+#loadingModal p {
+  color: #a94442;
+  font-size: 24px
+}
