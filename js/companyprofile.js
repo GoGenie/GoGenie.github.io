@@ -4,7 +4,8 @@ $(document).ready(function() {
 =            API Calls            =
 =================================*/
 
-  var url = 'http://api.gogenieapp.com'
+  var url = 'http://localhost:3000'
+  // var url = 'http://api.gogenieapp.com'
 
   function getCompanyProfile(callback) {
     var getUrl = url + '/master/v5/profile_infos/current_info'
@@ -13,6 +14,7 @@ $(document).ready(function() {
     axios.get(getUrl, data)
     .then(function(response) {
       var currentInfo = response.data.master
+      responseHeaders = response.headers
       callback(currentInfo)
     })
     .catch(function(error) {
@@ -21,8 +23,9 @@ $(document).ready(function() {
   }
 
   function putCompanyProfile() {
-    var putUrl = url + '/master/v5/profile_infos/info',
-          data = {
+    var authUrl = url + '/'
+        putUrl  = url + '/master/v5/profile_infos/info',
+          data  = {
             basic_info: {
               name: $('#editCompanyName').val(),
               contact: $('#editCompanyContact').val(),
@@ -34,7 +37,7 @@ $(document).ready(function() {
 
     axios.put(putUrl, data, { headers: responseHeaders })
     .then(function(response) {
-      console.log('submitted basic info!', response)
+      renderUpdateValidationModal(response.data.master)
     }).catch(function(error) {
       console.error('there was an error in putCompanyProfile', error);
     })
@@ -48,24 +51,38 @@ $(document).ready(function() {
 /*======================================
 =            Modal Handlers            =
 ======================================*/
+  function promptUpdateValidationModal() {
+    $('#loadProfileModal').modal('hide')
+    $('#updateValidationModal').modal('show')
+  }
+
   function promptCompanyProfileModal() {
     $('#loadProfileModal').modal('hide')
     $('#companyProfileModal').modal('show')
   }
 
   function promptLoadingModal() {
+    $('#companyProfileModal').modal('hide')
     $('#afterPostModal').modal('hide')
     $('#loadProfileModal').modal('show')
   }
 
+  function renderUpdateValidationModal(info) {
+    $('.companyInfo').eq(0).text(info.name)
+    $('.companyInfo').eq(1).text(info.contact)
+    $('.companyInfo').eq(2).text(info.phone)
+    $('.companyInfo').eq(3).text(info.website_url)
+    $('.companyInfo').eq(4).html(info.bio.replace(/\n\r?/g, '<br />'))
+    promptUpdateValidationModal()
+  }
 
-  function renderCompanyProfileModal(companyInfo) {
+  function renderCompanyProfileModal(info) {
     // populate the modal with company info
-    $('#editCompanyName').val(companyInfo.name)
-    $('#editCompanyContact').val(companyInfo.contact)
-    $('#editCompanyPhone').val(companyInfo.phone)
-    $('#editCompanyWebsite').val(companyInfo.website_url)
-    $('#editCompanyDescription').val(companyInfo.bio)
+    $('#editCompanyName').val(info.name)
+    $('#editCompanyContact').val(info.contact)
+    $('#editCompanyPhone').val(info.phone)
+    $('#editCompanyWebsite').val(info.website_url)
+    $('#editCompanyDescription').val(info.bio)
     promptCompanyProfileModal();
   }
 
@@ -81,6 +98,7 @@ $(document).ready(function() {
 
   function updateCompanyProfileHandler(e) {
     e.preventDefault();
+    promptLoadingModal();
     putCompanyProfile();
   }
 

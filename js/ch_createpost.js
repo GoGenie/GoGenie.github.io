@@ -142,7 +142,7 @@ $(document).ready(function() {
             .text('請選擇開始時間');
         }
       } else {
-        if (formData.salary_max && $('#salaryRange').val() < $('#salaryInput').val()) {
+        if (formData.salary_max && $('#salaryRange').val()*1 < $('#salaryInput').val()*1) {
           retVal = false;
           $('.salary-range-error').eq(0)
             .css('color', '#a94442')

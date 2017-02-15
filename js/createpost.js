@@ -5,8 +5,8 @@ $(document).ready(function() {
   ====================================*/
 
   var formData                = {},
-    url                     = 'http://api.gogenieapp.com',
-    // url                     = 'http://localhost:3000',
+    // url                     = 'http://api.gogenieapp.com',
+    url                     = 'http://localhost:3000',
 
     getChinesePaymentMethod = {
       'Cash': '現金支付',
@@ -179,7 +179,7 @@ $(document).ready(function() {
             .text('Please select a start date.');
         }
       } else {
-        if (formData.salary_max && $('#salaryRange').val() < $('#salaryInput').val()) {
+        if (formData.salary_max && $('#salaryRange').val()*1 < $('#salaryInput').val()*1) {
           retVal = false;
           $('.salary-range-error').eq(0)
             .css('color', '#a94442')

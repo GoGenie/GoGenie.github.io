@@ -1173,9 +1173,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
-          <h4 class="modal-title">
-						Your job posting has been created!
-					</h4>
+          <h4 class="modal-title">Job posted.</h4>
+          <h5>Download the mobile app to review candidates!</h5>
         </div>
         <div class="modal-body afterpost-body">
           <div id="instruction-carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -1206,6 +1205,7 @@
         <div class="modal-footer">
           <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
           <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+          <a href="#" id="editCompanyProfileButton" class="btn btn-lg btn-primary">Edit Company Profile</a>
         </div>
       </div>
     </div>
@@ -1222,7 +1222,7 @@
         </div>
         <div class="modal-body">
           <h3 class="postSubmitted">
-            Please hold on, we are fetching your company profile.
+            Please hold on.
           </h3>
         </div>
         <div class="modal-footer">
@@ -1296,6 +1296,53 @@
     </div>
   </div>
   <!-- // COMPANY PROFILE MODAL -->
+
+  <!-- UPDATE VALIDATION MODAL -->
+  <div id="updateValidationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+          <h4 class="modal-title">
+            Company profile updated! Please download the app to review candidates.
+          </h4>
+        </div>
+        <div class="modal-body update-validation-body">
+          <div class="preview-card">
+            <h5 class="preview-header">
+              Your Company Info
+            </h5>
+            <div class="row">
+              <div class="col-xs-4 postInfoLabel">Company Name:</div>
+              <div class="col-xs-8 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 postInfoLabel">Contact Person:</div>
+              <div class="col-xs-8 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 postInfoLabel">Phone Number:</div>
+              <div class="col-xs-8 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 postInfoLabel">Website:</div>
+              <div class="col-xs-8 postInfo companyInfo">N/A</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4 postInfoLabel">Company Description:</div>
+              <div class="col-xs-8 postInfo companyInfo">N/A</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="https://itunes.apple.com/de/app/gogenie-job-seeker-find-temp/id1013711536?l=en&mt=8" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from App Store (English)'])"><img src="img/genie/appstore.png" class="store-button"></a>
+          <a href="https://play.google.com/store/apps/details?id=com.gogenieapp.employee" target="_blank" onclick="_gaq.push(['_trackEvent', 'Download Button', 'Employer App from Play Store (English)'])"><img src="img/genie/playstore.png" class="store-button"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // UPDATE VALIDATION MODAL -->
+
 
   <!-- Vendor -->
   <!--[if lt IE 9]>
