@@ -6841,7 +6841,7 @@ body:not(.device-touch) .button {
 	/* border-bottom: 3px solid rgba(0,0,0,0.15); */
 	-webkit-transition: none;
 	-o-transition: none;
-	transition: none;	
+	transition: none;
     box-shadow: 0 0 2px grey;
 }
 
@@ -9191,9 +9191,10 @@ ul.tab-nav:not(.tab-nav-lg) {
 	/* border-bottom: 1px solid #DDD; */
 	list-style: none;
     display: inline-block;
-    border-radius: 55px;
-    background: #999;
-	padding: 5px;
+    /*border-radius: 55px;*/
+    background: white;
+		padding: 5px;
+		/*border-bottom: 1px black solid;*/
 }
 
 ul.tab-nav:not(.tab-nav-lg) li {
@@ -9216,19 +9217,21 @@ ul.tab-nav:not(.tab-nav-lg) li:first-child {
 ul.tab-nav:not(.tab-nav-lg) li a {
 	display: block;
 	padding: 0 15px;
-	color: #fff;
-	height: 30px;
-	line-height: 30px;
-	background-color: #999;
-	font-size: 14px;
+	color: #444;
+	height: 50px;
+	line-height: 22px;
+	background-color: white;
+	font-size: 22px;
 	font-weight: bold;
+	border-bottom: 3px #DDD solid;
 }
 
 ul.tab-nav:not(.tab-nav-lg) li.ui-tabs-active a {
 	position: relative;
 	background-color: #FFF;
-	border-radius: 55px;
-	color:#999;
+	/*border-radius: 55px;*/
+	color: #444;
+	border-bottom: 3px #02bdc6 solid;
 }
 
 
@@ -9515,7 +9518,7 @@ ul.tab-nav li a i {
 .joblogo, .jobtitle {
     float: left;
     background: #1f2d35;
-    color: #fff;	
+    color: #fff;
     padding: 5px 10px;
 }
 .inofobox {
@@ -13837,16 +13840,21 @@ ul.tab-nav:not(.tab-nav-lg) li {
 }
 @media (max-width:767px){
 ul.tab-nav:not(.tab-nav-lg) li a {
-    font-size: 11px;
+    font-size: 14px;
     height: 22px;
     line-height: 22px;
     padding: 0 5px !important;
+
+		/*margin: 0 !important;
+		padding: 0 !important;*/
 }
 ul.tab-nav:not(.tab-nav-lg) {
     height: 32px;
 }
 ul.tab-nav:not(.tab-nav-lg) li {
-    padding: 0px 2px;
+    /*padding: 0px 2px;*/
+		margin: 0 !important;
+padding: 0 !important;
 }
 .emphasis-title p {
     font-size: 16px !important;
@@ -13890,7 +13898,7 @@ ul.tab-nav:not(.tab-nav-lg) li {
     max-width: 350px;
     min-width: 260px;
     box-shadow: 0px 0px 5px #02bdc6;
-    float: right;	
+    float: right;
     width: 100%;
     margin-bottom: 30px;
 }
@@ -13982,7 +13990,7 @@ p.clientstitle {
 .widget p:not(.lead) { font-size: 16px; }
 
 #middle-tab {
-	margin: 0 10px;
+	/*margin: 0 10px;*/
 }
 
 
@@ -14004,7 +14012,7 @@ p.clientstitle {
 
 
 @media (max-width: 320px) {
-	
+
 	#middle-tab {
 	    margin: 0 0px;
 	}
@@ -14015,4 +14023,3 @@ p.clientstitle {
 
 
 }
-
