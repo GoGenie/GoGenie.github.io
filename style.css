@@ -14023,3 +14023,17 @@ p.clientstitle {
 
 
 }
+
+.cyan-button {
+	color: white !important;
+	background: #02bdc6 !important;
+	padding: 10px 20px;
+	font-size: 18px;
+}
+
+.cyan-button:hover {
+	color: white !important;
+	background: #6ad1da !important;
+	padding: 10px 20px;
+	font-size: 18px;
+}
