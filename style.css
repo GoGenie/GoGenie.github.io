@@ -169,7 +169,7 @@ h4,
 h5,
 h6 {
 	color: #444;
-	font-weight: 600;
+	
 	line-height: 1.5;
 	margin: 0 0 30px 0;
 	font-family: 'Raleway', 'Dengxian', 'HanHei TC', 'PingFang HK', 'Microsoft Jhenghei', sans-serif;
@@ -535,7 +535,7 @@ span.middot {
 .section {
 	position: relative;
 	margin: 60px 0;
-	padding: 60px 0;
+	
 	background-color: #F2F2F2;
 	overflow: hidden;
 }
@@ -1139,7 +1139,7 @@ body.stretched #header.full-header .container {
 	padding: 39px 15px;
 	color: #333;
 	/* font-weight: bold; */
-	font-size: 13px;
+	
 	letter-spacing: 1px;
 	/* text-transform: uppercase; */
 	font-family: 'Raleway', 'Dengxian', 'HanHei TC', 'PingFang HK', 'Microsoft Jhenghei', sans-serif;
